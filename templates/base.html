@@ -1,0 +1,260 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Title -->
+      <title> {% block title %} {% endblock %} </title>
+      <!-- Favicon -->
+      <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+      <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
+      <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+      <!-- Font awesome CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+      <!-- Animate CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+      <!-- OwlCarousel CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}">
+      <!-- SlickNav CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/slicknav.min.css' %}">
+      <!-- rangeSlider CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/range-Slider.min.css' %}">
+      <!-- Main CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+      <!-- Responsive CSS -->
+      <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+   </head>
+   <body>
+    <!-- Header Top Area Start -->
+    <div class="afloon-header-top-area section_15">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="header-top-left">
+                  <p>
+                     <i class="fa fa-phone"></i>
+                     Support now: (095) 3030 601
+                  </p>
+                  <p>
+                     <i class="fa fa-envelope"></i>
+                     Email : <a href="#">info@uyaprop.com</a>
+                  </p>
+               </div>
+            </div>
+            <div class="col-md-2">
+               <div class="header-top-middle">
+                  <ul>
+                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <div class="header-top-right">
+                  <ul>
+                     <li class="login">
+                        <a href="#login" data-toggle="modal" data-target="#login">login</a>
+                     </li>
+                     <li>
+                        <a href="#register" data-toggle="modal" data-target="#register">register</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+    <!-- Header Top Area End -->
+     
+     
+    <!-- Header Area Start -->
+    <div id="mainHeaderBarAnchor"></div>
+    <header class="afloon-header-area white_header">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-3">
+                <div class="afloon-logo">
+                   <a href="{% url 'pages-index' %}">
+                   <img src="{% static 'assets/img/logo.png' %}" alt="site logo" />
+                   </a>
+                </div>
+                <!-- Responsive Menu Start -->
+                <div class="afloon-responsive-menu"></div>
+                <!-- Responsive Menu End -->
+             </div>
+             <div class="col-md-9">
+                <div class="afloon-mainmenu">
+                   <nav>
+                      <ul id="afloon_navigation">
+                         <li class="current-page-item">
+                            <a href="{% url 'pages-index' %}">
+                            home
+                            <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul>
+                               <li><a href=" {% url 'pages-about' %} ">About Us</a></li>
+                               
+                            </ul>
+                         </li>
+                         <li>
+                            <a href="{% url 'pages-services' %}">
+                            services
+                            
+                            </a>
+                            
+                         </li>
+                         <li>
+                            <a href=" {% url 'pages-property' %} ">
+                            properties
+                           
+                            </a>
+                            
+                         </li>
+                         <li>
+                            <a href=" {% url 'pages-contact' %} ">
+                              Contact Us
+                            </a>
+                         </li>
+                         <li>
+                            <a href="#">
+                              FAQ
+                            </a>
+                         </li>
+                         <li>
+                            <a href=" {% url 'pages-blog' %} ">
+                            blog
+                            </a>
+                            
+                         </li>
+                         
+                      </ul>
+                   </nav>
+                </div>
+             </div>
+          </div>
+       </div>
+    </header>
+    <!-- Header Area End -->
+       
+       {% block content %}
+      
+       
+       
+      
+       {% endblock %}
+      <!-- Footer Area Start -->
+        {% include 'pages/partials/_footer.html' %}
+      <!-- Footer Area End -->
+       
+       
+      <!-- Modal Window Start -->
+      <div class="modal fade" id="login" tabindex="-1" role="dialog">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body login-body">
+                  <div class="login-box">
+                     <a href="index.html">
+                     <img src="assets/img/logo.png" alt="site logo" />
+                     </a>
+                     <form>
+                        <p>
+                           <input type="text" name="username" placeholder="Username or Email" >
+                        </p>
+                        <p>
+                           <input type="password" name="password" placeholder="Password" >
+                        </p>
+                        <p class="forgot">
+                           <a href="#">Forgot username?</a>
+                        </p>
+                        <p class="remember">
+                           <input type="checkbox" id="rem">
+                           <label for="rem">Remember Me</label>
+                        </p>
+                        <p>
+                           <button type="submit" >login</button>
+                        </p>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal fade" id="register" tabindex="-1" role="dialog">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body login-body">
+                  <div class="login-box">
+                     <a href="index.html">
+                     <img src="assets/img/logo.png" alt="site logo" />
+                     </a>
+                     <form>
+                        <p>
+                           <input type="text" name="firstname" placeholder="First Name" >
+                        </p>
+                        <p>
+                           <input type="text" name="lastname" placeholder="Last Name" >
+                        </p>
+                        <p>
+                           <input type="email" name="email" placeholder="Email Address" >
+                        </p>
+                        <p>
+                           <input type="password" name="password" placeholder="Choose Password" >
+                        </p>
+                        <p>
+                           <input type="password" name="password" placeholder="Confirm Password" >
+                        </p>
+                        <p class="terms">
+                           <input id="trms" type="checkbox">
+                           <label for="trms">Agree with terms and conditions?</label>
+                        </p>
+                        <p>
+                           <button type="submit" >register</button>
+                        </p>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Modal Window Start -->
+       
+       
+      <!-- jQuery -->
+      <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+      <!-- Bootstrap JS -->
+      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- OwlCarousel JS -->
+      <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+      <!-- SlickNav JS -->
+      <script src="{% static 'assets/js/jquery.slicknav.min.js' %}"></script>
+      <!-- Zelect JS -->
+      <script src="{% static 'assets/js/zelect.js' %}"></script>
+      <!-- Function Setup JS -->
+      <script src="{% static 'assets/js/function-setup.js' %}"></script>
+      <!-- Range Slider JS -->
+      <script src="{% static 'assets/js/range-Slider.min.js' %}"></script>
+      <!-- Custom JS -->
+      <script src="{% static 'assets/js/custom.js' %}"></script>
+      <script src="{% static 'assets/js/main.js' %}"></script>
+   </body>
+</html>
+

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Breadcromb Area Start -->
+{% include 'pages/partials/_breadcromb.html' %}
+<!-- Breadcromb Area End -->
+
+   <!-- Contact Page Area Start -->
+   <section class="afloon-contact-page-area section_100">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-10">
+             <div class="afloon-contact-desc">
+                <h3>You can Contact with us Anytime</h3>
+                <P>If you're looking for a reliable and trusted 
+                  real estate platform in Nigeria, look no further
+                   than UyaProp. Contact us today to learn
+                    more about our services and how we can help you 
+                    find the perfect property for your needs.</P>
+             </div>
+          </div>
+       </div>
+       <div class="afloon-contact-form-bottom">
+          <div class="row">
+             <div class="col-md-4 col-sm-12">
+                <div class="contact-form-left">
+                   <div class="single-contact-left">
+                      <div class="contact-icon">
+                         <i class="fa fa-phone text-center"></i>
+                      </div>
+                      <div class="contact-text">
+                         <h4>phone</h4>
+                         <p>(+88) 123 455 564 0</p>
+                         <p>(+88) 123 750 317 0</p>
+                      </div>
+                   </div>
+                   <div class="single-contact-left">
+                      <div class="contact-icon">
+                         <i class="fa fa-envelope text-center"></i>
+                      </div>
+                      <div class="contact-text">
+                         <h4>Email</h4>
+                         <p>yorsite@example.com</p>
+                         <p>info@example.net</p>
+                      </div>
+                   </div>
+                   <div class="single-contact-left">
+                      <div class="contact-icon">
+                         <i class="fa fa-home text-center"></i>
+                      </div>
+                      <div class="contact-text">
+                         <h4>Address</h4>
+                         <span>abc. College Road - 4400<br>Bagerhat, BD</span>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-8 col-sm-12">
+                <div class="afloon-contact-form-right left-margin">
+                   <form>
+                      <div class="row">
+                         <div class="col-md-6">
+                            <p>
+                               <input type="text" name="name" placeholder="Enter Your Name" >
+                            </p>
+                         </div>
+                         <div class="col-md-6">
+                            <p>
+                               <input type="email" name="Email" placeholder="Enter Your Email" >
+                            </p>
+                         </div>
+                      </div>
+                      <div class="row">
+                         <div class="col-md-6">
+                            <p>
+                               <input type="text" name="subject" placeholder="Your Subject"  >
+                            </p>
+                         </div>
+                         <div class="col-md-6">
+                            <p>
+                               <input type="tel" name="phone" placeholder="Your Phone" >
+                            </p>
+                         </div>
+                      </div>
+                      <div class="row">
+                         <div class="col-md-12">
+                            <p>
+                               <textarea placeholder="Message..." name="Message" ></textarea>
+                            </p>
+                            <p>
+                               <button type="submit" >send message</button>
+                            </p>
+                         </div>
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Contact Page Area End -->
+  
+  
+ <!-- Newsletter Area Start -->
+ <section class="afloon-newsletter-area section_15">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-7 col-sm-7">
+             <div class="afloon-newsletter-left">
+                <h4>Newsletter</h4>
+                <form>
+                   <p>
+                      <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
+                      <button type="submit" ><i class="fa fa-send"></i></button>
+                   </p>
+                </form>
+             </div>
+          </div>
+          <div class="col-md-5 col-sm-5">
+             <div class="afloon-newsletter-right">
+                <h4>follow us on</h4>
+                <ul>
+                   <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                   <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                   <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                   <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Newsletter Area End -->
+
+
+{% endblock %}

@@ -1,0 +1,973 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+{% include 'pages/partials/_slider.html' %}
+<!-- Slider Area End -->
+
+
+<!-- Search Property Area Start -->
+<section class="afloon-search-property-area">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="search-property">
+              <div class="row">
+                 <div class="col-md-3">
+                    <div class="single-search-property">
+                       <input type="text" placeholder="Keyword (e.g. 'office')" name="location" >
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="single-search-property">
+                       <div class="intro">
+                          <select>
+                             <option class="active">Location</option>
+                             <option>Australia</option>
+                             <option>Japan</option>
+                             <option>Italy</option>
+                             <option>Bangladesh</option>
+                             <option>China</option>
+                             <option>India</option>
+                          </select>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="single-search-property">
+                       <input type="text" placeholder="Min area (sqft)" name="minarea" >
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="single-search-property">
+                       <input type="text" placeholder="Max area (sqft)" name="maxarea" >
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="single-search-property">
+                       <input type="text" placeholder="Min Beds" name="minbeds" >
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="single-search-property">
+                       <input type="text" placeholder="Min Baths" name="minbath" >
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="single-search-property range">
+                       <label class="pull-left">Price:</label>
+                       <div class="price home-price">
+                          <span>$</span>
+                          <div class="leftLabel"></div>
+                          <span>- $</span>
+                          <div class="rightLabel"></div>
+                       </div>
+                    </div>
+                    <div data-range_min="0" data-range_max="15000" data-cur_min="0" data-cur_max="15000" class="nstSlider">
+                       <div class="bar"></div>
+                       <div class="leftGrip"></div>
+                       <div class="rightGrip"></div>
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="single-search-property button">
+                       <button type="submit" >Search</button>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Search Property Area End -->
+
+
+<!-- About Area Start -->
+<section class="afloon-about-area section_100">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-6">
+           <div class="about-left">
+              <div class="afloon-section-title">
+                 <h2>about <span>UyaProp</span></h2>
+                 <div class="title-line"></div>
+                 <img alt="light logo" src="{% static 'assets/img/light-logo.png' %}">
+              </div>
+              <h3>Ease to Locate, Ease to Rent, Ease to Buy!</h3>
+              <p>Welcome to UyaProp, your one-stop destination for all your
+                Real Estate needs in Nigeria. Our platform connects property owners
+                 and renters with ease, ensuring a seamless and hassle-free real 
+                 estate experience. With UyaProp, you can find the perfect 
+                 property for your needs and budget, whether you're looking to rent,
+                  buy or sell.</p>
+           </div>
+        </div>
+        <div class="col-md-6">
+           <div class="about-right">
+              <a href="#">
+                 <img src="{% static 'assets/img/abt.jpg' %}" alt="about image">
+                 <div class="about-right-overlay"></div>
+              </a>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- About Area End -->
+
+
+<!-- Latest Properties Area Start -->
+<section class="afloon-latest-properties-area section_100">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="afloon-section-title">
+              <h2>property <span>listing</span></h2>
+              <div class="title-line"></div>
+              <p>We have Properties in these Areas View a list of Featured Properties.</p>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-md-4">
+           <div class="single-latest-properties">
+              <div class="property-img">
+                 <a href="#">
+                    <img src="{% static 'assets/img/listing1.jpg' %}" alt="property image" />
+                    <div class="property_overlay"></div>
+                 </a>
+                 <div class="pro-tag sale">
+                    <p>for sale</p>
+                 </div>
+                 <div class="pro-info">
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          04
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="property-text">
+                 <h3><a href="#">Morden Apartment</a></h3>
+                 <div class="pro-details-price">
+                    <p>1,80,000 (USD)</p>
+                    <a href="#">More Details</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-4">
+           <div class="single-latest-properties">
+              <div class="property-img">
+                 <a href="#">
+                    <img src="{% static 'assets/img/listing2.jpg' %}" alt="property image" />
+                    <div class="property_overlay"></div>
+                 </a>
+                 <div class="pro-tag sale">
+                    <p>for sale</p>
+                 </div>
+                 <div class="pro-info">
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          04
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="property-text">
+                 <h3><a href="#">Masons de Villa</a></h3>
+                 <div class="pro-details-price">
+                    <p>1,80,000 (USD)</p>
+                    <a href="#">More Details</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-4">
+           <div class="single-latest-properties">
+              <div class="property-img">
+                 <a href="#">
+                    <img src="{% static 'assets/img/listing3.jpg' %}" alt="property image" />
+                    <div class="property_overlay"></div>
+                 </a>
+                 <div class="pro-tag sold">
+                    <p>sold out</p>
+                 </div>
+                 <div class="pro-info">
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          04
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="property-text">
+                 <h3><a href="#">Luxurious Deplux</a></h3>
+                 <div class="pro-details-price">
+                    <p>1,80,000 (USD)</p>
+                    <a href="#">More Details</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-md-4">
+           <div class="single-latest-properties">
+              <div class="property-img">
+                 <a href="#">
+                    <img src="{% static 'assets/img/listing4.jpg' %}" alt="property image" />
+                    <div class="property_overlay"></div>
+                 </a>
+                 <div class="pro-tag rent">
+                    <p>for rent</p>
+                 </div>
+                 <div class="pro-info">
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          04
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="property-text">
+                 <h3><a href="#">Luxurious Deplux</a></h3>
+                 <div class="pro-details-price">
+                    <p>1,80,000 (USD)</p>
+                    <a href="#">More Details</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-4">
+           <div class="single-latest-properties">
+              <div class="property-img">
+                 <a href="#">
+                    <img src="{% static 'assets/img/listing6.jpg' %}" alt="property image" />
+                    <div class="property_overlay"></div>
+                 </a>
+                 <div class="pro-tag sale">
+                    <p>for sale</p>
+                 </div>
+                 <div class="pro-info">
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          04
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="property-text">
+                 <h3><a href="#">Morden Apartment</a></h3>
+                 <div class="pro-details-price">
+                    <p>1,80,000 (USD)</p>
+                    <a href="#">More Details</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-4">
+           <div class="single-latest-properties">
+              <div class="property-img">
+                 <a href="#">
+                    <img src="{% static 'assets/img/listing8.jpg' %}" alt="property image" />
+                    <div class="property_overlay"></div>
+                 </a>
+                 <div class="pro-tag rent">
+                    <p>for rent</p>
+                 </div>
+                 <div class="pro-info">
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          04
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="property-text">
+                 <h3><a href="#">Luxurious Deplux</a></h3>
+                 <div class="pro-details-price">
+                    <p>1,80,000 (USD)</p>
+                    <a href="#">More Details</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Latest Properties Area End -->
+
+
+<!-- Quotes Area Start -->
+<section class="afloon-quotes-area section_100">
+  <div class="quotes_overlay"></div>
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="quotes-box">
+              <h2>book your appartment or house today!</h2>
+              <h3>call us on : +(67)123-8760-127</h3>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Quotes Area End -->
+
+
+<!-- Best Deal Property Area Start -->
+<section class="afloon-best-deal-property-area section_100">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="afloon-section-title">
+              <h2>best <span>deal property</span></h2>
+              <div class="title-line"></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli Iusto.</p>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-md-12">
+           <div class="deal-property-slide">
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing1.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing2.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing3.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing4.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing6.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Best Deal Property Area End -->
+
+
+<!-- Service Area Start -->
+<section class="afloon-service-area section_100">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="afloon-section-title">
+              <h2>Our <span>Service</span></h2>
+              <div class="title-line"></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli Iusto.</p>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-md-3 col-sm-6">
+           <div class="single-home-service">
+              <div class="service-icon">
+                 <i class="fa fa-crosshairs"></i>
+              </div>
+              <div class="service-text">
+                 <h3><a href="#">Development</a></h3>
+                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus quasi asperiores itaque dolorem at.</p>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+           <div class="single-home-service">
+              <div class="service-icon">
+                 <i class="fa fa-home"></i>
+              </div>
+              <div class="service-text">
+                 <h3><a href="#">Property Sale</a></h3>
+                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus quasi asperiores itaque dolorem at.</p>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+           <div class="single-home-service">
+              <div class="service-icon">
+                 <i class="fa fa-check"></i>
+              </div>
+              <div class="service-text">
+                 <h3><a href="#">Property Rent</a></h3>
+                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus quasi asperiores itaque dolorem at.</p>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+           <div class="single-home-service">
+              <div class="service-icon">
+                 <i class="fa fa-bar-chart-o"></i>
+              </div>
+              <div class="service-text">
+                 <h3><a href="#">Market Analysis</a></h3>
+                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus quasi asperiores itaque dolorem at.</p>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Service Area End -->
+
+
+<!-- Agents Area Start -->
+<section class="afloon-agents-area section_100">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="afloon-section-title">
+              <h2>Our <span>agents</span></h2>
+              <div class="title-line"></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli Iusto.</p>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-md-12">
+           <div class="afloon-agent-slide">
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt1.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt2.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt3.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt4.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt2.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Agents Area End -->
+
+
+<!-- Best Property Area Start -->
+<section class="afloon-best-property-area section_100">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="afloon-section-title">
+              <h2>Find Your Best Property</h2>
+              <div class="title-line"></div>
+           </div>
+           <div class="best-property">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ex illum corporis quibusdam numquam quisquam optio explicabo. Officiis odit quia odio dignissimos eius repellat id!</p>
+              <div class="best-property-link">
+                 <a href="#">view listing</a>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Best Property Area End -->
+
+
+<!-- Client Review Area Start -->
+<section class="afloon-client-review-area section_100">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="afloon-section-title">
+              <h2>What <span>customer say</span></h2>
+              <div class="title-line"></div>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-md-12">
+           <div class="client-slider">
+              <div class="single-client-review">
+                 <div class="review-text">
+                    <div class="quotes-icon-left">
+                       <i class="fa fa-quote-left"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <div class="quotes-icon-right">
+                       <i class="fa fa-quote-right"></i>
+                    </div>
+                 </div>
+                 <div class="review-image">
+                    <img src="{% static 'assets/img/client-say-1.jpg' %}" alt="review image" />
+                    <div class="review-info">
+                       <h3>john doe</h3>
+                       <p>San Francisco, California</p>
+                       <ul>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-client-review">
+                 <div class="review-text">
+                    <div class="quotes-icon-left">
+                       <i class="fa fa-quote-left"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <div class="quotes-icon-right">
+                       <i class="fa fa-quote-right"></i>
+                    </div>
+                 </div>
+                 <div class="review-image">
+                    <img src="{% static 'assets/img/client-say-1.jpg' %}" alt="review image" />
+                    <div class="review-info">
+                       <h3>john doe</h3>
+                       <p>San Francisco, California</p>
+                       <ul>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                          <li><a href="#"><i class="fa fa-star"></i></a></li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Client Review Area End -->
+
+
+<!-- Newsletter Area Start -->
+<section class="afloon-newsletter-area section_15">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-7 col-sm-7">
+           <div class="afloon-newsletter-left">
+              <h4>Newsletter</h4>
+              <form>
+                 <p>
+                    <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
+                    <button type="submit" ><i class="fa fa-send"></i></button>
+                 </p>
+              </form>
+           </div>
+        </div>
+        <div class="col-md-5 col-sm-5">
+           <div class="afloon-newsletter-right">
+              <h4>follow us on</h4>
+              <ul>
+                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              </ul>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!-- Newsletter Area End -->
+
+
+
+{% endblock %}
+

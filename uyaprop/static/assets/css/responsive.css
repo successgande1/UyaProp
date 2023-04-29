@@ -1,0 +1,607 @@
+/* Medium Layout: 1280px. */
+@media only screen and (min-width: 992px) and (max-width: 1200px) { 
+
+    .royal-logo img {
+        margin-top: 5px
+    }
+    .recent-img {
+        display: block;
+        margin-bottom: 10px;
+        margin-right: 0;
+        text-align: center;
+    }
+    .single-agent.agent-page{
+        margin: 30px 0 0
+    }
+    .agent-contact i{
+        display: none
+    }
+    .agent-details, .agent-contact{
+        text-align: center
+    }
+    .agent-details > h3{
+        padding-left: 0px;
+        text-align: center
+    }
+    .recent-text {
+        display: block;
+        text-align: center;
+    }
+    .single-listing-widget{
+        padding: 10px
+    }
+    .single-agent{
+        margin: 30px 15px 0;
+    }
+    .login-page-box{
+        width: 50%
+    }
+    .pro-details-price > a, .pro-details-price > p{
+        margin-top: 10px
+    }
+    .search-property{
+        padding-bottom: 0
+    }
+    .header-top-right li{
+        margin: 0
+    }
+    
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) { 
+
+    .header-top-left, .header-top-right > ul{
+        text-align: center
+    }
+    .header-top-left, .header-top-right, .header-top-middle{
+        text-align: center;
+        margin: 10px 0
+    }
+    .afloon-responsive-menu{
+        display: block
+    }
+    header .royal-logo::before{
+        right: -150px;
+        transform: skewX(0deg);
+    }
+    header{
+        background: #3F85CE none repeat scroll 0 0
+    }
+    header .afloon-logo:before{
+        display: none
+    }
+    .royal-logo img {
+        display: block;
+        margin: 0 auto;
+    }
+    .afloon-mainmenu{
+        display: none
+    }
+    .royal-main-caption h2, .royal-main-caption-homepage-2 h2{
+        font-size: 30px
+    }
+    .royal-main-caption h3{
+        font-size: 23px
+    }
+    .single-search-property{
+        margin-bottom: 30px
+    }
+    .single-search-property.button{
+        margin-top: 30px;
+        margin-bottom: 0
+    }
+    .about-right {
+        margin-top: 30px
+    }
+    .deal-price-left{
+        float: left
+    }
+    .single-agent{
+        margin: 30px 40px 0 
+    }
+    .royal-newsletter-left h4, .royal-newsletter-right h4{
+        display: none
+    }
+    .royal-newsletter-left input{
+        width: 100%
+    }
+    .royal-newsletter-left p{
+        width: 100%
+    }
+    .listing-search{
+        margin-bottom: 20px
+    }
+    .left-margin {
+        margin-top: 30px
+    }
+    .property-2-related-pro {
+        margin: 30px 0
+    }
+    .agent-details-image > img {
+        display: block;
+        margin: 0 auto 30px;
+    }
+    .agent-right {
+        text-align: center;
+    }
+    .agent-profile-contact{
+        margin-top: 30px
+    }
+    .faq-left h2, .royal-faqs-right > h3{
+        font-size: 22px
+    }
+    .login-page-box{
+        width: 70%
+    }
+    .royal-default-blog-text{
+        padding: 30px
+    }
+    .single-comment-item img {
+        margin: 0 0 20px
+    }
+    .contact-agent-box .single-agent.big-margin{
+        margin: 30px 210px
+    }
+    .search-property{
+        padding: 60px 50px;
+    }
+    
+    
+}
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+    header .afloon-logo:before{
+        display: none
+    }
+    header{
+        background: #3F85CE none repeat scroll 0 0
+    }
+
+    .header-top-left, .header-top-right > ul{
+        text-align: center
+    }
+    .header-top-left, .header-top-right, .header-top-middle{
+        margin: 10px 0
+    }
+    .header-top-left > p{
+        margin: 5px 0
+    }
+    header .royal-logo::before {
+        right: 125px;
+    }
+    .royal-logo img {
+        margin-top: 5px;
+        width: 60%;
+    }
+    .afloon-responsive-menu{
+        display: block
+    }
+    .afloon-mainmenu{
+        display: none
+    }
+    .royal-main-slide{
+        height: 450px
+    }
+    .royal-main-caption h2, .royal-main-caption-homepage-2 h2{
+        font-size: 25px
+    }
+    .royal-main-caption h3{
+        font-size: 18px
+    }
+    .single-search-property{
+        margin-bottom: 20px
+    }
+    .single-search-property.button{
+        margin-top: 20px;
+        margin-bottom: 0
+    }
+    .about-left > h3 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .about-right {
+        margin-top: 40px;
+    }
+    .quotes-box > h2{
+        font-size: 26px;
+        line-height: 40px;
+        margin-bottom: 10px
+    }
+    .deal-price-left > p{
+        margin-top: 47px
+    }
+    .deal-price-left{
+        float: left
+    }
+    .contact-agent-box .single-agent{
+        margin: 30px
+    }
+    .royal-best-property-area .royal-section-title > h2{
+        font-size: 28px
+    }
+    .best-property{
+        width: 95%
+    }
+    .review-text{
+        width: 95%
+    }
+    .royal-newsletter-left input{
+        padding: 7px 60px 7px 7px
+    }
+    .royal-newsletter-left{
+        text-align: center
+    }
+    .royal-newsletter-right{
+        text-align: center
+    }
+    .royal-newsletter-left h4, .royal-newsletter-right h4{
+        display: none
+    }
+    .royal-newsletter-left p{
+        width: 95%
+    }
+    .single-footer-widget{
+        margin: 30px 0
+    }
+    .desktop{
+        display: none
+    }
+    .mobile{
+        display: block
+    }
+    .breadcromb-left{
+        text-align: center;
+        margin-bottom: 20px
+    }
+    .breadcromb-right{
+        text-align: center
+    }
+    .search-property{
+        padding: 60px 50px
+    }
+    .shorting-left{
+        text-align: center
+    }
+    .shorting-right{
+        text-align: center
+    }
+    .listing-search {
+        margin-bottom: 15px;
+    }
+    .left-margin {
+        margin-top: 30px;
+    }
+    .login-box{
+        padding: 0
+    }
+    .forgot {
+        display: block;
+        float: none;
+        font-weight: 500;
+        margin-left: 0 !important;
+    }
+    .remember{
+        margin-left: 0 !important
+    }
+    .property-2-related-pro {
+        margin: 30px 0;
+    }
+    .agent-details-image > img {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+    .agent-profile-contact{
+        margin-top: 30px
+    }
+    .notfound-page h1 {
+        font-size: 120px
+    }
+    .notfound-page h2{
+        font-size: 22px
+    }
+    .faq-left h2, .royal-faqs-right > h3{
+        font-size: 20px
+    }
+    .panel-title a{
+        font-size: 15px
+    }
+    .login-page-box{
+        padding: 20px;
+        width: 100%
+    }
+    .login-page-box label{
+        text-align: center;
+        margin-top: 15px
+    }
+    .royal-complete-order-head h2{
+        font-size: 25px
+    }
+    .royal-complete-order-head > p{
+        font-size: 15px
+    }
+    .single-add-property > h3{
+        font-size: 20px
+    }
+    .property-form-group{
+        padding: 0
+    }
+    .dz-default.dz-message > span{
+        font-size: 15px
+    }
+    .pro-feature-add > li{
+        display: block
+    }
+    .royal-default-blog-text{
+        padding: 20px 0
+    }
+    .post-share{
+        text-align: center
+    }
+    .post-comment-like{
+        text-align: center;
+        margin-top: 20px
+    }
+    .single-blog-author {
+        padding: 15px;
+    }
+    .blog-author-img {
+        height: 120px;
+        margin-right: 20px;
+        width: 120px;
+    }
+    .single-comment-item img {
+        margin: 0 0 20px;
+    }
+    .comment-list ul ul {
+        margin-left: 55px;
+    }
+    .royal-leave-comment input[type="text"], .royal-leave-comment input[type="email"] {
+        width: 100%;
+    }
+    .single-blog-text blockquote {
+        padding: 35px;
+    }
+    .royal-leave-comment textarea {
+        width: 100%
+    }
+    .royal-contact-form-right > form{
+        padding: 30px
+    }
+    .single-agent{
+       margin: 30px 50px 0 
+    }
+    
+}
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) { 
+    header .afloon-logo:before{
+        right: -150px;
+        transform: skewX(0deg);
+    }
+    header{
+        background: #3F85CE none repeat scroll 0 0
+    }
+
+    .header-top-left, .header-top-right > ul{
+        text-align: center
+    }
+    .header-top-left, .header-top-right, .header-top-middle{
+        margin: 10px 0
+    }
+    .header-top-left > p{
+        margin: 5px 0;
+        display: block
+    }
+    .deal-pro-info ul li{
+        margin: 0 5px
+    }
+    header .royal-logo::before {
+        right: 235px;
+    }
+    .royal-logo img {
+        margin-top: 0;
+        width: 40%; 
+    }
+    .afloon-responsive-menu{
+        display: block
+    }
+    .afloon-mainmenu{
+        display: none
+    }
+    .royal-main-slide{
+        height: 450px
+    }
+    .royal-main-caption h2, .royal-main-caption-homepage-2 h2{
+        font-size: 25px
+    }
+    .royal-main-caption h3{
+        font-size: 18px
+    }
+    .single-search-property{
+        margin-bottom: 20px
+    }
+    .single-search-property.button{
+        margin-top: 20px;
+        margin-bottom: 0
+    }
+    .about-left > h3 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .about-right {
+        margin-top: 40px;
+    }
+    .quotes-box > h2{
+        font-size: 26px;
+        line-height: 40px;
+        margin-bottom: 10px
+    }
+    .deal-price-left > p{
+        margin-top: 47px
+    }
+    .deal-price-left{
+        float: left;
+        margin-top: 7px
+    }
+    .single-agent{
+        margin: 0 5px
+    }
+    .royal-best-property-area .royal-section-title > h2{
+        font-size: 28px
+    }
+    .best-property{
+        width: 95%
+    }
+    .review-text{
+        width: 80%
+    }
+    .royal-newsletter-left input{
+        padding: 7px 60px 7px 7px
+    }
+    .royal-newsletter-left{
+        text-align: center
+    }
+    .royal-newsletter-right{
+        text-align: center
+    }
+    .royal-newsletter-left h4, .royal-newsletter-right h4{
+        display: none
+    }
+    .royal-newsletter-left p{
+        width: 95%
+    }
+    .single-footer-widget{
+        margin: 30px 0
+    }
+    .desktop{
+        display: block
+    }
+    .mobile{
+        display: none
+    }
+    .breadcromb-left{
+        text-align: center;
+        margin-bottom: 20px
+    }
+    .breadcromb-right{
+        text-align: center
+    }
+    .search-property{
+        padding: 60px 50px
+    }
+    .shorting-left{
+        text-align: center
+    }
+    .shorting-right{
+        text-align: center
+    }
+    .listing-search {
+        margin-bottom: 15px;
+    }
+    .left-margin {
+        margin-top: 30px;
+    }
+    .login-box{
+        padding: 0
+    }
+    .forgot {
+        display: inline-block;
+        float: left;
+        font-weight: 500;
+        margin-left: 0 !important;
+    }
+    .remember{
+        margin-left: 0 !important
+    }
+    .property-2-related-pro {
+        margin: 30px 0;
+    }
+    .agent-details-image > img {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+    .agent-profile-contact{
+        margin-top: 30px
+    }
+    .notfound-page h1 {
+        font-size: 120px
+    }
+    .notfound-page h2{
+        font-size: 22px
+    }
+    .faq-left h2, .royal-faqs-right > h3{
+        font-size: 20px
+    }
+    .panel-title a{
+        font-size: 15px
+    }
+    .login-page-box{
+        padding: 20px;
+        width: 100%
+    }
+    .login-page-box label{
+        text-align: right;
+        margin-top: 15px
+    }
+    .royal-complete-order-head h2{
+        font-size: 25px
+    }
+    .royal-complete-order-head > p{
+        font-size: 15px
+    }
+    .single-add-property > h3{
+        font-size: 20px
+    }
+    .property-form-group{
+        padding: 0
+    }
+    .dz-default.dz-message > span{
+        font-size: 15px
+    }
+    .pro-feature-add > li{
+        display: block
+    }
+    .royal-default-blog-text{
+        padding: 20px 0
+    }
+    .post-share{
+        text-align: center
+    }
+    .post-comment-like{
+        text-align: center;
+        margin-top: 20px
+    }
+    .single-blog-author {
+        padding: 15px;
+    }
+    .blog-author-img {
+        height: 120px;
+        margin-right: 20px;
+        width: 120px;
+    }
+    .single-comment-item img {
+        margin: 0 0 20px;
+    }
+    .comment-list ul ul {
+        margin-left: 55px;
+    }
+    .royal-leave-comment input[type="text"], .royal-leave-comment input[type="email"] {
+        width: 100%;
+    }
+    .single-blog-text blockquote {
+        padding: 35px;
+    }
+    .royal-leave-comment textarea {
+        width: 100%
+    }
+    .royal-contact-form-right > form{
+        padding: 30px
+    }
+    .contact-agent-box .single-agent.big-margin{
+        margin: 30px 135px
+    }
+    .single-agent.agent-page {
+        margin: 30px 150px 0;
+    }
+
+}

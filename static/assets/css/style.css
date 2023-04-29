@@ -1,0 +1,3960 @@
+/*
+*******************************************
+*******************************************
+
+Template Name: Afloon || Real Estate HTML5 Template
+Author: Hassan Rasu
+Version: 2.0
+Template By: Themescare
+
+* This file contains the styling for the actual theme, this
+is the file you need to edit to change the look of the
+theme.
+
+This files contents are outlined below >>>>
+
+*** SEARCH EACH SECTION AS IT COMMENTS, YOU WILL GET THE RIGHT SECTION.
+
+*******************************************
+*******************************************
+
+==== CSS INDEX
+
+01 - IMPORTED CSS
+02 - DEFAULT CSS
+03 - PAGINATION CSS
+04 - BREADCROMB CSS
+05 - REPONSIVE MENU CSS
+06 - MODAL WINDOW CSS
+07 - BTN TO TOP CSS
+08 - HEADER TOP CSS
+09 - HEADER AREA CSS
+10 - MAIN SLIDER CSS
+11 - SEARCH PROPERTY CSS
+12 - ABOUT AREA CSS
+13 - QUOTES AREA CSS
+14 - PROPERTIES AREA CSS
+15 - BEST DEAL PROPERTY AREA CSS
+16 - FIND PROPERTY AREA CSS
+17 - SERVICE AREA CSS
+18 - AGENT SLIDER CSS
+19 - CLIENT REVIEW CSS
+20 - NEWSLETTER AREA CSS
+21 - FOOTER CSS
+22 - CHOOSE US AREA CSS
+23 - LISTING CSS
+24 - PROPERTY DETAILS ONE CSS
+25 - PROPERTY DETAILS TWO CSS
+26 - AGENT DETAILS PAGE CSS
+27 - 404 PAGES CSS
+28 - FAQ PAGES CSS
+29 - ADD PROPERTY PAGES CSS
+30 - MY ACCOUNT PAGE CSS
+31 - DEFAULT BLOG CSS
+32 - BLOG LIST CSS
+33 - BLOG GRID CSS
+34 - BLOG SIDEBAR CSS
+35 - SINGLE BLOG PAGE CSS
+36 - HOME PAGE TWO CSS
+37 - LOGIN PAGE CSS
+38 - CONTACT PAGE CSS
+
+
+*/
+
+
+/*================================================
+01 - IMPORTED CSS
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700');
+
+/*================================================
+02 - DEFAULT CSS
+==================================================*/
+
+body {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 400;
+	color: #555;
+	font-size: 15px;
+	line-height: 26px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+img {
+	max-width: 100%;
+	height: auto
+}
+
+.afloon-btn:before {
+	background: #3F85CE none repeat scroll 0 0;
+	bottom: 0;
+	content: "";
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	-webkit-transform: scaleX(0);
+	transform: scaleX(0);
+	-webkit-transform-origin: 50% 0 0;
+	transform-origin: 50% 0 0;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-property: -webkit-transform;
+	transition-property: -webkit-transform;
+	transition-property: transform;
+	transition-property: transform, -webkit-transform;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	z-index: -1;
+	width: 100%
+}
+
+.afloon-btn:hover:before {
+	-webkit-transform: scaleX(1);
+	transform: scaleX(1);
+	-webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+	transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+.afloon-btn {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	border: 3px solid #3F85CE;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	color: #fff !important;
+	display: inline-block;
+	padding: 10px 20px;
+	position: relative;
+	text-transform: uppercase;
+	-webkit-transform: translateZ(0px);
+	transform: translateZ(0px);
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-property: color;
+	transition-property: color;
+	vertical-align: middle;
+	font-weight: 600
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	color: inherit
+}
+
+a:focus {
+	text-decoration: none;
+	outline: medium none;
+	color: inherit
+}
+
+a:hover {
+	color: inherit;
+	text-decoration: none;
+	color: inherit
+}
+
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+.title-line {
+	background: #3F85CE none repeat scroll 0 0;
+	height: 3px;
+	width: 100px;
+}
+
+.afloon-section-title {
+	margin-bottom: 20px;
+	position: relative
+}
+
+.afloon-section-title>img {
+	height: auto;
+	left: 100px;
+	opacity: 0.23;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=23)";
+	position: absolute;
+	top: -14px;
+	width: 85px;
+	z-index: -1;
+}
+
+.afloon-section-title>h2,
+.afloon-section-title-center>h2 {
+	color: #111;
+	font-family: "Poppins", sans-serif;
+	font-size: 35px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	text-transform: capitalize;
+}
+
+.afloon-section-title>p {
+	font-size: 16px;
+	margin-top: 20px;
+}
+
+.section_100 {
+	padding: 100px 0;
+}
+
+.section_70 {
+	padding: 70px 0;
+}
+
+.section_50 {
+	padding: 50px 0;
+}
+
+.section_15 {
+	padding: 15px 0
+}
+
+.pad-right {
+	padding-right: 0
+}
+
+.section_t_100 {
+	padding-top: 100px
+}
+
+.section_b_100 {
+	padding-bottom: 100px
+}
+
+.section_b_70 {
+	padding-bottom: 70px
+}
+
+.section_25 {
+	padding: 25px 0
+}
+
+
+/*================================================
+03 - PAGINATION CSS
+==================================================*/
+
+.pagination {
+	margin: 50px 0 0;
+}
+
+.pagination-box {
+	text-align: center;
+}
+
+.pagination>li {
+	display: inline-block;
+	margin: 0 3px
+}
+
+.pagination a {
+	color: #333 !important;
+	border: 1px solid #3F85CE !important;
+	border-radius: 50% !important
+}
+
+.pagination .active>a,
+.pagination a:hover {
+	background: #3F85CE none repeat scroll 0 0 !important;
+	color: #fff !important
+}
+
+
+/*================================================
+04 - BREADCROMB CSS
+==================================================*/
+
+.afloon-breadcromb-area {
+	background-attachment: fixed;
+	background-image: url("../img/breadcromb.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+.breadcromb_overlay {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+}
+
+.breadcromb-left {
+	text-align: left;
+}
+
+.breadcromb-right {
+	text-align: right;
+}
+
+.breadcromb-left>h3 {
+	color: #fff;
+	font-size: 25px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	text-transform: capitalize;
+}
+
+.breadcromb-right li {
+	display: inline-block;
+	margin: 0 3px;
+	text-transform: capitalize;
+	color: #fff
+}
+
+.breadcromb-right a {
+	color: #fff;
+}
+
+.breadcromb-right a i {
+	margin-right: 5px;
+	color: #3F85CE
+}
+
+.breadcromb-right a:hover {
+	color: #3F85CE
+}
+
+
+/*================================================
+05 - REPONSIVE MENU CSS
+==================================================*/
+
+.afloon-responsive-menu {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0px;
+	width: 100%;
+	z-index: 999;
+}
+
+.slicknav_nav a {
+	font-size: 16px;
+	margin: 0;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	color: #000;
+	padding: 10px !important
+}
+
+.slicknav_menu {
+	background: transparent;
+}
+
+.slicknav_menutxt {
+	display: none !important;
+}
+
+.slicknav_arrow {
+	float: right;
+	color: #000
+}
+
+.slicknav_nav a:hover {
+	border-radius: 0;
+}
+
+.slicknav_nav .slicknav_row:hover {
+	border-radius: 0
+}
+
+.slicknav_nav a:hover,
+.slicknav_nav .slicknav_row:hover {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff
+}
+
+.slicknav_menu ul li a i {
+	display: none
+}
+
+.slicknav_nav li {
+	border-bottom: 1px solid #aaa;
+}
+
+.slicknav_nav li:last-child {
+	border-bottom: 0px solid #aaa
+}
+
+.slicknav_nav {
+	background: #fff none repeat scroll 0 0;
+	border-top: 1px solid #3F85CE;
+	max-height: 320px;
+	overflow-y: scroll
+}
+
+.slicknav_btn {
+	margin-bottom: 15px;
+	margin-right: 20px;
+	background-color: #000 !important;
+	line-height: 0;
+	margin-top: 20px
+}
+
+.slicknav_menu .slicknav_icon {
+	float: none !important;
+	margin: 0
+}
+
+.slicknav_icon-bar {
+	height: 3px !important;
+	margin: 5px 0;
+	width: 30px !important;
+}
+
+.slicknav_menu .slicknav_icon-bar {
+	background-color: #fff;
+}
+
+
+/*================================================
+06 - MODAL WINDOW CSS
+==================================================*/
+
+.modal-content {
+	background: rgba(31, 34, 62, 0.78) none repeat scroll 0 0;
+	color: #fff;
+}
+
+.modal-title {
+	font-weight: 600;
+}
+
+.modal-body p {
+	margin: 5px 0;
+}
+
+.modal-header {
+	border-bottom: 0px solid #fff
+}
+
+.close {
+	color: #fff;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.close:hover {
+	color: #ed4949;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"
+}
+
+.login-box {
+	padding: 50px;
+	text-align: center
+}
+
+.login-box>a>h2 {
+	color: #fff;
+	display: inline-block;
+	font-size: 26px;
+	font-weight: 600;
+	padding: 5px 10px;
+	text-transform: capitalize
+}
+
+.login-box span {
+	font-weight: 400;
+}
+
+.login-box>form>p {
+	margin: 10px 0
+}
+
+.terms>input {
+	margin-right: 10px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="email"],
+.login-box input[type="password"] {
+	background: #fff none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	height: 40px;
+	padding: 5px 10px;
+	width: 80%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	color: #000
+}
+
+.login-box input:focus {
+	border: 1px solid #5dc560
+}
+
+.login-box button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 10px 20px;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.login-box button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+.forgot {
+	display: inline-block;
+	float: left;
+	margin-left: 50px !important;
+	font-weight: 500
+}
+
+.remember {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	margin-left: 50px !important;
+}
+
+.remember>label,
+.terms>label {
+	font-weight: 500
+}
+
+.remember>input {
+	margin-right: 10px;
+	margin-top: -4px
+}
+
+.login-signup {
+	margin-top: 20px;
+	text-transform: capitalize;
+}
+
+.login-signup>p>a {
+	color: #5dc560;
+	font-weight: 700;
+	margin-left: 10px;
+}
+
+.login-signup>p>a:hover {
+	color: #3fa542
+}
+
+.login-box>form {
+	margin-top: 30px;
+}
+
+
+/*================================================
+07 - BTN TO TOP CSS
+==================================================*/
+
+.btntoTop:before {
+	color: #fff;
+	content: "";
+	display: inline-block;
+	font: 20px "FontAwesome";
+	vertical-align: middle;
+}
+
+.btntoTop {
+	background-color: #3F85CE;
+	border: 2px solid #3F85CE;
+	border-radius: 2px;
+	bottom: 30px;
+	cursor: pointer;
+	height: 44px;
+	line-height: 36px;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	position: fixed;
+	right: 30px;
+	text-align: center;
+	-webkit-transition: opacity 0.4s ease 0s;
+	transition: opacity 0.4s ease 0s;
+	width: 44px;
+	z-index: 999;
+}
+
+.btntoTop.active {
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.btntoTop.active:hover {
+	background: #2c6caf none repeat scroll 0 0;
+	opacity: 0.8;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+}
+
+.btntoTop.active.btntoTop:hover:before {
+	color: #fff;
+}
+
+
+/*================================================
+08 - HEADER TOP CSS
+==================================================*/
+
+.afloon-header-top-area {
+	background: #111 none repeat scroll 0 0;
+	color: #fff;
+}
+
+.header-top-left>p {
+	display: inline-block;
+	margin-right: 15px;
+	letter-spacing: 1px;
+	font-size: 14px;
+}
+
+.header-top-left>p:last-child {
+	margin-right: 0px
+}
+
+.header-top-middle ul {
+	text-align: center
+}
+
+.header-top-middle li {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.header-top-middle a {
+	font-size: 14px;
+}
+
+.header-top-right>ul {
+	text-align: right;
+}
+
+.header-top-right li {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.header-top-right li a {
+	text-transform: capitalize;
+	font-size: 14px;
+	letter-spacing: 1px
+}
+
+.header-top-right .login:after {
+	color: #fff !important;
+	content: "|";
+	padding-left: 4px;
+}
+
+.header-top-left a:hover,
+.header-top-middle a:hover,
+.header-top-right li a:hover {
+	color: #4fb2f5
+}
+
+
+/*================================================
+09 - HEADER AREA CSS
+==================================================*/
+
+.white_header.static {
+	background: #fff none repeat scroll 0 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+	box-shadow: 0 0 5px #aaa
+}
+
+header .afloon-logo {
+	height: 90px;
+	margin: 0;
+	padding: 19px 30px 19px 0;
+	position: relative;
+}
+
+header .afloon-logo:before {
+	background: #3F85CE none repeat scroll 0 0;
+	content: " ";
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	-webkit-transform: skewX(-45deg);
+	transform: skewX(-45deg);
+	width: 2000px;
+	z-index: 999;
+}
+
+.afloon-logo img {
+	position: relative;
+	z-index: 9999
+}
+
+.afloon-mainmenu ul {
+	text-align: right;
+}
+
+.afloon-mainmenu ul li {
+	display: inline-block;
+	position: relative
+}
+
+.afloon-mainmenu ul li a {
+	color: #111;
+	display: inline-block;
+	font-size: 15px;
+	padding: 31px 10px;
+	text-transform: capitalize;
+	font-weight: 600
+}
+
+.afloon-mainmenu ul .current-page-item>a,
+.afloon-mainmenu ul li a:hover {
+	color: #3F85CE;
+}
+
+.afloon-mainmenu ul li>ul {
+	background: #ffffff none repeat scroll 0 0;
+	border-bottom: 3px solid #3F85CE;
+	box-shadow: 0 1px 2px rgba(86, 86, 90, 0.58);
+	left: 0;
+	position: absolute;
+	text-align: left;
+	top: 100%;
+	-webkit-transform: scaleY(0);
+	transform: scaleY(0);
+	-webkit-transform-origin: 0 0 0;
+	transform-origin: 0 0 0;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	visibility: hidden;
+	width: 200px;
+	z-index: 2;
+}
+
+.afloon-mainmenu ul li:hover>ul {
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1);
+	visibility: visible;
+}
+
+.afloon-mainmenu ul li ul li {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: -moz-use-text-color -moz-use-text-color #ddd;
+	-o-border-image: none;
+	border-image: none;
+	border-style: none none solid;
+	border-width: medium medium 1px;
+	display: block;
+	position: relative
+}
+
+.afloon-mainmenu ul li ul li a {
+	color: #111;
+	display: block;
+	padding: 10px 15px;
+	text-transform: capitalize;
+}
+
+.afloon-mainmenu ul li ul li>a:hover {
+	color: #3F85CE
+}
+
+
+/*================================================
+10 - MAIN SLIDER CSS
+==================================================*/
+
+.slide-item-1 {
+	background: rgba(0, 0, 0, 0.3) url("../img/slider-1.jpeg") repeat scroll 0 0;
+}
+
+.slide-item-2 {
+	background: rgba(0, 0, 0, 0.3) url("../img/slider-2.jpg") repeat scroll 0 0;
+}
+
+.afloon-main-caption {
+	background: rgba(5, 15, 41, 0.42) none repeat scroll 0 0
+}
+
+.afloon-main-slide {
+	background-color: #eee;
+	background-position: center center;
+	background-size: cover;
+	height: 560px;
+}
+
+.afloon-main-caption {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+.afloon-caption-cell {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: left;
+}
+
+.slider-text {
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.afloon-main-caption h3 {
+	color: #fff;
+	font-size: 24px;
+	font-weight: 500;
+	letter-spacing: 3px;
+	margin-bottom: 15px;
+	text-transform: capitalize;
+}
+
+.afloon-main-caption h3 span {
+	color: #85ccfd;
+	font-weight: 600
+}
+
+.afloon-main-caption h2 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 50px;
+	font-weight: 500;
+	color: #fff;
+	margin-bottom: 30px;
+	text-transform: capitalize;
+	letter-spacing: 3px;
+	line-height: 60px;
+}
+
+.afloon-main-caption p {
+	color: #fff;
+	font-size: 16px;
+	letter-spacing: 1px;
+	margin: 20px 0;
+	text-transform: capitalize;
+}
+
+.afloon-main-caption a {
+	margin: 0 5px;
+}
+
+.afloon-slide .owl-nav>.owl-prev {
+	visibility: hidden;
+	-webkit-transition: all 0.3s cubic-bezier(.83, .8, .11, .64) 0s;
+	-webkit-transition: all 0.2s cubic-bezier(.83, .8, .11, .64) 0s;
+	transition: all 0.2s cubic-bezier(.83, .8, .11, .64) 0s;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	-webkit-transform: scale(0);
+	transform: scale(0)
+}
+
+.afloon-slide:hover .owl-nav>.owl-prev {
+	visibility: visible;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transform: scale(1);
+	transform: scale(1)
+}
+
+.afloon-slide .owl-nav>.owl-next {
+	visibility: hidden;
+	-webkit-transition: all 0.3s cubic-bezier(.83, .8, .11, .64) 0s;
+	-webkit-transition: all 0.2s cubic-bezier(.83, .8, .11, .64) 0s;
+	transition: all 0.2s cubic-bezier(.83, .8, .11, .64) 0s;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	-webkit-transform: scale(0);
+	transform: scale(0)
+}
+
+.afloon-slide:hover .owl-nav>.owl-next {
+	visibility: visible;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transform: scale(1);
+	transform: scale(1)
+}
+
+.afloon-slide .owl-prev {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff !important;
+	font-size: 27px !important;
+	height: 50px;
+	line-height: 39px;
+	position: absolute;
+	top: 45%;
+	left: 3%;
+	width: 50px;
+	padding: 5px;
+	text-align: center;
+	border-radius: 50%
+}
+
+.afloon-slide .owl-next {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff !important;
+	font-size: 27px !important;
+	height: 50px;
+	line-height: 39px;
+	position: absolute;
+	top: 45%;
+	right: 3%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 50px;
+	padding: 5px;
+	text-align: center;
+	border-radius: 50%
+}
+
+.afloon-slide .owl-prev:hover,
+.afloon-slide .owl-next:hover {
+	background: #3070b2 none repeat scroll 0 0;
+	color: #fff;
+}
+
+
+/*================================================
+11 - SEARCH PROPERTY CSS
+==================================================*/
+
+.afloon-search-property-area {
+	position: relative;
+	margin-top: -50px;
+	z-index: 99;
+}
+
+.search-property {
+	background: #1f223e none repeat scroll 0 0;
+	padding: 60px 50px 0;
+}
+
+.single-search-property {
+	border: 1px solid #ddd;
+	margin-bottom: 60px;
+	height: 45px;
+	position: relative
+}
+
+.single-search-property>input,
+.intro {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	color: #eee;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	padding: 10px
+}
+
+.zelect.open .dropdown {
+	background: #fff none repeat scroll 0 0;
+	color: #333;
+	padding: 15px;
+	top: 5px;
+	width: 100%;
+	z-index: 9999;
+	box-shadow: 0px 0px 2px rgba(10, 10, 10, 0.6)
+}
+
+input.zearch {
+	border: 1px solid #444;
+	height: 40px;
+	margin-bottom: 10px;
+	padding: 5px 10px;
+	width: 100%;
+}
+
+.zearch-container:after {
+	color: #999;
+	content: "";
+	font-family: FontAwesome;
+	position: absolute;
+	right: 25px;
+	top: 21px;
+}
+
+.intro .zelect {
+	cursor: pointer;
+}
+
+.intro .dropdown ol {
+	max-height: 100px;
+	overflow-y: scroll;
+	padding: 0;
+}
+
+.zelect ol li {
+	padding: 5px;
+	display: block;
+	-webkit-transition: all 0.2s ease 0s;
+	transition: all 0.2s ease 0s
+}
+
+.zelect ol li:hover {
+	background: rgba(23, 115, 178, 0.71) none repeat scroll 0 0;
+	color: #fff
+}
+
+.zelected {
+	color: #8E909D
+}
+
+.single-search-property.range {
+	border: medium none;
+	color: #8E909D;
+	margin-bottom: 7px;
+	height: 25px
+}
+
+.price.home-price {
+	color: #8E909D;
+	display: inline-block;
+	float: right;
+	font-size: 14px;
+}
+
+.leftLabel,
+.rightLabel {
+	display: inline-block;
+}
+
+.nstSlider .rightGrip,
+.nstSlider .leftGrip {
+	background-color: #fff;
+	height: 20px;
+	top: -5px;
+	width: 20px;
+}
+
+.nstSlider .bar {
+	background: #3F85CE none repeat scroll 0 0;
+}
+
+.single-search-property>button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	height: 100%;
+	width: 100%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.single-search-property.button {
+	border: medium none !important;
+}
+
+.single-search-property>button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+
+/*================================================
+12 - ABOUT AREA CSS
+==================================================*/
+
+.about-left>h3 {
+	color: #354a6b;
+	font-family: "Playfair Display", serif;
+	font-size: 28px;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 38px;
+	margin-bottom: 20px;
+}
+
+.innet-title {
+	font-size: 27px !important
+}
+
+.about-right {
+	display: block;
+	overflow: hidden;
+	position: relative;
+}
+
+.about-right>a>img {
+	height: auto;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition-duration: 1200ms;
+	transition-duration: 1200ms;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	width: 100%;
+}
+
+.afloon-section-title span {
+	color: #3F85CE;
+	font-weight: 600;
+}
+
+.about-right:hover .about-right-overlay {
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	visibility: visible;
+}
+
+.about-right:hover img {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.about-right-overlay {
+	background: rgba(5, 15, 41, 0.42) none repeat scroll 0 0;
+	height: 100%;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	position: absolute;
+	top: 0;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	visibility: hidden;
+	width: 100%;
+}
+
+.about-left>ul {
+	margin-top: 20px;
+}
+
+.about-left>ul li i {
+	color: #3F85CE;
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+.about-left li {
+	font-weight: 400;
+	margin-top: 5px;
+	text-transform: capitalize;
+	color: #333
+}
+
+
+/*================================================
+13 - QUOTES AREA CSS
+==================================================*/
+
+.afloon-quotes-area {
+	background-attachment: fixed;
+	background-image: url("../img/quotes_bg.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	width: 100%;
+}
+
+.quotes_overlay {
+	background: rgba(5, 15, 41, 0.42) none repeat scroll 0 0;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.quotes-box {
+	color: #fff;
+	text-align: center;
+}
+
+.quotes-box>h2 {
+	font-family: 'Poppins', sans-serif;
+	color: #fff;
+	font-size: 35px;
+	font-weight: 500;
+	margin-bottom: 30px;
+	text-transform: capitalize;
+	letter-spacing: 2px;
+}
+
+.quotes-box>h3 {
+	font-weight: 400;
+	text-transform: capitalize;
+	color: #fff;
+}
+
+
+/*================================================
+14 - PROPERTIES AREA CSS
+==================================================*/
+
+.afloon-latest-properties-area {
+	background: #ecf4fc none repeat scroll 0 0;
+}
+
+.afloon-latest-properties-area .afloon-section-title {
+	text-align: center;
+}
+
+.afloon-latest-properties-area .afloon-section-title>.title-line {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.property-img {
+	overflow: hidden;
+	position: relative;
+}
+
+.property-img img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition-duration: 1200ms;
+	transition-duration: 1200ms;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	width: 100%;
+}
+
+.property-img:hover img {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1)
+}
+
+.property_overlay {
+	background: rgba(5, 15, 41, 0.42) none repeat scroll 0 0;
+	height: 100%;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	position: absolute;
+	top: 0;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	visibility: hidden;
+	width: 100%;
+}
+
+.property-img:hover .property_overlay {
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	visibility: visible
+}
+
+.pro-tag {
+	color: #fff;
+	font-weight: 700;
+	height: auto;
+	line-height: 20px;
+	overflow: hidden;
+	padding: 10px 15px 13px;
+	position: absolute;
+	right: -83px;
+	text-align: center;
+	top: 23px;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	width: 255px;
+	z-index: 9;
+}
+
+.pro-tag.sale {
+	background: #eb3c48 none repeat scroll 0 0;
+}
+
+.pro-tag.sold {
+	background: #333333 none repeat scroll 0 0;
+}
+
+.pro-tag.rent {
+	background: #63cb16 none repeat scroll 0 0;
+}
+
+.pro-tag>p {
+	font-size: 18px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	text-transform: capitalize
+}
+
+.pro-info {
+	background: rgba(33, 33, 33, 0.79) none repeat scroll 0 0;
+	bottom: 0;
+	padding: 15px 0;
+	position: absolute;
+	width: 100%;
+}
+
+.pro-info>ul {
+	text-align: center;
+}
+
+.pro-info li {
+	display: inline-block;
+	margin: 0 15px;
+	color: #fff;
+	font-weight: 500
+}
+
+.pro-info li i {
+	color: #3F85CE;
+	margin-right: 5px;
+	font-size: 18px
+}
+
+.single-latest-properties {
+	margin-top: 30px;
+}
+
+.property-text h3 a {
+	font-size: 19px;
+	text-transform: capitalize;
+	color: #111;
+	font-weight: 600
+}
+
+.property-text h3 a:hover {
+	color: #3F85CE
+}
+
+.pro-details-price {
+	margin-top: 20px;
+}
+
+.pro-details-price>a,
+.pro-details-price>p {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff;
+	display: inline-block;
+	font-weight: 600;
+	margin: 0 5px;
+	padding: 7px 19px;
+}
+
+.pro-details-price>a:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+.property-text {
+	background: #fff none repeat scroll 0 0;
+	padding: 20px;
+	text-align: center;
+}
+
+
+/*================================================
+15 - BEST DEAL PROPERTY AREA CSS
+==================================================*/
+
+.afloon-best-deal-property-area {
+	background: #ecf4fc none repeat scroll 0 0;
+}
+
+.afloon-best-deal-property-area .afloon-section-title {
+	text-align: center
+}
+
+.afloon-best-deal-property-area .afloon-section-title>.title-line {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.deal-pro-slide-img {
+	position: relative;
+}
+
+.deal-pro-slide-img img {
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	width: 100%
+}
+
+.deal-pro-slide-img .deal-price {
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	background: rgba(0, 0, 0, 0) -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.43) 27%, rgba(15, 15, 15, 0.63) 71%) repeat scroll 0 0;
+	background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.43) 27%, rgba(15, 15, 15, 0.63) 71%) repeat scroll 0 0;
+	color: #fff;
+	font-size: 14px;
+	padding: 15px;
+	position: absolute;
+	width: 100%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.deal-price-right p a {
+	background: rgba(0, 0, 0, 0.62) none repeat scroll 0 0;
+	color: #b7b7b7;
+	font-size: 16px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	width: 35px;
+	border-radius: 5px;
+	display: block
+}
+
+.deal-price-right p a:hover {
+	background: rgba(89, 171, 227, 0.76) none repeat scroll 0 0;
+	color: #fff
+}
+
+.deal-price-right {
+	text-align: right;
+}
+
+.deal-price-left>p {
+	font-size: 18px;
+	margin-top: 52px;
+}
+
+.deal-price-right>p {
+	display: inline-block;
+	margin-top: 45px;
+}
+
+.deal-pro-slide-img:hover img {
+	opacity: 0.70;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	background: transparent
+}
+
+.deal-pro-info {
+	background: #fff none repeat scroll 0 0;
+	padding: 20px;
+	text-align: center
+}
+
+.deal-pro-info h3 a {
+	color: #111;
+	display: inline-block;
+	font-size: 19px;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+	font-weight: 600;
+}
+
+.deal-pro-info h3 a:hover {
+	color: #3F85CE
+}
+
+.deal-pro-info>ul {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.deal-pro-info ul li {
+	display: inline-block;
+	font-weight: 500;
+	margin: 0 15px;
+}
+
+.deal-pro-info ul li i {
+	color: #3F85CE;
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+
+/*================================================
+16 - FIND PROPERTY AREA CSS
+==================================================*/
+
+.afloon-best-property-area {
+	background: url(../img/looking_bg.png) no-repeat fixed 0 0/cover;
+	position: relative;
+	z-index: 1;
+}
+
+.afloon-best-property-area::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(11, 33, 76, 0.9);
+	z-index: -1;
+}
+
+.afloon-best-property-area .afloon-section-title>h2 {
+	color: #fff;
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 35px;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+.best-property p {
+	letter-spacing: 1px
+}
+
+.afloon-best-property-area .title-line {
+	margin: 0 auto;
+}
+
+.best-property {
+	margin: 0 auto;
+	width: 75%;
+	color: #fff;
+	text-align: center
+}
+
+.best-property-link {
+	margin-top: 40px;
+}
+
+.best-property-link>a {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff;
+	display: inline-block;
+	font-weight: 600;
+	margin: 0 5px;
+	padding: 7px 19px;
+	text-transform: capitalize
+}
+
+.best-property-link>a:hover {
+	background: #2c6caf none repeat scroll 0 0
+}
+
+
+/*================================================
+17 - SERVICE AREA CSS
+==================================================*/
+
+.afloon-service-area .afloon-section-title {
+	text-align: center;
+}
+
+.afloon-service-area .afloon-section-title>.title-line {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.single-home-service {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.service-text>h3 {
+	font-size: 19px;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+	font-weight: 600;
+	color: #111;
+}
+
+.service-icon {
+	margin-bottom: 20px;
+}
+
+.service-text>h3 a:hover {
+	color: #3F85CE;
+}
+
+.service-icon>i:after {
+	border-radius: 50%;
+	box-sizing: content-box;
+	content: "";
+	height: 100%;
+	left: -12px;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	padding: 10px;
+	pointer-events: none;
+	position: absolute;
+	top: -12px;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: all 0.2s ease 0s;
+	transition: all 0.2s ease 0s;
+	width: 100%;
+	z-index: -1;
+}
+
+.service-icon>i {
+	background: #3F85CE none repeat scroll 0 0;
+	border-radius: 50%;
+	box-shadow: 0 0 0 4px rgba(89, 171, 227, 0.9);
+	color: #fff;
+	font-size: 50px;
+	height: 100px;
+	line-height: 100px;
+	position: relative;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: background 0.2s ease 0s, color 0.2s ease 0s;
+	transition: background 0.2s ease 0s, color 0.2s ease 0s;
+	width: 100px;
+}
+
+.service-icon>i:hover:after {
+	box-shadow: 3px 3px 0 rgba(89, 171, 227, 0.9);
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	z-index: 1;
+	-webkit-transform: scale(1.04);
+	transform: scale(1.04)
+}
+
+
+/*================================================
+18 - AGENT SLIDER CSS
+==================================================*/
+
+.afloon-agents-area {
+	background: #ecf1f7 none repeat scroll 0 0;
+}
+
+.afloon-agents-area .afloon-section-title {
+	text-align: center;
+}
+
+.afloon-agents-area .afloon-section-title>.title-line {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.single-agent {
+	display: block;
+	height: auto;
+	margin: 30px 0 0;
+	overflow: hidden;
+}
+
+.agent-details {
+	background: #fff none repeat scroll 0 0;
+	padding: 60px 0;
+	position: relative;
+	text-align: center;
+}
+
+.agent-image {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	-webkit-transition: all 0.5s ease 0s;
+	transition: all 0.5s ease 0s;
+	width: 100%;
+	height: 100%
+}
+
+.single-agent:hover div.agent-image {
+	left: -100%;
+}
+
+.agent-details>h3 {
+	font-size: 19px;
+	margin-bottom: 15px;
+	padding-left: 25px;
+	text-align: left;
+	text-transform: capitalize;
+	color: #111;
+	font-weight: 600;
+}
+
+.agent-contact {
+	padding: 0 25px;
+	text-align: left;
+}
+
+.agent-contact>p {
+	margin: 10px 0;
+}
+
+.agent-contact i {
+	color: #2491db;
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+.agent-contact>a {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff;
+	display: inline-block;
+	font-weight: 600;
+	margin-top: 15px;
+	padding: 7px 19px;
+	text-transform: capitalize;
+}
+
+.agent-contact>a:hover {
+	background: #2c6caf none repeat scroll 0 0
+}
+
+.agent-image>img {
+	height: 100%;
+	width: 100%;
+}
+
+.agent_img_overlay_1 {
+	border-color: rgba(89, 171, 227, 0.35) transparent;
+	border-style: solid;
+	border-width: 0 265px 125px 0;
+	content: "";
+	height: 100%;
+	left: 0;
+	overflow: visible;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 9;
+}
+
+.owl-dots {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.owl-dots>.owl-dot {
+	display: inline-block;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+	-webkit-backface-visibility: visible;
+	backface-visibility: visible;
+	background: #fff none repeat scroll 0 0;
+	display: block;
+	height: 10px;
+	margin: 5px 7px 0px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 10px;
+}
+
+.owl-dots .owl-dot.active span,
+.owl-dots .owl-dot:hover span {
+	background: #3F85CE none repeat scroll 0 0;
+}
+
+
+/*================================================
+19 - CLIENT REVIEW CSS
+==================================================*/
+
+.afloon-client-review-area .afloon-section-title {
+	text-align: center;
+}
+
+.afloon-client-review-area .title-line {
+	margin: 0 auto;
+}
+
+.review-text {
+	margin: 0 auto;
+	padding: 15px 35px;
+	position: relative;
+	text-align: center;
+	width: 80%;
+}
+
+.quotes-icon-left {
+	font-size: 20px;
+	left: 0;
+	position: absolute;
+	top: 5px;
+}
+
+.quotes-icon-right {
+	bottom: 5px;
+	font-size: 20px;
+	position: absolute;
+	right: 0;
+}
+
+.single-client-review {
+	text-align: center;
+}
+
+.review-image {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	margin-top: 30px;
+}
+
+.review-image>img {
+	height: 100px;
+	margin: 0 auto;
+	max-width: 100px;
+}
+
+.review-info {
+	float: right;
+	margin-left: 20px;
+	text-align: left;
+	margin-top: 12px
+}
+
+.review-info>h3 {
+	font-size: 17px;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	color: #111;
+	font-weight: 600;
+}
+
+.review-info li {
+	display: inline-block;
+	margin: 0 1px;
+}
+
+.review-info a {
+	color: #FAC113;
+}
+
+.client-slider .owl-prev {
+	font-size: 28px;
+	left: 0;
+	position: absolute;
+	top: 42%;
+	color: #3F85CE;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.client-slider .owl-next {
+	font-size: 28px;
+	right: 0;
+	position: absolute;
+	top: 42%;
+	color: #3F85CE;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.client-slider .owl-prev:hover,
+.client-slider .owl-next:hover {
+	color: #333
+}
+
+
+/*================================================
+20 - NEWSLETTER AREA CSS
+==================================================*/
+
+.afloon-newsletter-area {
+	background: #212121 none repeat scroll 0 0;
+	padding: 5px 0
+}
+
+.afloon-newsletter-left p {
+	background: #fff none repeat scroll 0 0;
+	height: 40px;
+	position: relative;
+	width: 70%;
+	display: inline-block;
+	margin-top: 6px
+}
+
+.afloon-newsletter-left input {
+	border: medium none;
+	height: 100%;
+	left: 0;
+	padding: 7px 100px 7px 7px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.afloon-newsletter-left h4 {
+	color: #fff;
+	float: left;
+	font-weight: 600;
+	margin-right: 10px;
+	margin-top: 17px;
+	text-transform: capitalize
+}
+
+.afloon-newsletter-right h4 {
+	display: inline-block;
+	color: #fff;
+	font-weight: 600;
+	margin-right: 10px;
+	margin-top: 17px;
+	text-transform: capitalize
+}
+
+.afloon-newsletter-left p>button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	font-size: 22px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.afloon-newsletter-left p>button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+.afloon-newsletter-right>ul {
+	display: inline-block;
+	margin-top: 9px;
+}
+
+.afloon-newsletter-right li {
+	display: inline-block;
+}
+
+.afloon-newsletter-right li a {
+	color: #fff;
+	display: block;
+	font-size: 20px;
+	padding: 5px;
+	text-align: center;
+	width: 35px;
+}
+
+.afloon-newsletter-right li a:hover {
+	color: #3F85CE
+}
+
+.afloon-newsletter-right {
+	text-align: right;
+}
+
+
+/*================================================
+21 - FOOTER CSS
+==================================================*/
+
+.afloon-footer-top {
+	background: #111 none repeat scroll 0 0;
+	color: #999;
+}
+
+.single-footer-widget {
+	margin: 0;
+}
+
+.footer-logo {
+	margin-bottom: 10px
+}
+
+.footer-logo>a {
+	display: inline-block !important;
+}
+
+.footer-logo img {
+	height: auto;
+	width: 75%;
+}
+
+.single-footer-widget>h3 {
+	color: #eee;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 15px;
+	text-transform: capitalize;
+	margin-top: 15px
+}
+
+.footer_post>li {
+	border-bottom: 1px dashed #999;
+}
+
+.footer_post>li:last-child {
+	border-bottom: 0px dashed #999
+}
+
+.single-footer-widget a {
+	display: block;
+	padding: 5px 0;
+	text-transform: capitalize
+}
+
+.single-footer-widget a:hover {
+	color: #fff;
+}
+
+.footer_post li a i {
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+.single-footer-widget p>a {
+	display: inline-block;
+	text-transform: lowercase
+}
+
+.footer_links a {
+	display: inline-block;
+}
+
+.footer_links {
+	display: inline-block;
+	margin-right: 35px;
+}
+
+.afloon-footer-bottom {
+	background: #292929 none repeat scroll 0 0;
+	color: #fff;
+	text-align: center
+}
+
+.copyright p>a,
+.copyright p i,
+.copyright p span {
+	color: #3F85CE;
+	font-weight: 600;
+}
+
+.mobile {
+	display: none
+}
+
+
+/*================================================
+22 - CHOOSE US AREA CSS
+==================================================*/
+
+.afloon-chooseus-area {
+	background: #f9f9f9 none repeat scroll 0 0;
+}
+
+.chooseus-left>h3 {
+	color: #333;
+	font-family: "Poppins", sans-serif;
+	font-size: 25px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	text-transform: capitalize;
+}
+
+.chooseus-left>ul {
+	margin-top: 20px;
+}
+
+.chooseus-left li {
+	color: #000;
+	font-weight: 500;
+	margin-top: 10px;
+	text-transform: capitalize;
+}
+
+.chooseus-left ul li i {
+	color: #3F85CE;
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+
+/*================================================
+23 - LISTING CSS
+==================================================*/
+
+.afloon-listing-sidebar-area {
+	background: #ecf4fc none repeat scroll 0 0;
+}
+
+.single-listing-widget {
+	background: #fff none repeat scroll 0 0;
+	margin-bottom: 30px;
+	padding: 20px;
+}
+
+.listing-option {
+	text-align: center;
+}
+
+.single-listing-widget:last-child {
+	margin-bottom: 0
+}
+
+.single-listing-widget>h3 {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff;
+	margin-bottom: 40px;
+	padding: 10px;
+	text-transform: capitalize;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.single-listing-widget .single-search-property>input {
+	color: #333;
+}
+
+.single-listing-widget .single-search-property {
+	margin-bottom: 15px
+}
+
+.single-listing-widget .range>label,
+.price {
+	color: #555;
+	font-size: 17px;
+	font-weight: 500;
+	display: inline-block;
+	float: right
+}
+
+.single-listing-widget .nstSlider {
+	margin-bottom: 20px;
+}
+
+.listing-search>button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 10px 15px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 100%;
+}
+
+.listing-search>button:hover,
+.more-filter:hover {
+	background: #2c6caf none repeat scroll 0 0;
+	color: #fff
+}
+
+.more-filter {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 10px 8px;
+	text-transform: capitalize;
+	width: 100%;
+}
+
+.text-1 {
+	display: inline-block;
+}
+
+.more-filter i {
+	margin-right: 5px;
+}
+
+.listing-propertie-filters {
+	margin-top: 20px;
+}
+
+.afloon-checkbox>input {
+	visibility: hidden;
+}
+
+.check-box {
+	display: inline-block;
+	margin: 10px 25px;
+}
+
+.none-check {
+	display: inline-block
+}
+
+.afloon-checkbox {
+	width: 24px;
+	height: 24px;
+	background: #fcfff4;
+	background: -webkit-linear-gradient(#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: linear-gradient(#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+	position: relative;
+	left: 0
+}
+
+.afloon-checkbox label {
+	cursor: pointer;
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	left: 4px;
+	top: 4px;
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+	background: -webkit-linear-gradient(#222 0%, #45484d 100%);
+	background: linear-gradient(#222 0%, #45484d 100%);
+}
+
+.afloon-checkbox label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 3px;
+	left: 3px;
+	border: 3px solid #3F85CE;
+	border-top: none;
+	border-right: none;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.afloon-checkbox label:hover:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+
+.afloon-checkbox input[type=checkbox]:checked+label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.afloon-checkbox label>span {
+	display: block;
+	font-weight: 500;
+	left: 40px;
+	position: absolute;
+	top: -4px;
+	width: 220px !important;
+}
+
+.afloon-checkbox input[type="checkbox"]:checked+label:after {
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+.listing-ordering {
+	background: #fff none repeat scroll 0 0;
+	padding: 15px 10px;
+}
+
+.shorting-left>p {
+	margin: 10px 0;
+	text-transform: capitalize;
+}
+
+.shorting-right {
+	text-align: right;
+}
+
+.shorting-right select {
+	border: 1px solid #ddd;
+	padding: 5px;
+	text-transform: capitalize;
+}
+
+.shorting-right>select>option {
+	border-bottom: 1px dashed #ddd;
+	padding: 5px;
+}
+
+.recent-img {
+	display: inline-block;
+	margin-right: 10px
+}
+
+.recent-text {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.single-listing-widget li {
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
+}
+
+.single-listing-widget li:last-child {
+	border-bottom: 0px solid #ddd
+}
+
+.recent-text h4 a {
+	text-transform: capitalize;
+	color: #111;
+	font-weight: 600;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+
+.recent-text h4 a:hover {
+	color: #3F85CE
+}
+
+#map {
+	height: 380px
+}
+
+.cluster div:before {
+	border: 7px solid #274abb;
+}
+
+.cluster div:before {
+	-webkit-animation: 2.5s ease 0s normal none infinite running cluster- animation;
+	animation: 2.5s ease 0s normal none infinite running cluster-animation;
+	border: 7px solid #66676b;
+	border-radius: 50%;
+	box-shadow: 0 0 0 4px #66676b inset;
+	content: "";
+	height: 100%;
+	left: 0;
+	opacity: 0.2;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.cluster {
+	height: 36px !important;
+	width: 36px !important;
+}
+
+.cluster img {
+	display: none;
+}
+
+.cluster div {
+	background-color: #3F85CE;
+	border-radius: 50%;
+	color: #fff !important;
+	font-size: 15px !important;
+	font-weight: 500;
+	height: 36px !important;
+	line-height: 36px !important;
+	text-align: center;
+	width: 36px !important;
+}
+
+.afloon-property-listing-grid-area {
+	background: #1f223e none repeat scroll 0 0
+}
+
+
+/*================================================
+24 - PROPERTY DETAILS ONE CSS
+==================================================*/
+
+.afloon-property-details-area {
+	background: #ecf4fc none repeat scroll 0 0;
+}
+
+.single-property-details {
+	margin-bottom: 40px
+}
+
+.single-property-details:last-child {
+	margin-bottom: 0px
+}
+
+.single-property-details h2,
+.property-2-pages h2 {
+	color: #111;
+	font-weight: 600;
+	font-size: 25px;
+	margin-bottom: 20px;
+	text-transform: capitalize;
+}
+
+.single-property-details p {
+	text-transform: capitalize
+}
+
+.property-meta>ul {
+	background: #3F85CE none repeat scroll 0 0;
+	margin-bottom: 20px;
+	padding: 10px;
+	text-align: center;
+	margin-top: 10px
+}
+
+.property-meta li {
+	color: #fff;
+	display: inline-block;
+	margin: 0 5px;
+	padding: 5px 10px;
+	text-transform: capitalize;
+}
+
+.property-meta i {
+	font-size: 17px;
+	margin-right: 5px;
+}
+
+.link-image-slide {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.hash_main {
+	display: inline-block;
+	width: 24%;
+}
+
+.pro_desc>p {
+	margin: 0 0 20px;
+}
+
+#singleshop li.active>a {
+	background: #3F85CE none repeat scroll 0 0;
+	border-left: 5px solid #212121;
+	border-radius: 0;
+	color: #fff;
+	text-transform: capitalize;
+}
+
+#singleshop a {
+	background: transparent none repeat scroll 0 0;
+	border-left: 5px solid transparent;
+	text-transform: capitalize;
+}
+
+#singleshop a:hover {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: transparent;
+	-o-border-image: none;
+	border-image: none;
+	border-style: solid;
+	border-width: 1px 1px 1px 5px;
+}
+
+.panel-body {
+	background: #fff none repeat scroll 0 0;
+	padding: 20px
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+	padding: 10px;
+	border-top: 0px solid #ddd
+}
+
+.table-bold {
+	font-weight: 400 !important;
+	text-align: left !important;
+	color: #000 !important
+}
+
+.summary-table table td {
+	text-align: right;
+}
+
+.single-property-details>#map {
+	margin-top: 25px;
+}
+
+.summary-table ul li {
+	margin: 10px 0;
+}
+
+.summary-table ul li a i {
+	margin-right: 5px;
+	color: #3F85CE
+}
+
+.contact-agent-box .single-agent {
+	margin: 28px;
+}
+
+.contact-agent-box>form {
+	padding: 0 30px;
+	text-align: center;
+}
+
+.contact-agent-box input,
+.contact-agent-box textarea {
+	border: 1px solid #ddd;
+	height: 45px;
+	padding: 5px 10px;
+	width: 100%;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s
+}
+
+.contact-agent-box input:focus,
+.contact-agent-box textarea:focus {
+	border: 1px solid #3F85CE
+}
+
+.contact-agent-box textarea {
+	border: 1px solid #ddd;
+	height: 100px;
+	padding: 5px 10px;
+	width: 100%;
+}
+
+.contact-agent-box p {
+	margin: 10px 0;
+}
+
+.contact-agent-box button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	height: 100%;
+	padding: 10px 20px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 100%;
+}
+
+.contact-agent-box button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+
+/*================================================
+25 - PROPERTY DETAILS TWO CSS
+==================================================*/
+
+.property-2-pages {
+	margin-top: 20px;
+}
+
+.property-2-info {
+	background: #fff none repeat scroll 0 0;
+	padding: 20px;
+	text-align: center;
+}
+
+.property-2-info a {
+	font-size: 19px;
+	text-transform: capitalize;
+}
+
+.property-2-slide .owl-prev {
+	background: #000 none repeat scroll 0 0;
+	color: #fff;
+	font-size: 20px;
+	height: 45px;
+	line-height: 45px;
+	position: absolute;
+	text-align: center;
+	top: 30%;
+	left: 0;
+	width: 45px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.property-2-slide .owl-next {
+	background: #000 none repeat scroll 0 0;
+	color: #fff;
+	font-size: 20px;
+	height: 45px;
+	line-height: 45px;
+	position: absolute;
+	text-align: center;
+	top: 30%;
+	right: 0;
+	width: 45px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.property-2-slide .owl-prev:hover,
+.property-2-slide .owl-next:hover {
+	background: #3F85CE none repeat scroll 0 0
+}
+
+
+/*================================================
+26 - AGENT DETAILS PAGE CSS
+==================================================*/
+
+.agent-details-left {
+	background-color: #f9f9f9;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	padding: 30px
+}
+
+.agent-right>h2 {
+	color: #111;
+	font-size: 23px;
+	margin-bottom: 15px;
+	text-transform: capitalize;
+	font-weight: 600;
+}
+
+.contact-info-details {
+	margin-top: 10px;
+}
+
+.contact-info-details p {
+	color: #333;
+	display: inline-block;
+	font-weight: 500;
+	margin-top: 5px;
+	width: 30%;
+}
+
+.contact-info-details span {
+	color: #333;
+}
+
+.contact-info-details a:hover {
+	color: #3F85CE
+}
+
+.contact-social-agent {
+	margin-top: 15px;
+}
+
+.contact-social-agent>li {
+	display: inline-block;
+}
+
+.contact-social-agent a {
+	background: #fff none repeat scroll 0 0;
+	display: block;
+	font-size: 20px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	width: 40px;
+	color: #3F85CE
+}
+
+.contact-social-agent a:hover {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff
+}
+
+.agent-profile-contact {
+	background: #fff none repeat scroll 0 0;
+	padding: 30px;
+}
+
+.agent-profile-contact p {
+	margin: 10px 0;
+}
+
+.agent-profile-contact input {
+	border: 1px solid #ddd;
+	height: 40px;
+	padding: 5px 10px;
+	width: 100%;
+}
+
+.agent-profile-contact textarea {
+	border: 1px solid #ddd;
+	height: 100px;
+	padding: 5px 10px;
+	width: 100%;
+}
+
+.agent-profile-contact button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	height: 100%;
+	padding: 10px 20px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 100%;
+}
+
+.agent-profile-contact button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+
+/*================================================
+27 - 404 PAGES CSS
+==================================================*/
+
+.afloon-notfound-area.section_100 {
+	background: #ecf4fc none repeat scroll 0 0;
+}
+
+.notfound-page {
+	text-align: center;
+}
+
+.notfound-page h1 {
+	font-size: 180px;
+	line-height: 1;
+	color: #111;
+	margin-bottom: 20px;
+}
+
+.notfound-page h2 {
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.notfound-page>p {
+	font-size: 18px;
+	margin-bottom: 30px;
+	margin-top: 10px;
+}
+
+.notfound-page>a {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff;
+	display: inline-block;
+	font-weight: 600;
+	margin: 0 5px;
+	padding: 7px 19px;
+}
+
+.notfound-page>a:hover {
+	background: #2c6caf none repeat scroll 0 0
+}
+
+
+/*================================================
+28 - FAQ PAGES CSS
+==================================================*/
+
+.afloon-faqs-area {
+	background: #f9f9f9 none repeat scroll 0 0;
+}
+
+.faq-left h2,
+.afloon-faqs-right>h3 {
+	color: #111;
+	font-size: 24px;
+	margin-bottom: 20px;
+	text-transform: capitalize;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+.afloon-faq-panel {
+	background: #fff none repeat scroll 0 0;
+	margin-top: 30px;
+	padding: 30px;
+}
+
+.panel-title a {
+	color: #333;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 5px;
+	text-transform: capitalize;
+}
+
+.switch {
+	color: #3F85CE;
+	margin-right: 10px;
+}
+
+.panel-heading {
+	background-color: transparent !important;
+	padding: 0;
+}
+
+.panel-default {
+	border-color: #fff;
+}
+
+.panel {
+	box-shadow: 0 0 0
+}
+
+.panel-group {
+	margin: 0 0 10px;
+}
+
+.afloon-faq-panel>h3 {
+	font-size: 20px;
+	margin-bottom: 30px;
+	color: #111;
+	font-weight: 600;
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}
+
+.panel-body>p {
+	margin: 0 0 20px;
+}
+
+.afloon-faqs-right>form {
+	background: #fff none repeat scroll 0 0;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+	margin-top: 30px;
+	padding: 30px 50px;
+}
+
+.afloon-faqs-right form p {
+	margin-top: 15px;
+}
+
+.afloon-faqs-right form label {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	margin-bottom: 0;
+	text-transform: capitalize;
+}
+
+.afloon-faqs-right form input[type="text"],
+.afloon-faqs-right form input[type="email"] {
+	background: #fafafa none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	color: #333;
+	height: 40px;
+	padding: 5px 10px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 100%;
+}
+
+.afloon-faqs-right form textarea {
+	background: #fafafa none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	height: 120px;
+	padding: 5px 10px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 100%;
+}
+
+.afloon-faqs-right form button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	height: 100%;
+	padding: 10px 20px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 100%;
+}
+
+.afloon-faqs-right form button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+
+/*================================================
+29 - ADD PROPERTY PAGES CSS
+==================================================*/
+
+.afloon-add-property-area {
+	background: #eee none repeat scroll 0 0;
+}
+
+.afloon-complete-order-head {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.property-form-group {
+	padding: 0 50px;
+}
+
+.afloon-complete-order-head h2 {
+	color: #111;
+	font-weight: 600;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+}
+
+.single-add-property>h3 {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 40px;
+	padding-bottom: 25px;
+	text-transform: capitalize;
+	color: #111;
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+.property-form-group label {
+	color: #333;
+	display: inline-block;
+	font-weight: 500;
+	text-transform: capitalize
+}
+
+.property-form-group p input {
+	border: 1px solid #ddd;
+	height: 50px;
+	padding: 10px;
+	width: 100%;
+}
+
+.property-form-group p textarea {
+	border: 1px solid #ddd;
+	height: 180px;
+	padding: 10px;
+	width: 100%;
+}
+
+.single-add-property {
+	background: #fff none repeat scroll 0 0;
+	margin-bottom: 30px;
+	padding: 30px;
+}
+
+.property-form-group p,
+.property-form-group .dropdown.faq-drop {
+	margin-bottom: 20px;
+}
+
+.property-form-group .dropdown-toggle {
+	background: #fff none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	border-radius: 0;
+	color: #999;
+	padding: 10px;
+	text-align: left;
+	width: 100%;
+	text-transform: capitalize
+}
+
+.property-form-group .dropdown-menu.faq-drop-open {
+	width: 100%;
+	padding: 0
+}
+
+.property-form-group .dropdown-menu.faq-drop-open>li {
+	border-bottom: 1px solid #ddd;
+	cursor: pointer;
+	display: block;
+	font-size: 15px;
+	font-weight: 400;
+	padding: 10px 20px;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.property-form-group .dropdown-menu.faq-drop-open>li:last-child {
+	border-bottom: 0px solid #ddd
+}
+
+.property-form-group .dropdown-menu.faq-drop-open>li:hover {
+	background: #f9f9f9
+}
+
+.property-form-group .dropdown-toggle i {
+	float: right;
+	font-size: 20px;
+	line-height: 25px;
+}
+
+.property-form-group .dz-message {
+	background: #eee none repeat scroll 0 0;
+	border: 3px dashed #ddd;
+	padding: 50px 20px;
+	text-align: center;
+}
+
+.dz-default i {
+	color: #999;
+	display: block;
+	font-size: 60px;
+	margin-bottom: 30px;
+}
+
+.dz-default.dz-message>span {
+	color: #999;
+	font-size: 20px;
+	text-transform: capitalize;
+}
+
+.dropdown.faq-drop span {
+	color: #999;
+	margin-left: 5px;
+}
+
+.pro-feature-add label {
+	color: #000;
+	font-weight: 400;
+}
+
+.pro-feature-add input {
+	margin-right: 5px;
+}
+
+.pro-feature-add>li {
+	display: inline-block;
+	margin: 5px 10px;
+}
+
+.prperty-submit-button>button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	height: 100%;
+	padding: 10px 20px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	text-transform: capitalize
+}
+
+.prperty-submit-button>button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+.afloon-complete-order-head>p {
+	font-size: 17px;
+}
+
+
+/*================================================
+30 - MY ACCOUNT PAGE CSS
+==================================================*/
+
+.afloon-account-area {
+	background: #eee none repeat scroll 0 0;
+}
+
+.account-author-left>img {
+	width: 100%;
+}
+
+.account-author-left {
+	background: #fff none repeat scroll 0 0;
+	margin-bottom: 30px;
+	padding: 20px;
+}
+
+.account-author-left:last-child {
+	margin-bottom: 0
+}
+
+.overlay-upload {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 500;
+	margin-top: 20px;
+	overflow: hidden;
+	padding: 10px;
+	position: relative;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.overlay-upload input {
+	cursor: pointer;
+	margin: 0;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	padding: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.overlay-upload:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+.account-menu>h3 {
+	border-bottom: 1px solid #eee;
+	font-size: 18px;
+	padding-bottom: 10px;
+	color: #111;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+.account-menu>ul {
+	margin-top: 20px;
+	padding-left: 20px;
+}
+
+.account-menu a i {
+	border-right: 1px solid #ddd;
+	color: #909090;
+	font-size: 18px;
+	height: 30px;
+	line-height: 30px;
+	margin-right: 5px;
+	padding-right: 10px;
+	text-align: center;
+	width: 30px;
+}
+
+.account-menu a {
+	color: #333;
+	display: block;
+	padding: 10px;
+	text-transform: capitalize;
+}
+
+.account-menu a:hover {
+	background: #f9f9f9 none repeat scroll 0 0
+}
+
+.account-menu li {
+	border-bottom: 1px solid #ddd;
+}
+
+.account-menu li:last-child {
+	border-bottom: 0px solid #ddd
+}
+
+.favourite-account-right>h3 {
+	background: #fff none repeat scroll 0 0;
+	padding: 20px;
+	text-transform: capitalize;
+	color: #111;
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 2px;
+}
+
+.favourite-account-right .single-deal-property {
+	margin-top: 30px;
+}
+
+.property-form-group label .twitter {
+	color: #65bbf2;
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.property-form-group label .facebook {
+	color: #4b6ea9;
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.property-form-group label .google {
+	color: #dd4d41;
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.property-form-group label .linkedin {
+	color: #0075b5;
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+
+/*================================================
+31 - DEFAULT BLOG CSS
+==================================================*/
+
+.afloon-default-blog-img {
+	position: relative;
+}
+
+.afloon-default-blog-img img {
+	width: 100%;
+}
+
+.blog-overlay {
+	background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	padding: 10px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.inner-overlay {
+	background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	border: 1px solid #fff
+}
+
+.afloon-default-blog-img:hover .blog-overlay {
+	background: rgba(100, 100, 100, 0.33) none repeat scroll 0 0;
+}
+
+.single-blog-default {
+	border-bottom: 3px dotted #ddd;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	margin-top: 0
+}
+
+.afloon-default-blog-text {
+	padding: 40px 60px;
+}
+
+.afloon-default-blog-text>h3>a {
+	display: inline-block;
+	font-family: "Poppins", sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 12px;
+	color: #111;
+	letter-spacing: 1px;
+	text-transform: capitalize;
+}
+
+.afloon-default-blog-text>h3>a:hover {
+	color: #3F85CE
+}
+
+.post-share h4 {
+	color: #111;
+	display: inline-block;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+
+.post-share>ul {
+	display: inline-block;
+	margin-left: 10px
+}
+
+.post-share ul li {
+	display: inline-block;
+}
+
+.post-share ul li a {
+	color: #fff;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	width: 30px;
+}
+
+.post-fb {
+	background: #4b6ea9 none repeat scroll 0 0
+}
+
+.post-fb:hover {
+	background: #294b86 none repeat scroll 0 0
+}
+
+.post-twit {
+	background: #65bbf2 none repeat scroll 0 0
+}
+
+.post-twit:hover {
+	background: #2085c6 none repeat scroll 0 0
+}
+
+.post-gp {
+	background: #dd4d41 none repeat scroll 0 0
+}
+
+.post-gp:hover {
+	background: #b2382e none repeat scroll 0 0
+}
+
+.afloon-post-share-comment {
+	margin-top: 30px;
+}
+
+.post-comment-like>p {
+	display: inline-block;
+}
+
+.post-comment-like>p.pcomment:after {
+	color: #999;
+	content: "|";
+	margin-right: 10px;
+	padding-left: 10px;
+}
+
+.post-share {
+	text-align: left
+}
+
+.post-comment-like {
+	text-align: right;
+	margin-top: 0
+}
+
+.post-comment-like p>span {
+	color: #e9563d;
+}
+
+.post-comment-like p {
+	color: #333;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+
+
+/*================================================
+32 - BLOG LIST CSS
+==================================================*/
+
+.blog-list-text {
+	padding: 0;
+}
+
+
+/*================================================
+33 - BLOG GRID CSS
+==================================================*/
+
+.blog-grid-text {
+	padding: 20px 0;
+}
+
+
+/*================================================
+34 - BLOG SIDEBAR CSS
+==================================================*/
+
+.blog-single-widget {
+	background: #f9f9f9 none repeat scroll 0 0;
+	margin-bottom: 30px;
+	padding: 20px;
+}
+
+.afloon-blog-sidebar {
+	margin-top: 0px;
+}
+
+.blog-single-widget:last-child {
+	margin-bottom: 0px
+}
+
+.blog-single-widget>form {
+	position: relative;
+	height: 40px
+}
+
+.blog-single-widget input[type="search"] {
+	background: #fff none repeat scroll 0 0;
+	border: medium none;
+	height: 40px;
+	padding: 5px 60px 5px 10px;
+	width: 100%;
+}
+
+.blog-single-widget form>button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	width: 20%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	top: 0
+}
+
+.blog-single-widget button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+.blog-single-widget>h3 {
+	background: #242c42 none repeat scroll 0 0;
+	color: #fff;
+	font-size: 18px;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	text-transform: capitalize;
+}
+
+.blog-catagory li {
+	border-bottom: 2px solid #fff;
+}
+
+.blog-catagory li:last-child {
+	border-bottom: 0px solid #fff;
+}
+
+.blog-catagory li a {
+	color: #444;
+	display: block;
+	padding: 10px 20px;
+	text-transform: capitalize;
+}
+
+.blog-catagory li a:hover {
+	color: #3F85CE
+}
+
+.blog-catagory span {
+	float: right;
+}
+
+.Tags-catagory>li {
+	display: inline-block;
+	margin: 4px 2px;
+}
+
+.Tags-catagory>li>a {
+	background: #fff none repeat scroll 0 0;
+	display: block;
+	padding: 5px 10px;
+	text-transform: capitalize;
+}
+
+.Tags-catagory>li>a:hover {
+	background: #3F85CE none repeat scroll 0 0;
+	color: #fff
+}
+
+.single-popular-post {
+	border-bottom: 2px solid #fff;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+
+.single-popular-post:last-child {
+	border-bottom: 0px solid #fff;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.single-popular-post a>i {
+	color: #3F85CE;
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.single-popular-post>a {
+	color: #111;
+	font-size: 15px;
+	font-weight: 600;
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}
+
+.single-popular-post>a:hover {
+	color: #3F85CE;
+}
+
+.single-popular-post>p {
+	color: #555;
+	font-size: 13px;
+	text-transform: capitalize;
+}
+
+.single-popular-post>p>span {
+	color: #3F85CE
+}
+
+
+/*================================================
+35 - SINGLE BLOG PAGE CSS
+==================================================*/
+
+.single-blog-text>h3 {
+	display: inline-block;
+	font-family: "Poppins", sans-serif;
+	font-size: 21px;
+	font-weight: 500;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+	color: #111;
+	font-weight: 600;
+	letter-spacing: 2px;
+}
+
+.single-blog-text {
+	margin-top: 35px;
+}
+
+.single-blog-text blockquote {
+	background: #ecf4fc none repeat scroll 0 0;
+	border-left: 0 none;
+	color: #354a6b;
+	font-family: "Playfair Display", serif;
+	font-style: italic;
+	font-weight: 400;
+	margin: 50px 0;
+	padding: 50px;
+	position: relative;
+}
+
+.single-blog-text blockquote .fa-quote-left {
+	left: 20px;
+	position: absolute;
+	top: 20px;
+	color: #3F85CE
+}
+
+.single-blog-text blockquote .fa-quote-right {
+	bottom: 20px;
+	position: absolute;
+	right: 20px;
+	color: #3F85CE
+}
+
+.single-blog-text>ul {
+	margin: 50px 0;
+}
+
+.comment-count h3,
+.afloon-leave-comment h3 {
+	color: #111;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+
+.single-blog-text ul li i {
+	color: #3F85CE;
+	font-size: 20px;
+	margin-right: 20px;
+}
+
+.single-blog-text li {
+	margin: 10px 0;
+}
+
+.single-blog-author {
+	border-bottom: 1px solid #ddd;
+	margin: 40px 0;
+	padding: 40px;
+}
+
+.blog-author-img {
+	float: left;
+	height: 150px;
+	margin-right: 30px;
+	width: 150px;
+}
+
+.blog-author-img>img {
+	height: 100%;
+	width: 100%;
+}
+
+.blog-author-text>h4 {
+	margin-bottom: 10px;
+}
+
+.blog-author-text {
+	padding: 10px;
+}
+
+.single-blog-comment {
+	margin-top: 40px;
+	padding-top: 25px;
+}
+
+.comment-list {
+	margin-top: 40px;
+}
+
+.single-comment-item {
+	background: #f9f9f9 none repeat scroll 0 0;
+	margin: 10px 0;
+	padding: 30px 10px
+}
+
+.afloon-comment-item h4 {
+	color: #111;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}
+
+.single-comment-item img {
+	display: block;
+	height: 70px;
+	margin: 0 auto;
+	width: 70px;
+}
+
+.afloon-comment-item span {
+	color: #777;
+	font-size: 13px;
+}
+
+.afloon-comment-item a {
+	color: #3F85CE;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.afloon-comment-item a:hover {
+	color: #333
+}
+
+.comment-list ul ul {
+	margin-left: 100px;
+}
+
+.single-comment-item p {
+	color: #555;
+}
+
+.afloon-leave-comment {
+	margin-bottom: 0;
+	margin-top: 50px;
+}
+
+.afloon-leave-comment>h3 {
+	margin-bottom: 15px;
+}
+
+.afloon-leave-comment input[type="text"],
+.afloon-leave-comment input[type="email"] {
+	background: transparent none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	float: left;
+	height: 45px;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	margin-top: 0;
+	padding: 10px 15px;
+	width: 45%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.afloon-leave-comment textarea {
+	border: 1px solid #ddd;
+	height: 160px;
+	margin-bottom: 20px;
+	padding: 5px 15px;
+	width: 93%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.afloon-leave-comment input:focus,
+.afloon-leave-comment textarea:focus {
+	border: 1px solid #3F85CE;
+}
+
+.afloon-leave-comment button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: 1px solid #3F85CE;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 17px;
+	padding: 12px 18px;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.afloon-leave-comment button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+
+/*================================================
+36 - HOME PAGE TWO CSS
+==================================================*/
+
+.afloon-main-caption-homepage-2 {
+	background: rgba(5, 15, 41, 0.42) none repeat scroll 0 0;
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+.afloon-main-caption-homepage-2 h2 {
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 40px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.afloon-slide-homepage-2 .afloon-caption-cell {
+	text-align: center;
+}
+
+.afloon-best-deal-property-area .single-deal-property {
+	margin-top: 30px;
+}
+
+
+/*================================================
+37 - LOGIN PAGE CSS
+==================================================*/
+
+.afloon-login-page-area-start {
+	background: #eee none repeat scroll 0 0
+}
+
+.login-page-box {
+	background: #fff none repeat scroll 0 0;
+	margin: 0 auto;
+	padding: 40px;
+	text-align: center;
+	width: 40%;
+}
+
+.login-page-box>h3 {
+	border-bottom: 1px solid #ddd;
+	color: #111;
+	font-size: 23px;
+	font-weight: 600;
+	padding-bottom: 20px;
+}
+
+.login-page-box>form {
+	margin-top: 30px;
+}
+
+.account-form-group {
+	border: 1px solid #ddd;
+	height: 45px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.account-form-group>input {
+	border: medium none;
+	height: 100%;
+	left: 0;
+	padding: 5px 10px 5px 60px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.account-form-group i {
+	border-right: 1px solid #ddd;
+	color: #959595;
+	font-size: 18px;
+	height: 100%;
+	left: 0;
+	line-height: 40px;
+	margin-right: 5px;
+	padding-right: 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 48px;
+}
+
+.login-page-box .forgot {
+	margin-left: 0 !important;
+	color: #333;
+	font-weight: 500;
+}
+
+.login-page-box label {
+	color: #333;
+	display: block;
+	font-weight: 500;
+	text-align: right;
+}
+
+.login-page-box button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	height: 100%;
+	padding: 10px 20px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	margin-top: 10px
+}
+
+.login-page-box button:hover {
+	background: #2c6caf none repeat scroll 0 0
+}
+
+.login-sign-up {
+	margin-top: 20px;
+}
+
+.login-sign-up>a {
+	color: #333;
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+
+.login-sign-up>a:hover {
+	color: #3F85CE
+}
+
+.login-page-box .remember {
+	margin-left: 0 !important;
+}
+
+
+/*================================================
+38 - CONTACT PAGE CSS
+==================================================*/
+
+.afloon-contact-form-right {
+	margin-top: 0
+}
+
+.afloon-contact-desc {
+	margin-bottom: 50px;
+}
+
+.single-contact-left:first-child {
+	margin-top: 0;
+}
+
+.single-contact-left {
+	background: #fff none repeat scroll 0 0;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+	margin-top: 20px;
+	padding: 20px;
+}
+
+.contact-icon {
+	background: #f9f9f9 none repeat scroll 0 0;
+	color: #3F85CE;
+	display: table-cell;
+	float: left;
+	font-size: 30px;
+	height: 75px;
+	line-height: 75px;
+	margin-right: 10px;
+	text-align: center;
+	width: 75px;
+}
+
+.contact-text>h4 {
+	color: #111;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}
+
+.contact-text>p {
+	font-size: 15px;
+	line-height: 26px;
+}
+
+.contact-text>span {
+	color: #333;
+}
+
+.afloon-contact-form-right>form {
+	background: #fff none repeat scroll 0 0;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+	padding: 30px 50px;
+	margin-top: 0
+}
+
+.afloon-contact-form-right form p {
+	margin: 10px 0;
+}
+
+.afloon-contact-form-right input {
+	border: 1px solid #ddd;
+	height: 45px;
+	padding: 5px 10px;
+	width: 100%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.afloon-contact-form-right textarea {
+	border: 1px solid #ddd;
+	height: 120px;
+	padding: 5px 10px;
+	width: 100%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s
+}
+
+.afloon-contact-form-right input:focus,
+.afloon-contact-form-right textarea:focus {
+	border: 1px solid #3F85CE
+}
+
+.afloon-contact-form-right button {
+	background: #3F85CE none repeat scroll 0 0;
+	border: medium none;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	height: 100%;
+	padding: 10px 20px;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.afloon-contact-form-right button:hover {
+	background: #2c6caf none repeat scroll 0 0;
+}
+
+.afloon-contact-desc>h3 {
+	color: #111;
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+}
+
+#googleMap {
+	height: 370px;
+	width: 100%;
+}
+
