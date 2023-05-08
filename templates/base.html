@@ -7,6 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Title -->
       <title> {% block title %} {% endblock %} </title>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <!-- Favicon -->
       <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
       <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
@@ -64,7 +65,7 @@
                         <a href="#login" data-toggle="modal" data-target="#login">login</a>
                      </li>
                      <li>
-                        <a href="#register" data-toggle="modal" data-target="#register">register</a>
+                        <a href=" {% url 'register-account' %} " data-toggle="modal" >register</a>
                      </li>
                   </ul>
                </div>
@@ -237,7 +238,7 @@
       </div>
       <!-- Modal Window Start -->
        
-       
+      <script src="{% static 'assets/js/myjs.js' %}"></script>
       <!-- jQuery -->
       <script src="{% static 'assets/js/jquery.min.js' %}"></script>
       <!-- Bootstrap JS -->

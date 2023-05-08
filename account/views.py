@@ -4,25 +4,23 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
-from .forms import RegistrationForm
+from . forms import *
 
+#Register New User Method
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = CreateUserForm(request.POST) 
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user_type = form.cleaned_data['user_type']
-
-            user = User.objects.create_user(username=username, password=password)
-            user_profile = user.profile
-            user_profile.user_type = user_type
-            user_profile.save()
-
-            return redirect('success')
+            form.save()
+           
+            return redirect('success-account')
     else:
-        form = RegistrationForm()
-    return render(request, 'account/register.html', {'form': form})
+        form = CreateUserForm()
+    context = {
+        'form':form,
+        'page_title':'Register',
+    }
+    return render(request, 'account/register.html', context)
 
 def registration_success(request):
-    return render(request, 'account/success.html')
+    return render(request, 'account/update_profile.html')

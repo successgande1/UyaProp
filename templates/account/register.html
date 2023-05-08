@@ -17,35 +17,17 @@
           <div class="col-md-12">
              <div class="login-page-box">
                 <h3>Create an Account </h3>
-                <form>
-                   <div class="account-form-group">
-                      <input type="text" placeholder="Username" name="username" >
-                      <i class="fa fa-user"></i>
-                   </div>
-                   <div class="account-form-group">
-                      <input type="email" placeholder="Email Address" name="email" >
-                      <i class="fa fa-envelope-o"></i>
-                   </div>
-                   <div class="account-form-group">
-                      <input type="password" placeholder="Choose Password" name="email" >
-                      <i class="fa fa-lock"></i>
-                   </div>
-                   <div class="account-form-group">
-                      <input type="password" placeholder="Confirm Password" name="email" >
-                      <i class="fa fa-lock"></i>
-                   </div>
-                   <div class="remember">
-                      <label>
-                      <input name="remember" type="checkbox">
-                      I agree the term’s & conditions
-                      </label>
-                   </div>
-                   <div class="submit-login">
-                      <button type="submit" >Register</button>
-                   </div>
+                <form id="register-form" method="post">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+
+                 
+
+                  <button type="submit">Register</button>
+
                 </form>
                 <div class="login-sign-up">
-                   <a href="login.html">back to login</a>
+                   <a href="">back to login</a>
                 </div>
              </div>
           </div>
@@ -88,4 +70,9 @@
 
 
 
+
+
 {% endblock %}
+
+
+
