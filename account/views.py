@@ -13,7 +13,7 @@ def register(request):
         if form.is_valid():
             form.save()
            
-            return redirect('success-account')
+            return redirect('account-login')
     else:
         form = CreateUserForm()
     context = {
