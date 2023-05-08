@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',
     'realestate.apps.RealestateConfig',
+    'account.apps.AccountConfig',
     # 'crispy_forms',
     # 'compressor',
 ]
