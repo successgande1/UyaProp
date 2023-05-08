@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+  <h1>Upload Image</h1>
+  <form id="upload-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+  <div id="preview"></div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $(document).ready(function() {
+      $('#upload-form').on('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+          type: 'POST',
+          url: '{% url "upload_image" %}',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            if (response.success) {
+              var imageUrl = response.image_url;
+              var redirectUrl = '{% url "display_image" "" %}' + imageUrl;
+              window.location.href = redirectUrl;
+            } else {
+              alert(response.errors);
+            }
+          }
+        });
+      });
+
+      $('#id_image').on('change', function() {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#preview').html('<img src="' + e.target.result + '">');
+        }
+        reader.readAsDataURL(this.files[0]);
+      });
+    });
+  </script>
+{% endblock %}

@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',
     'realestate.apps.RealestateConfig',
-    'crispy_forms',
-    'compressor',
+    # 'crispy_forms',
+    # 'compressor',
 ]
 
 MIDDLEWARE = [

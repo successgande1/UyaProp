@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+      
+      <!-- Breadcromb Area Start -->
+      <section class="afloon-breadcromb-area section_50">
+         <div class="breadcromb_overlay"></div>
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-6">
+                  <div class="breadcromb-left">
+                     <h3>My account</h3>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+                  <div class="breadcromb-right">
+                     <ul>
+                        <li><a href="index.html"><i class="fa fa-home"></i>home</a></li>
+                        <li>/</li>
+                        <li>pages</li>
+                        <li>/</li>
+                        <li>my account</li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcromb Area End -->
+       
+       
+      <!-- Account Area Start -->
+      <section class="afloon-account-area section_100">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="account-left">
+                     <div class="single-account-left">
+                        <div class="row">
+                           <div class="col-md-4">
+                              
+                              <div class="account-author-left">
+                                 <div class="account-menu">
+                                    <h3>Manage Account</h3>
+                                    <ul>
+                                       <li>
+                                          <a href="account.html">
+                                          <i class="fa fa-user"></i>
+                                          my account
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="favourite.html">
+                                          <i class="fa fa-heart-o"></i>
+                                          favourite properties
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="add-property.html">
+                                          <i class="fa fa-file-archive-o"></i>
+                                          add new property
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="change-password.html">
+                                          <i class="fa fa-lock"></i>
+                                          change password
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="#">
+                                          <i class="fa fa-power-off"></i>
+                                          log out
+                                          </a>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        <form method="POST" enctype="multipart/form-data" >
+                              {% csrf_token %}
+
+
+                           <div class="col-md-8">
+                              <div class="single-add-property left-margin">
+                                 <h3>personal information</h3>
+                                 <div class="property-form-group">
+                                    <div class="row">
+                                       <div class="col-md-6">
+                                          <p>
+                                             <label for="name" >Your Name</label>
+                                             <input type="text"  id="name" name="name" >
+                                          </p>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <p>
+                                            
+                                             <label for="title">Gender:</label>
+                                             <select id="title" name="gender">
+                                               <option value="Male">Male</option>
+                                               <option value="Female">Female</option>
+                                               
+                                             </select>
+                                             
+                                          </p>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6">
+                                          <p>
+                                             <label for="phn" >Your Phone</label>
+                                             <input type="text" id="phn" name="phone" >
+                                          </p>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <p>
+                                             <label for="email" >Your Address</label>
+                                             <input type="text" id="email" name="address" >
+                                          </p>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <p>
+                                             
+                                             {{ form.as_p }}
+                                          </p>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-12">
+                                          <p>
+                                             <label for="me" >About Me</label>
+                                             <textarea id="me" name="me">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper
+                                             </textarea>
+                                          </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="single-add-property">
+                                 <h3>social link</h3>
+                                 <div class="property-form-group">
+                                    <div class="row">
+                                       <div class="col-md-6">
+                                          <p>
+                                             <label for="twitter" >
+                                             <i class="fa fa-twitter twitter"></i>
+                                             twitter
+                                             </label>
+                                             <input type="text"  id="twitter" name="twitter" >
+                                          </p>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <p>
+                                             <label for="facebook" >
+                                             <i class="fa fa-facebook-square facebook"></i>
+                                             facebook
+                                             </label>
+                                             <input type="text" id="facebook" name="facebook" >
+                                          </p>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6">
+                                          <p>
+                                             <label for="google" >
+                                             <i class="fa fa-google-plus google"></i>
+                                             Google
+                                             </label>
+                                             <input type="text" id="google" name="google" >
+                                          </p>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <p>
+                                             <label for="linkedin" >
+                                             <i class="fa fa-linkedin linkedin"></i>
+                                             linkedin
+                                             </label>
+                                             <input type="text"  id="linkedin" name="linkedin" >
+                                          </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="add-property-button">
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <div class="prperty-submit-button">
+                                          <button type="submit" >save changes</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
+                        </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Account Area End -->
+   
+  
+{% endblock %}

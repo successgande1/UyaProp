@@ -1,0 +1,71 @@
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from realestate.models import Landlord, Agent, Prospect
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+from PIL import Image
+from . models import *
+from django.core.files.images import ImageFile
+from django.forms.widgets import ClearableFileInput
+from io import BytesIO
+
+USER_TYPE_CHOICES = [
+    ('landlord', 'Landlord'),
+    ('agent', 'Agent'),
+    ('prospect', 'Prospect'),
+]
+#User Customer User registration form
+class RegistrationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    user_type = forms.ChoiceField(choices=USER_TYPE_CHOICES)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2', 'user_type')
+        # labels = {
+        #     'username': '',
+        #     'password1': '',
+        #     'password2': '',
+        # }
+        # widgets = {
+        #     'username': forms.TextInput(attrs={'placeholder': 'Username'}),
+        #     'password1': forms.PasswordInput(attrs={'placeholder': 'Password'}),
+        #     'password2': forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}),
+        # }
+
+    def save(self, commit=True):
+        user = super(RegistrationForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+
+        user_type = self.cleaned_data['user_type']
+        if user_type == 'landlord':
+            Landlord.objects.create(user=user)
+        elif user_type == 'agent':
+            Agent.objects.create(user=user)
+        elif user_type == 'prospect':
+            Prospect.objects.create(user=user)
+
+        return user
+   
+class update_photo(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']
+
+    image = forms.ImageField(widget=ClearableFileInput(attrs={'multiple': False}), required=True)
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        img = Image.open(image)
+        if img.format not in ['GIF', 'JPEG', 'JPG']:
+            raise forms.ValidationError("Unsupported file format. Please upload a GIF, JPEG or JPG file.")
+        if img.size[0] > img.size[1]:
+            img = img.rotate(270, expand=True)
+        img = img.crop((0, 0, 150, 70))
+        img_io = BytesIO()
+        img.save(img_io, format='JPEG')
+        image_file = ImageFile(img_io, name=image.name)
+        return image_file
