@@ -4,7 +4,9 @@
 
 {% load static %}
 
-{% block content %}
+{% load crispy_forms_tags %}
+
+{% block content %} 
 
 <!-- Breadcromb Area Start -->
 {% include 'pages/partials/_breadcromb.html' %}
@@ -18,27 +20,13 @@
               <div class="col-md-12">
                  <div class="login-page-box">
                     <h3>Login First!</h3>
-                    <form>
-                       <div class="account-form-group">
-                          <input type="text" placeholder="Username or Email" name="username" >
-                          <i class="fa fa-user"></i>
-                       </div>
-                       <div class="account-form-group">
-                          <input type="password" placeholder="Password" name="password" >
-                          <i class="fa fa-lock"></i>
-                       </div>
-                       <p class="forgot">
-                          <a href="#">Forgot username?</a>
-                       </p>
-                       <p>
-                          <label>
-                          <input name="remember" type="checkbox">
-                          Remember Me
-                          </label>
-                       </p>
-                       <p>
-                          <button type="submit" >Login</button>
-                       </p>
+                    <form method="POST">
+                     {% csrf_token %}
+                  
+                  {{ form.as_p }}
+                  
+                  <button type="submit" class="btn btn-primary">Login</button>
+                       
                     </form>
                     <div class="login-sign-up">
                        <a href="register.html">Do you need an account?</a>
