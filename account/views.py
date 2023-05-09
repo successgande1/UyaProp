@@ -36,6 +36,7 @@ def register(request):
         }
     return render(request, 'account/register.html', context)
 
+#Registration Successful method
 def registration_success(request):
     if request.user.is_authenticated:
         try:
@@ -51,18 +52,8 @@ def registration_success(request):
         # If the user is not authenticated, redirect them to the registration page.
         return redirect('register-account')
     
-def user_profile(request):
-    context = {
-        'page_titel': 'Profile',
-    }
-    return render(request, 'account/profile_details.html', context)
 
-def user_update_profile(request):
-    context = {
-        'page_title': 'Update Profile',
-    }
-    return render(request, 'account/update_profile.html', context)
-
+#User Account Dashboard method
 def index(request):
     if request.user.is_authenticated:
         try:
@@ -86,4 +77,18 @@ def index(request):
     else:
         # If the user is not authenticated, redirect them to the registration page.
         return redirect('register-account')
+    
+#User Profile Method
+def user_profile(request):
+    context = {
+        'page_titel': 'Profile',
+    }
+    return render(request, 'account/profile_details.html', context)
+
+#View User Profile Method
+def user_update_profile(request):
+    context = {
+        'page_title': 'Update Profile',
+    }
+    return render(request, 'account/update_profile.html', context)
     
