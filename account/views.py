@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login
-
+from django.contrib.auth.views import LoginView
 from . forms import *
 from realestate.models import *
 from . models import *
@@ -35,6 +35,9 @@ def register(request):
         'page_title': 'Register',
         }
     return render(request, 'account/register.html', context)
+
+class MyLoginView(LoginView):
+    template_name = 'account/login.html'
 
 #Registration Successful method
 def registration_success(request):

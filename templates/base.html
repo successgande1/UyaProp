@@ -62,7 +62,7 @@
                <div class="header-top-right">
                   <ul>
                      <li class="login">
-                        <a href=" {% url 'account-login' %} " data-toggle="modal" >login</a>
+                        <a href=" {% url 'account-login' %} " data-toggle="modal" data-target="#login" >login</a>
                      </li>
                      <li>
                         <a href=" {% url 'register-account' %} " data-toggle="modal" >register</a>
@@ -167,8 +167,8 @@
                </div>
                <div class="modal-body login-body">
                   <div class="login-box">
-                     <a href="index.html">
-                     <img src="assets/img/logo.png" alt="site logo" />
+                     <a href="{% url 'account-login' %}">
+                     <img src=" {% static 'assets/img/logo.png' %} " alt="site logo" />
                      </a>
                      <form>
                         <p>

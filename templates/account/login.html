@@ -20,16 +20,31 @@
               <div class="col-md-12">
                  <div class="login-page-box">
                     <h3>Login First!</h3>
-                    <form method="POST">
+                    <form method="post" action="{% url 'account-login' %}">
                      {% csrf_token %}
-                  
-                  {{ form.as_p }}
-                  
-                  <button type="submit" class="btn btn-primary">Login</button>
-                       
-                    </form>
+                     <div class="account-form-group">
+                       {{ form.username }}
+                       <i class="fa fa-user"></i>
+                     </div>
+                     <div class="account-form-group">
+                       {{ form.password }}
+                       <i class="fa fa-lock"></i>
+                     </div>
+                     <p class="forgot">
+                       <a href="#">Forgot username?</a>
+                     </p>
+                     <p>
+                       <label>
+                         {{ form.remember }}
+                         Remember Me
+                       </label>
+                     </p>
+                     <p>
+                       <button type="submit">Login</button>
+                     </p>
+                  </form>
                     <div class="login-sign-up">
-                       <a href="register.html">Do you need an account?</a>
+                       <a href=" {% url 'register-account' %} ">Do you need an account?</a>
                     </div>
                  </div>
               </div>
