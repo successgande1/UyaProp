@@ -17,14 +17,39 @@
           <div class="col-md-12">
              <div class="login-page-box">
                 <h3>Create an Account </h3>
-                <form id="register-form" method="post">
-                  {% csrf_token %}
-                  
-                  {{ form.as_p }}
-                  
-                  <button type="submit" class="btn btn-primary">Register</button>
+                
 
-                </form>
+                <form method="post" action="{% url 'register-account' %}">
+                  {% csrf_token %}
+                  <div class="account-form-group">
+                     {{ form.username }}
+                     <i class="fa fa-user"></i>
+                  </div>
+                  <div class="account-form-group">
+                     {{ form.password1 }}
+                     <i class="fa fa-envelope-o"></i>
+                  </div>
+                  <div class="account-form-group">
+                     {{ form.password2 }}
+                     <i class="fa fa-lock"></i>
+                  </div>
+                  <div class="account-form-group">
+                     {{ form.user_type }}
+                     <i class="fa fa-user"></i>
+                  </div>
+                  <div class="remember">
+                     <label>
+                     <input name="remember" type="checkbox">
+                     I agree the term’s & conditions
+                     </label>
+                  </div>
+                  <div class="submit-login">
+                     <button type="submit" >Register</button>
+                  </div>
+               </form>
+
+
+
                 <div class="login-sign-up">
                    <a href="">back to login</a>
                 </div>
