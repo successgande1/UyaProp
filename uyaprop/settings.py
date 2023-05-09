@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'realestate.apps.RealestateConfig',
     'account.apps.AccountConfig',
-    # 'crispy_forms',
+    'crispy_forms',
     # 'compressor',
 ]
 
@@ -107,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Internationalization
