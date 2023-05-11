@@ -37,7 +37,7 @@ def register(request):
     return render(request, 'account/register.html', context)
 
 class MyLoginView(LoginView):
-    template_name = 'login.html'
+    template_name = 'account/login.html'
 
 #Registration Successful method
 def registration_success(request):
