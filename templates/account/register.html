@@ -21,44 +21,13 @@
 
                 <form method="post" action="{% url 'register-account' %}">
                   {% csrf_token %}
-                  <div class="account-form-group">
-                      {{ form.username.label_tag }}
-                      {{ form.username }}
-                      {% for error in form.username.errors %}
-                          <span class="error-message">{{ error }}</span>
-                      {% endfor %}
-                      <i class="fa fa-user"></i>
-                  </div>
-                  <div class="account-form-group">
-                      {{ form.password1.label_tag }}
-                      {{ form.password1 }}
-                      {% for error in form.password1.errors %}
-                          <span class="error-message">{{ error }}</span>
-                      {% endfor %}
-                      <i class="fa fa-lock"></i>
-                  </div>
-                  <div class="account-form-group">
-                      {{ form.password2.label_tag }}
-                      {{ form.password2 }}
-                      {% for error in form.password2.errors %}
-                          <span class="error-message">{{ error }}</span>
-                      {% endfor %}
-                      <i class="fa fa-lock"></i>
-                  </div>
-                  <div class="account-form-group">
+                  
+                  
+
+                 
                       
-                      {{ form.user_type }}
-                      {% for error in form.user_type.errors %}
-                          <span class="error-message">{{ error }}</span>
-                      {% endfor %}
-                      <i class="fa fa-user"></i>
-                  </div>
-                  <div class="remember">
-                      <label>
-                          <input name="remember" type="checkbox">
-                          I agree the terms &amp; conditions
-                      </label>
-                  </div>
+                      {{ form | crispy }}
+                      
                   <div class="submit-login">
                       <button type="submit">Register</button>
                   </div>

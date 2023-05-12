@@ -4,7 +4,7 @@
 
 {% load static %}
 
-{% load crispy_forms_tags %}
+
 
 {% block content %} 
 
@@ -12,34 +12,30 @@
 {% include 'pages/partials/_breadcromb.html' %}
 <!-- Breadcromb Area End -->
 
-  
-      <!-- Login Area Start -->
-      <section class="afloon-login-page-area-start section_100">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-12">
-                 <div class="login-page-box">
-                    <h3>Login First!</h3>
-                    <form method="post" action="{% url 'account-login' %}">
-                     {% csrf_token %}
-                     {{ form | crispy }}
-                     <p>
-                       <button type="submit">Login</button>
-                     </p>
-                  </form>
-                    <div class="login-sign-up">
-                       <a href=" {% url 'register-account' %} ">Do you need an account?</a>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
-     <!-- Login Area End -->
-      
-      
-     <!-- Newsletter Area Start -->
-     <section class="afloon-newsletter-area section_15">
+ <!-- Login Area Start -->
+ <section class="afloon-login-page-area-start section_100">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="login-page-box">
+                <h3>Logout Page</h3>
+                <hr>
+                <div class="alert alert-danger">
+                    <h4>You have been Logged Out</h4>
+                </div>
+                
+                <div class="login-sign-up">
+                   <a href=" {% url 'account-login' %} ">Do you want to login again?</a>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Login Area End -->
+
+      <!-- Newsletter Area Start -->
+      <section class="afloon-newsletter-area section_15">
         <div class="container">
            <div class="row">
               <div class="col-md-7 col-sm-7">

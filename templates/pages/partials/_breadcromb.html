@@ -10,10 +10,42 @@
           <div class="col-sm-6">
              <div class="breadcromb-right">
                 <ul>
+                   {% if request.path == '/' %}
                    <li><a href=" {% url 'pages-index' %} "><i class="fa fa-home"></i>home</a></li>
+                   {% elif request.path == '/property-management-services/' %}
+                   <li><a href=" {% url 'pages-index' %} "><i ></i>Home</a></li>
                    <li>/</li>
-                   
-                </ul>
+                  <li>about</li>
+                   {% elif request.path == '/professional-property-management/' %}
+                   <li><a href=" {% url 'pages-about' %} "><i ></i>About Us</a></li>
+                   <li>/</li>
+                  <li>Our Services</li>
+                   {% elif request.path  == '/free-property-management/' %}
+                   <li><a href=" {% url 'pages-services' %} "><i ></i>Services</a></li>
+                   <li>/</li>
+                  <li>Properties</li>
+                   {% elif request.path == '/contact-uyaprop/' %}
+                   <li><a href=" {% url 'pages-property' %} "><i ></i>Properties</a></li>
+                   <li>/</li>
+                  <li>Contact Us</li>
+                   {% elif request.path == '/free-online-property-listing-blog/' %}
+                   <li><a href=" {% url 'pages-contact' %} "><i ></i>Contact Us</a></li>
+                   <li>/</li>
+                  <li>Blog</li>
+                   {% elif request.path == '/register/' %}
+                   <li><a href="  "><i ></i>Register</a></li>
+                   {% elif request.path == '/login/' %}
+                   <li><a href=" "><i ></i>Login</a></li>
+                   {% elif request.path == '/update/profile/' %}
+                   <li><a href=" "><i ></i>Update Profile</a></li>
+                   {% elif request.path == '/profile/' %}
+                   <li><a href="  ">Profile</a></li>
+                   {% elif request.path == '/dashboard/' %}
+                   <li><a href="  ">dashboard</a></li>
+                   {% elif request.path == '/logout/' %}
+                   <li><a href=" ">Logout</a></li>
+                   {% endif %}
+                  </ul>
              </div>
           </div>
        </div>

@@ -45,7 +45,18 @@
                      <div class="single-account-left">
                         <div class="row">
                            <div class="col-md-4">
-                              
+                              <div class="account-author-left">
+                                 <img src="{{ user.profile.image.url }}" alt="author image" />
+                                 <div class="overlay-upload">
+                                    <form>
+                                       <span>
+                                       <i class="fa fa-upload"></i>
+                                       upload photo
+                                       </span>
+                                       <input type="file" >
+                                    </form>
+                                 </div>
+                              </div>
                               <div class="account-author-left">
                                  <div class="account-menu">
                                     <h3>Manage Account</h3>
@@ -84,10 +95,6 @@
                                  </div>
                               </div>
                            </div>
-                        <form method="POST" enctype="multipart/form-data" >
-                              {% csrf_token %}
-
-
                            <div class="col-md-8">
                               <div class="single-add-property left-margin">
                                  <h3>personal information</h3>
@@ -96,19 +103,13 @@
                                        <div class="col-md-6">
                                           <p>
                                              <label for="name" >Your Name</label>
-                                             <input type="text"  id="name" name="name" >
+                                             <input type="email" value="Jennie Wilson" id="name" name="name" >
                                           </p>
                                        </div>
                                        <div class="col-md-6">
                                           <p>
-                                            
-                                             <label for="title">Gender:</label>
-                                             <select id="title" name="gender">
-                                               <option value="Male">Male</option>
-                                               <option value="Female">Female</option>
-                                               
-                                             </select>
-                                             
+                                             <label for="title" >Your title</label>
+                                             <input type="text" value="Agent In New York" id="title" name="title" >
                                           </p>
                                        </div>
                                     </div>
@@ -116,19 +117,13 @@
                                        <div class="col-md-6">
                                           <p>
                                              <label for="phn" >Your Phone</label>
-                                             <input type="text" id="phn" name="phone" >
+                                             <input type="text" value="(123) 123-456" id="phn" name="phone" >
                                           </p>
                                        </div>
                                        <div class="col-md-6">
                                           <p>
-                                             <label for="email" >Your Address</label>
-                                             <input type="text" id="email" name="address" >
-                                          </p>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <p>
-                                             
-                                             {{ form.as_p }}
+                                             <label for="email" >Your email</label>
+                                             <input type="text" value="Jennie@mail.com" id="email" name="email" >
                                           </p>
                                        </div>
                                     </div>
@@ -153,7 +148,7 @@
                                              <i class="fa fa-twitter twitter"></i>
                                              twitter
                                              </label>
-                                             <input type="text"  id="twitter" name="twitter" >
+                                             <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter" >
                                           </p>
                                        </div>
                                        <div class="col-md-6">
@@ -162,7 +157,7 @@
                                              <i class="fa fa-facebook-square facebook"></i>
                                              facebook
                                              </label>
-                                             <input type="text" id="facebook" name="facebook" >
+                                             <input type="text" value="https://www.facebook.com/k" id="facebook" name="facebook" >
                                           </p>
                                        </div>
                                     </div>
@@ -173,7 +168,7 @@
                                              <i class="fa fa-google-plus google"></i>
                                              Google
                                              </label>
-                                             <input type="text" id="google" name="google" >
+                                             <input type="text" value="https://www.google.com/" id="google" name="google" >
                                           </p>
                                        </div>
                                        <div class="col-md-6">
@@ -182,7 +177,7 @@
                                              <i class="fa fa-linkedin linkedin"></i>
                                              linkedin
                                              </label>
-                                             <input type="text"  id="linkedin" name="linkedin" >
+                                             <input type="text" value="https://www.linkedin.com/" id="linkedin" name="linkedin" >
                                           </p>
                                        </div>
                                     </div>
@@ -198,8 +193,6 @@
                                  </div>
                               </div>
                            </div>
-
-                        </form>
                         </div>
                      </div>
                   </div>
