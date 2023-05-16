@@ -8,7 +8,8 @@ urlpatterns = [
     path('login/', MyLoginView.as_view(), name = 'account-login'),
     path('success/', views.registration_success, name='success-account'),
     path('profile/', views.user_profile, name='account-profile'),
-    path('update/profile/', views.user_update_profile, name='account-profile-update'),
+    path('update/profile/', views.update_profile, name='account-profile-update'),
+  
     path('dashboard/', views.index, name='account-dashboard'), 
     path('logout/', auth_view.LogoutView.as_view(template_name='account/logout.html'), name = 'account-logout'),
 ]

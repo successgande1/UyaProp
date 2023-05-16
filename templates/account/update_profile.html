@@ -9,32 +9,11 @@
 
 {% block content %}
       
-      <!-- Breadcromb Area Start -->
-      <section class="afloon-breadcromb-area section_50">
-         <div class="breadcromb_overlay"></div>
-         <div class="container">
-            <div class="row">
-               <div class="col-sm-6">
-                  <div class="breadcromb-left">
-                     <h3>My account</h3>
-                  </div>
-               </div>
-               <div class="col-sm-6">
-                  <div class="breadcromb-right">
-                     <ul>
-                        <li><a href="index.html"><i class="fa fa-home"></i>home</a></li>
-                        <li>/</li>
-                        <li>pages</li>
-                        <li>/</li>
-                        <li>my account</li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- Breadcromb Area End -->
+  <!-- Breadcromb Area Start -->
+{% include 'pages/partials/_breadcromb.html' %}
+<!-- Breadcromb Area End -->
        
+{% if user.is_authenticated %}
        
       <!-- Account Area Start -->
       <section class="afloon-account-area section_100">
@@ -46,16 +25,8 @@
                         <div class="row">
                            <div class="col-md-4">
                               <div class="account-author-left">
-                                 <img src="{{ user.profile.image.url }}" alt="author image" />
-                                 <div class="overlay-upload">
-                                    <form>
-                                       <span>
-                                       <i class="fa fa-upload"></i>
-                                       upload photo
-                                       </span>
-                                       <input type="file" >
-                                    </form>
-                                 </div>
+                                 <img id="image-preview" src="{{ user.profile.image.url }}" alt="author image" />
+                                 
                               </div>
                               <div class="account-author-left">
                                  <div class="account-menu">
@@ -99,99 +70,15 @@
                               <div class="single-add-property left-margin">
                                  <h3>personal information</h3>
                                  <div class="property-form-group">
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="name" >Your Name</label>
-                                             <input type="email" value="Jennie Wilson" id="name" name="name" >
-                                          </p>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="title" >Your title</label>
-                                             <input type="text" value="Agent In New York" id="title" name="title" >
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="phn" >Your Phone</label>
-                                             <input type="text" value="(123) 123-456" id="phn" name="phone" >
-                                          </p>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="email" >Your email</label>
-                                             <input type="text" value="Jennie@mail.com" id="email" name="email" >
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <p>
-                                             <label for="me" >About Me</label>
-                                             <textarea id="me" name="me">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper
-                                             </textarea>
-                                          </p>
-                                       </div>
-                                    </div>
+                                    <form method="POST" enctype="multipart/form-data">
+                                       {% csrf_token %}
+                                       {{ form.as_p }}
+                                       <button type="submit" class="btn btn-success">Update Profile</button>
+                                     </form>
                                  </div>
                               </div>
-                              <div class="single-add-property">
-                                 <h3>social link</h3>
-                                 <div class="property-form-group">
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="twitter" >
-                                             <i class="fa fa-twitter twitter"></i>
-                                             twitter
-                                             </label>
-                                             <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter" >
-                                          </p>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="facebook" >
-                                             <i class="fa fa-facebook-square facebook"></i>
-                                             facebook
-                                             </label>
-                                             <input type="text" value="https://www.facebook.com/k" id="facebook" name="facebook" >
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="google" >
-                                             <i class="fa fa-google-plus google"></i>
-                                             Google
-                                             </label>
-                                             <input type="text" value="https://www.google.com/" id="google" name="google" >
-                                          </p>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label for="linkedin" >
-                                             <i class="fa fa-linkedin linkedin"></i>
-                                             linkedin
-                                             </label>
-                                             <input type="text" value="https://www.linkedin.com/" id="linkedin" name="linkedin" >
-                                          </p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="add-property-button">
-                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <div class="prperty-submit-button">
-                                          <button type="submit" >save changes</button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+                              
+                            
                            </div>
                         </div>
                      </div>
@@ -201,6 +88,8 @@
          </div>
       </section>
       <!-- Account Area End -->
-   
+
+
+{% endif %}
   
 {% endblock %}

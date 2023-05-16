@@ -47,18 +47,12 @@
                        <div class="row">
                           <div class="col-md-4">
                              <div class="account-author-left">
-                                {% if profile.user.image %}
-                                <img src="{{ profile.user.image.url }}" alt="image">
+                                {% if user.profile.image %}
+                                <img src="{{ user.profile.image.url }}" alt="image">
                                 {% else %}
                                 No image available
                                 {% endif %}
-                                <div class="overlay-upload">
-                                 
-
-                                   
-
-
-                                </div>
+                                
                              </div>
                              <div class="account-author-left">
                                 <div class="account-menu">

@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login
@@ -8,6 +8,7 @@ from django.contrib.auth.views import LoginView
 from . forms import *
 from realestate.models import *
 from . models import *
+from django.contrib.auth.decorators import login_required
 
 #Register New User Method
 def register(request):
@@ -81,17 +82,29 @@ def index(request):
         # If the user is not authenticated, redirect them to the registration page.
         return redirect('register-account')
     
+#View User Profile Method
+@login_required
+def update_profile(request):
+    user = request.user
+    profile = user.profile
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('account-profile')
+    else:
+        form = ProfileForm(instance=profile)
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'account/update_profile.html', context)
+    
 #User Profile Method
 def user_profile(request):
     context = {
         'page_titel': 'Profile',
     }
-    return render(request, 'account/profile_details.html', context)
-
-#View User Profile Method
-def user_update_profile(request):
-    context = {
-        'page_title': 'Update Profile',
-    }
-    return render(request, 'account/update_profile.html', context)
-    
+    return render(request, 'account/profile_detail.html', context)

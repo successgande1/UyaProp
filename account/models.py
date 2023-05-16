@@ -4,8 +4,10 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=30, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
-    address = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField()
+    address = models.TextField(null=True, blank=True)
     image = models.ImageField(default='avatar.jpg', blank=False, null=False, upload_to ='profile_images', 
    
     )
