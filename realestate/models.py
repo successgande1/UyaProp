@@ -63,9 +63,9 @@ class Prospect(models.Model):
     def __str__(self):
         return self.user.username
     
-    def become_tenant(self):
+    def become_tenant(self, property):
         if self.payment_status:
-            tenant = Tenancy.objects.create(user=self.user, property=self.property)
+            tenant = Tenancy.objects.create(tenant=self, property=property, agent=property.agent, landlord=property.landlord)
             return tenant
         else:
             return None

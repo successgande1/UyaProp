@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+
+      <!-- Breadcromb Area Start -->
+      <section class="afloon-breadcromb-area section_50">
+        <div class="breadcromb_overlay"></div>
+        <div class="container">
+           <div class="row">
+              <div class="col-sm-6">
+                 <div class="breadcromb-left">
+                    <h3> {{ user.username }} account</h3>
+                 </div>
+              </div>
+              <div class="col-sm-6">
+                 <div class="breadcromb-right">
+                    <ul>
+                       <li><a href="#"><i class="fa fa-home"></i>home</a></li>
+                       <li>/</li>
+                       <li>pages</li>
+                       <li>/</li>
+                       <li>my account</li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Breadcromb Area End -->
+      
+      
+     <!-- Account Area Start -->
+     <section class="afloon-account-area section_100">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="account-left">
+                    <div class="single-account-left">
+                       <div class="row">
+                          <div class="col-md-4">
+                             <div class="account-author-left">
+                                {% if user.profile.image %}
+                                <img src="{{ user.profile.image.url }}" alt="image">
+                                {% else %}
+                                No image available
+                                {% endif %}
+                                
+                             </div>
+                             <div class="account-author-left">
+                                <div class="account-menu">
+                                   <h3>Manage Account</h3>
+                                   <ul>
+                                      <li>
+                                         <a href="account.html">
+                                         <i class="fa fa-user"></i>
+                                         my account
+                                         </a>
+                                      </li>
+                                      <li>
+                                         <a href="favourite.html">
+                                         <i class="fa fa-heart-o"></i>
+                                         favourite properties
+                                         </a>
+                                      </li>
+                                      <li>
+                                         <a href="add-property.html">
+                                         <i class="fa fa-file-archive-o"></i>
+                                         add new property
+                                         </a>
+                                      </li>
+                                      <li>
+                                         <a href="change-password.html">
+                                         <i class="fa fa-lock"></i>
+                                         change password
+                                         </a>
+                                      </li>
+                                      <li>
+                                         <a href="#">
+                                         <i class="fa fa-power-off"></i>
+                                         log out
+                                         </a>
+                                      </li>
+                                   </ul>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="col-md-8">
+                             <div class="single-add-property left-margin">
+                                <h3>personal information</h3>
+                               
+                                <div class="property-form-group">
+                                   <div class="row">
+                                    <form method="post" enctype="multipart/form-data">
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="name" >Your Name</label>
+                                            <input type="email" value="Jennie Wilson" id="name" name="name" >
+                                         </p>
+                                      </div>
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="title" >Your title</label>
+                                            <input type="text" value="Agent In New York" id="title" name="title" >
+                                         </p>
+                                      </div>
+                                   </div>
+                                   <div class="row">
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="phn" >Your Phone</label>
+                                            <input type="text" value="(123) 123-456" id="phn" name="phone" >
+                                         </p>
+                                      </div>
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="email" >Your email</label>
+                                            <input type="text" value="Jennie@mail.com" id="email" name="email" >
+                                         </p>
+                                      </div>
+                                      
+                                   </div>
+                                   <div class="row">
+                                      <div class="col-md-12">
+                                         <p>
+                                            <label for="me" >About Me</label>
+                                            <textarea id="me" name="me">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper
+                                            </textarea>
+                                         </p>
+                                      </div>
+                                   </div>
+                                </div>
+                             
+                             </div>
+                             <div class="single-add-property">
+                                <h3>social link</h3>
+                                <div class="property-form-group">
+                                   <div class="row">
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="twitter" >
+                                            <i class="fa fa-twitter twitter"></i>
+                                            twitter
+                                            </label>
+                                            <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter" >
+                                         </p>
+                                      </div>
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="facebook" >
+                                            <i class="fa fa-facebook-square facebook"></i>
+                                            facebook
+                                            </label>
+                                            <input type="text" value="https://www.facebook.com/k" id="facebook" name="facebook" >
+                                         </p>
+                                      </div>
+                                   </div>
+                                   <div class="row">
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="google" >
+                                            <i class="fa fa-google-plus google"></i>
+                                            Google
+                                            </label>
+                                            <input type="text" value="https://www.google.com/" id="google" name="google" >
+                                         </p>
+                                      </div>
+                                      <div class="col-md-6">
+                                         <p>
+                                            <label for="linkedin" >
+                                            <i class="fa fa-linkedin linkedin"></i>
+                                            linkedin
+                                            </label>
+                                            <input type="text" value="https://www.linkedin.com/" id="linkedin" name="linkedin" >
+                                         </p>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="add-property-button">
+                                <div class="row">
+                                   <div class="col-md-12">
+                                      <div class="prperty-submit-button">
+                                         <button type="submit" >save changes</button>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Account Area End -->
+      
+      
+     <!-- Newsletter Area Start -->
+     <section class="afloon-newsletter-area section_15">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-7 col-sm-7">
+                 <div class="afloon-newsletter-left">
+                    <h4>Newsletter</h4>
+                    <form>
+                       <p>
+                          <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
+                          <button type="submit" ><i class="fa fa-send"></i></button>
+                       </p>
+                    </form>
+                 </div>
+              </div>
+              <div class="col-md-5 col-sm-5">
+                 <div class="afloon-newsletter-right">
+                    <h4>follow us on</h4>
+                    <ul>
+                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                       <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                       <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Newsletter Area End -->
+
+
+
+{% endblock %}

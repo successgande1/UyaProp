@@ -6,6 +6,8 @@ from crispy_forms.layout import Layout, Submit
 from PIL import Image
 from io import BytesIO
 from . models import *
+from django.contrib.auth.forms import AuthenticationForm
+
 
 # Define the user_type choices
 USER_TYPE_CHOICES = (
@@ -13,6 +15,8 @@ USER_TYPE_CHOICES = (
     ('agent', 'Agent'),
     ('prospect', 'Prospect'),
 )
+
+
 
 # Create the registration form
 class RegistrationForm(UserCreationForm):
@@ -32,12 +36,20 @@ class RegistrationForm(UserCreationForm):
             raise forms.ValidationError("This username is already taken.")
         return username
     
+
+class UserLoginForm(AuthenticationForm):
+    user_type = forms.ChoiceField(
+        choices=USER_TYPE_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control left-label'}),
+    )
+
+    
+
 #Profile Update Form
 class ProfileForm(forms.ModelForm):
-    address = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}))
     class Meta:
         model = Profile
-        fields = ['full_name', 'phone_number', 'email', 'address', 'image']
+        fields = ['full_name', 'phone_number', 'email', 'image']
     
     def clean_image(self):
         image = self.cleaned_data.get('image')
