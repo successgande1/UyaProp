@@ -55,6 +55,11 @@ class MyLoginView(LoginView):
     template_name = 'account/login.html'
     form_class = UserLoginForm
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'User Login'  # Set the page title
+        return context
+
     def form_valid(self, form):
         user = form.get_user()
         user_type = form.cleaned_data['user_type']
