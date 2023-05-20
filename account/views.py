@@ -133,7 +133,7 @@ def index(request):
                 if not profile_complete(prospect_profile):
                     return redirect('account-profile-update')
                 else:
-                    return redirect('prospect-dashboard')
+                    return redirect('listings')
             except Prospect.DoesNotExist:
                 pass
 

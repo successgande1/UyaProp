@@ -104,49 +104,121 @@
              <div class="col-md-9">
                 <div class="afloon-mainmenu">
                    <nav>
+                      {% if user.is_authenticated %}
+
+                           {% if user.landlord or user.agent %}
+                           <ul id="afloon_navigation">
+                              <li class="current-page-item">
+                                 <a href="}">
+                                       My Prospects
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Notifications
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Add Property
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       My Listings
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Profile
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Change Password
+                                 </a>
+                              </li>
+                              <!-- Additional menu items for Landlords and Agents here -->
+                           </ul>
+                     {% elif user.prospect_profile %}
+                           <ul id="afloon_navigation">
+                              <li class="current-page-item">
+                                 <a href="">
+                                       Listings
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Notifications
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Profile
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Social Media
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="">
+                                       Change Password
+                                 </a>
+                              </li>
+                              <!-- Additional menu items for Prospects here -->
+                           </ul>
+                     {% endif %}
+
+                      {% else %}
+
                       <ul id="afloon_navigation">
-                         <li class="current-page-item">
-                            <a href="{% url 'pages-index' %}">
-                            home
-                            <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul>
-                               <li><a href=" {% url 'pages-about' %} ">About Us</a></li>
-                               
-                            </ul>
-                         </li>
-                         <li>
-                            <a href="{% url 'pages-services' %}">
-                            services
-                            
-                            </a>
-                            
-                         </li>
-                         <li>
-                            <a href=" {% url 'pages-property' %} ">
-                            properties
+                        <li class="current-page-item">
+                           <a href="{% url 'pages-index' %}">
+                           home
+                           <i class="fa fa-angle-down"></i>
+                           </a>
+                           <ul>
+                              <li><a href=" {% url 'pages-about' %} ">About Us</a></li>
+                              
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="{% url 'pages-services' %}">
+                           services
                            
-                            </a>
-                            
-                         </li>
-                         <li>
-                            <a href=" {% url 'pages-contact' %} ">
-                              Contact Us
-                            </a>
-                         </li>
-                         <li>
-                            <a href="#">
-                              FAQ
-                            </a>
-                         </li>
-                         <li>
-                            <a href=" {% url 'pages-blog' %} ">
-                            blog
-                            </a>
-                            
-                         </li>
-                         
-                      </ul>
+                           </a>
+                           
+                        </li>
+                        <li>
+                           <a href=" {% url 'pages-property' %} ">
+                           properties
+                          
+                           </a>
+                           
+                        </li>
+                        <li>
+                           <a href=" {% url 'pages-contact' %} ">
+                             Contact Us
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                             FAQ
+                           </a>
+                        </li>
+                        <li>
+                           <a href=" {% url 'pages-blog' %} ">
+                           blog
+                           </a>
+                           
+                        </li>
+                        
+                     </ul>
+
+
+                      {% endif %}
                    </nav>
                 </div>
              </div>
