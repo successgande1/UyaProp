@@ -93,16 +93,16 @@ def index(request):
     user_type = request.session.get('user_type')
 
     if user_type:
-        # Check if User Profile is completed and redirect appropriately
+        # Check if User Profile is completed with new image uploaded 
         def profile_complete(profile):
             return (
                 profile.full_name is not None and profile.full_name != '' and
                 profile.phone_number is not None and profile.phone_number != '' and
                 profile.email is not None and profile.email != '' and
                 profile.address is not None and profile.address != '' and
-                profile.image is not None
+                profile.image is not None and profile.image != 'avatar.jpg'
             )
-
+        #Check if user is Landlord and Profile is completed
         if user_type == 'landlord':
             try:
                 landlord_profile = Profile.objects.get(user=user)
@@ -112,7 +112,7 @@ def index(request):
                     return redirect('landlord-dashboard')
             except Profile.DoesNotExist:
                 pass
-
+        #Check if user is Agent and Profile is completed
         elif user_type == 'agent':
             try:
                 agent_profile = Profile.objects.get(user=user)
@@ -122,7 +122,7 @@ def index(request):
                     return redirect('agent-dashboard')
             except Agent.DoesNotExist:
                 pass
-
+        #Check if user is Prospect and Profile is completed
         elif user_type == 'prospect':
             try:
                 prospect_profile = Profile.objects.get(user=user)
