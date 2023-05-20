@@ -103,24 +103,28 @@ def index(request):
                 profile.image is not None and profile.image != 'avatar.jpg'
             )
         #Check if user is Landlord and Profile is completed
-        if user_type == 'landlord':
+        if user_type == 'landlord' or user_type == 'agent':
             try:
-                landlord_profile = Profile.objects.get(user=user)
-                if not profile_complete(landlord_profile):
+                profile = Profile.objects.select_related('user').get(user=user)
+                if not profile_complete(profile):
                     return redirect('account-profile-update')
-                else:
-                    return redirect('landlord-dashboard')
-            except Profile.DoesNotExist:
-                pass
-        #Check if user is Agent and Profile is completed
-        elif user_type == 'agent':
-            try:
-                agent_profile = Profile.objects.get(user=user)
-                if not profile_complete(agent_profile):
-                    return redirect('account-profile-update')
-                else:
-                    return redirect('agent-dashboard')
-            except Agent.DoesNotExist:
+                elif user_type == 'landlord':
+                    landlord_properties = Property.objects.filter(landlord__user=user)
+                    if not landlord_properties.exists():
+                        return redirect('add-property')
+                    elif Prospect.objects.filter(properties__in=landlord_properties).exists():
+                        return redirect('landlord-agent-prospects')
+                    else:
+                        return redirect('property-listing')
+                elif user_type == 'agent':
+                    agent_properties = Property.objects.filter(agent__user=user)
+                    if not agent_properties.exists():
+                        return redirect('add-property')
+                    elif Prospect.objects.filter(properties__in=agent_properties).exists():
+                        return redirect('landlord-agent-prospects')
+                    else:
+                        return redirect('property-listing')
+            except (Landlord.DoesNotExist, Agent.DoesNotExist):
                 pass
         #Check if user is Prospect and Profile is completed
         elif user_type == 'prospect':
@@ -161,12 +165,16 @@ def update_profile(request):
         if form.is_valid():
             form.save()
             
-            return redirect('account-profile')
+            if user_type in ['landlord', 'agent']:
+                return redirect('add-property')
+            elif user_type == 'prospect':
+                return redirect('listings')
     else:
         form = ProfileForm(instance=profile)
 
     context = {
         'form': form,
+        'page_title':'Update Profile',
     }
 
     return render(request, 'account/update_profile.html', context)
