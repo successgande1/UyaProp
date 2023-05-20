@@ -9,7 +9,6 @@ import requests
 
 class Landlord(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nin = models.CharField(max_length=11, unique=True)
     is_verified = models.BooleanField(default=False)
 
     def __str__(self):
@@ -19,7 +18,6 @@ class Landlord(models.Model):
 
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nin = models.CharField(max_length=11, unique=True)
     is_verified = models.BooleanField(default=False)
 
     def __str__(self):

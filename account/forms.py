@@ -49,10 +49,10 @@ class UserLoginForm(AuthenticationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['full_name', 'phone_number', 'email', 'image']
+        fields = ['full_name', 'phone_number', 'email', 'address', 'image']
     
     def clean_image(self):
-        image = self.cleaned_data.get('image')
+        image = self.cleaned_data.get('image') 
 
         if image:
             # Check if the image size exceeds 14kb
@@ -77,6 +77,9 @@ class ProfileForm(forms.ModelForm):
             ext = image.name.split('.')[-1].lower()
             if ext not in allowed_formats:
                 raise forms.ValidationError("Only GIF, JPEG, and JPG images are allowed.")
+            
+            # Check if the image is still set to the default 'avatar.jpg'
+            if image.name == 'avatar.jpg':
+                raise forms.ValidationError("Please upload a different image before submitting the form.")
 
         return image
-    

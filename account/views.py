@@ -95,7 +95,13 @@ def index(request):
     if user_type:
         # Check if User Profile is completed and redirect appropriately
         def profile_complete(profile):
-            return profile.full_name and profile.phone_number and profile.email and profile.address and profile.image
+            return (
+                profile.full_name is not None and profile.full_name != '' and
+                profile.phone_number is not None and profile.phone_number != '' and
+                profile.email is not None and profile.email != '' and
+                profile.address is not None and profile.address != '' and
+                profile.image is not None
+            )
 
         if user_type == 'landlord':
             try:
@@ -109,7 +115,7 @@ def index(request):
 
         elif user_type == 'agent':
             try:
-                agent_profile = Agent.objects.get(user=user)
+                agent_profile = Profile.objects.get(user=user)
                 if not profile_complete(agent_profile):
                     return redirect('account-profile-update')
                 else:
@@ -119,7 +125,7 @@ def index(request):
 
         elif user_type == 'prospect':
             try:
-                prospect_profile = Prospect.objects.get(user=user)
+                prospect_profile = Profile.objects.get(user=user)
                 if not profile_complete(prospect_profile):
                     return redirect('account-profile-update')
                 else:
