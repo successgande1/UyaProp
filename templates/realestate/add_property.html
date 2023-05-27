@@ -5,35 +5,41 @@
 
 {% load crispy_forms_tags %}
 
-{% load static %}
+{% load humanizelib %}
 
 {% block content %}
 
+{% load static %}
+
+<script src="{% static 'path/to/jquery.min.js' %}"></script>
+
+<!-- JavaScript code -->
+<script>
+$(document).ready(function() {
+  var propertyTypeField = $('#id_property_type');
+  var bedroomsField = $('#id_bedrooms');
+
+  // Hide/show the bedrooms field based on the initial property type selection
+  toggleBedroomsField(propertyTypeField.val());
+
+  // Update the bedrooms field visibility on property type change
+  propertyTypeField.on('change', function() {
+    toggleBedroomsField($(this).val());
+  });
+
+  function toggleBedroomsField(propertyType) {
+    if (propertyType === 'Apartment') {
+      bedroomsField.hide();
+    } else {
+      bedroomsField.show();
+    }
+  }
+});
+</script>
+
 
       <!-- Breadcromb Area Start -->
-      <section class="afloon-breadcromb-area section_50">
-        <div class="breadcromb_overlay"></div>
-        <div class="container">
-           <div class="row">
-              <div class="col-sm-6">
-                 <div class="breadcromb-left">
-                    <h3> {{ user.username }} account</h3>
-                 </div>
-              </div>
-              <div class="col-sm-6">
-                 <div class="breadcromb-right">
-                    <ul>
-                       <li><a href="#"><i class="fa fa-home"></i>home</a></li>
-                       <li>/</li>
-                       <li>pages</li>
-                       <li>/</li>
-                       <li>my account</li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
+      {% include 'realestate/partials/user_breadcromb.html' %}
      <!-- Breadcromb Area End -->
       
       
@@ -46,153 +52,82 @@
                     <div class="single-account-left">
                        <div class="row">
                           <div class="col-md-4">
-                             <div class="account-author-left">
-                                {% if user.profile.image %}
-                                <img src="{{ user.profile.image.url }}" alt="image">
-                                {% else %}
-                                No image available
-                                {% endif %}
-                                
-                             </div>
-                             <div class="account-author-left">
-                                <div class="account-menu">
-                                   <h3>Manage Account</h3>
-                                   <ul>
-                                      <li>
-                                         <a href="account.html">
-                                         <i class="fa fa-user"></i>
-                                         my account
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="favourite.html">
-                                         <i class="fa fa-heart-o"></i>
-                                         favourite properties
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="add-property.html">
-                                         <i class="fa fa-file-archive-o"></i>
-                                         add new property
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="change-password.html">
-                                         <i class="fa fa-lock"></i>
-                                         change password
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="#">
-                                         <i class="fa fa-power-off"></i>
-                                         log out
-                                         </a>
-                                      </li>
-                                   </ul>
-                                </div>
-                             </div>
+                           <div class="single-listing-widget">
+                              <h3> my recent property</h3>
+                              <ul>
+                               {% if properties %}
+       
+                               {% for property in properties %}
+                                 <li>
+                                    <div class="recent-img">
+                                       <a href="#">
+                                       <img src=" {{ property.image.url }} " alt="recent image"  width="82" height="79" />
+                                       </a>
+                                    </div>
+                                    <div class="recent-text">
+                                       <h4 style="font-size: 1.5rem;">
+                                          <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
+                                       </h4>
+                                       <p>Location: {{property.state}}, {{property.state_lga}}</p>
+                                       <p style="font-size: 1.3rem; color:rgba(235, 6, 6, 0.685); font-family:sans-serif;">Price: {{property.price |intcomma}}</p> 
+                                    </div>
+                                 </li>
+                               {% endfor %}
+                               {% else %}
+       
+                               <h5>No Property Listing</h5>
+       
+                               {% endif %}
+                                 
+                                 
+                                 
+                              </ul>
+                           </div>
+                             {% include 'realestate/partials/user_menu_left.html' %}
+
                           </div>
                           <div class="col-md-8">
-                             <div class="single-add-property left-margin">
-                                <h3>personal information</h3>
-                               
-                                <div class="property-form-group">
-                                   <div class="row">
-                                    <form method="post" enctype="multipart/form-data">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="name" >Your Name</label>
-                                            <input type="email" value="Jennie Wilson" id="name" name="name" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="title" >Your title</label>
-                                            <input type="text" value="Agent In New York" id="title" name="title" >
-                                         </p>
-                                      </div>
-                                   </div>
-                                   <div class="row">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="phn" >Your Phone</label>
-                                            <input type="text" value="(123) 123-456" id="phn" name="phone" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="email" >Your email</label>
-                                            <input type="text" value="Jennie@mail.com" id="email" name="email" >
-                                         </p>
-                                      </div>
-                                      
-                                   </div>
-                                   <div class="row">
-                                      <div class="col-md-12">
-                                         <p>
-                                            <label for="me" >About Me</label>
-                                            <textarea id="me" name="me">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper
-                                            </textarea>
-                                         </p>
-                                      </div>
-                                   </div>
-                                </div>
-                             
-                             </div>
-                             <div class="single-add-property">
-                                <h3>social link</h3>
-                                <div class="property-form-group">
-                                   <div class="row">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="twitter" >
-                                            <i class="fa fa-twitter twitter"></i>
-                                            twitter
-                                            </label>
-                                            <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="facebook" >
-                                            <i class="fa fa-facebook-square facebook"></i>
-                                            facebook
-                                            </label>
-                                            <input type="text" value="https://www.facebook.com/k" id="facebook" name="facebook" >
-                                         </p>
-                                      </div>
-                                   </div>
-                                   <div class="row">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="google" >
-                                            <i class="fa fa-google-plus google"></i>
-                                            Google
-                                            </label>
-                                            <input type="text" value="https://www.google.com/" id="google" name="google" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="linkedin" >
-                                            <i class="fa fa-linkedin linkedin"></i>
-                                            linkedin
-                                            </label>
-                                            <input type="text" value="https://www.linkedin.com/" id="linkedin" name="linkedin" >
-                                         </p>
-                                      </div>
-                                   </div>
-                                </div>
-                             </div>
-                             <div class="add-property-button">
-                                <div class="row">
-                                   <div class="col-md-12">
-                                      <div class="prperty-submit-button">
-                                         <button type="submit" >save changes</button>
-                                      </div>
-                                   </div>
-                                </div>
-                             </div>
+                            
+
+                           <div class="container">
+                              <div class="row">
+                                 <div class="col-md-8">
+                                    <div class="afloon-complete-order-head">
+                                       <h2>add your property</h2>
+                                       <p>Please enter your propert and profile information to complete add your property!</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-8">
+                                    
+                                    <form method="POST" enctype="multipart/form-data">
+                                       
+                                       {% csrf_token %}
+                                       {{ form | crispy }}
+                                       
+
+                                       <div class="add-property-button">
+                                          <div class="row">
+                                             <div class="col-md-8">
+                                                <div class="prperty-submit-button">
+                                                   <button type="submit" class="btn btn-success">
+                                                      {% if page_title == 'Add Property' %}
+                                                      Add Property
+                                                      {% else %}
+                                                      Update Property
+                                                      {% endif %}
+                                                   </button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </form>
+                                   
+                                 </div>
+                              </div>
+                           </div>
+
                           </div>
                        </div>
                     </div>
@@ -205,34 +140,7 @@
       
       
      <!-- Newsletter Area Start -->
-     <section class="afloon-newsletter-area section_15">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-7 col-sm-7">
-                 <div class="afloon-newsletter-left">
-                    <h4>Newsletter</h4>
-                    <form>
-                       <p>
-                          <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
-                          <button type="submit" ><i class="fa fa-send"></i></button>
-                       </p>
-                    </form>
-                 </div>
-              </div>
-              <div class="col-md-5 col-sm-5">
-                 <div class="afloon-newsletter-right">
-                    <h4>follow us on</h4>
-                    <ul>
-                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                       <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                       <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
+     {% include 'realestate/partials/newsletter.html' %}
      <!-- Newsletter Area End -->
 
 

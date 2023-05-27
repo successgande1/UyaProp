@@ -4,12 +4,16 @@ from django.contrib.auth.models import User
 # from django.contrib.gis.geos import Point
 import requests
 
+from geopy.geocoders import Nominatim
+
+geolocator = Nominatim(user_agent='Successgande-uyaprop')
+
 
 
 
 class Landlord(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_verified = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False) 
 
     def __str__(self):
         return self.user.username
@@ -27,18 +31,41 @@ class Agent(models.Model):
 
 class Property(models.Model):
     PROPERTY_TYPE_CHOICES = [
-        ('House', 'House'),
+        ('Complete House', 'Complete House'),
         ('Apartment', 'Apartment'),
-        ('Condo', 'Condo'),
-        ('Duplex', 'Duplex'),
-        ('Townhouse', 'Townhouse'),
-        ('Other', 'Other'),
+        ('Self-Contained', 'Self-Contained'),
+       
+        
     ]
+
+    BEDROOM_CHOICES = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5+'),
+    ]
+
+    BATHROOM_CHOICES = [
+        ('Self-contained', 'Self-contained'),
+        ('General', 'General'),
+    ]
+
+    COUNTRY_CHOICES = [
+        ('Nigeria', 'Nigeria'),
+        
+    ]
+
     agent = models.ForeignKey(Agent, on_delete=models.SET_NULL, blank=True, null=True)
     landlord = models.ForeignKey(Landlord, on_delete=models.SET_NULL, blank=True, null=True)
-    title = models.CharField(max_length=255)
     description = models.TextField()
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES)
+    bedrooms = models.CharField(max_length=2, blank=True, null=True, choices=BEDROOM_CHOICES)
+    bathroom_type = models.CharField(max_length=20, choices=BATHROOM_CHOICES)
+    country = models.CharField(max_length=20, choices=COUNTRY_CHOICES)
+    state = models.CharField(max_length=10, blank=True, null=True)
+    state_lga = models.CharField(max_length=12, blank=True, null=True)
+    address = models.TextField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -46,6 +73,7 @@ class Property(models.Model):
     image = models.ImageField(default='avatar.jpg', blank=False, null=False, upload_to ='profile_images', 
    
     )
+    last_updated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

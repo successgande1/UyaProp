@@ -1,0 +1,44 @@
+
+<div class="account-author-left">
+    <div class="account-menu">
+       <h3>Manage Account</h3>
+       <ul>
+          <li>
+             <a href=" {% url 'account-profile-update' %} ">
+             <i class="fa fa-user"></i>
+             My Profile
+             </a>
+          </li>
+          <li>
+             <a href=" {% url 'property-listing' %} ">
+             <i class="fa fa-heart-o"></i>
+             My properties
+             </a>
+          </li>
+          <li>
+             <a href="">
+             <i class="fa fa-file-archive-o"></i>
+             Notifications
+             </a>
+          </li>
+          <li>
+            <a href="">
+            <i class="fa fa-file-archive-o"></i>
+            My Prospects
+            </a>
+         </li>
+          <li>
+             <a href="">
+             <i class="fa fa-lock"></i>
+             change password
+             </a>
+          </li>
+          <li>
+             <a href="{% url 'account-logout' %}">
+             <i class="fa fa-power-off"></i>
+             log out
+             </a>
+          </li>
+       </ul>
+    </div>
+ </div>

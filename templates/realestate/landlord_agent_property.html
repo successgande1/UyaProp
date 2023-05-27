@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+
+{% load crispy_forms_tags %}
+
+{% load humanizelib %}
+
+{% load static %}
+
+{% block content %}
+
+ <!-- Breadcromb Area Start -->
+ {% include 'realestate/partials/user_breadcromb.html' %}
+ <!-- Breadcromb Area End -->
+
+  <!-- Property Details Area Start -->
+  <section class="afloon-property-details-area section_100">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <div class="property-details-left">
+               <div class="single-property-details">
+                  <h2> {{ property.property_type }} </h2>
+                  <p>{{ property.address}}, {{ property.state }}, {{ property.country }}.</p>
+                  <div class="property-meta">
+                     <ul>
+                        
+
+                        <li>
+                           <i class="fa fa-bed"></i>
+                           <span>{{ property.bedrooms }}</span>
+                        </li>
+                        <li>
+                           <i class="fa fa-bath"></i>
+                           <span>{{ property.bathroom_type }}</span>
+                        </li>
+                       
+                     </ul>
+                  </div>
+                  <div class="property-slide">
+                     <div class="single-property-slide" data-hash="pro_one">
+                        <img src=" {{ property.image.url }} " alt="property image" width="750" height="200" />
+                        <div class="pro-slide-overlay"></div>
+                     </div>
+                     <div class="single-property-slide"  data-hash="pro_two">
+                        <img src="{{ property.image.url }}" alt="property image" />
+                        <div class="pro-slide-overlay"></div>
+                     </div>
+                     <div class="single-property-slide"  data-hash="pro_three">
+                        <img src="{{ property.image.url }}" alt="property image" />
+                        <div class="pro-slide-overlay"></div>
+                     </div>
+                     <div class="single-property-slide"  data-hash="pro_four">
+                        <img src="{{ property.image.url }}" alt="property image" />
+                        <div class="pro-slide-overlay"></div>
+                     </div>
+                  </div>
+                  <div class="link-image-slide">
+                     <div class="hash_main">
+                        <a href="#pro_one">
+                        <img src="{{ property.image.url }}" alt="url image" />
+                        </a>
+                     </div>
+                     <div class="hash_main">
+                        <a href="#pro_two">
+                        <img src="{{ property.image.url }}" alt="url image" />
+                        </a>
+                     </div>
+                     <div class="hash_main">
+                        <a href="#pro_three">
+                        <img src="{{ property.image.url }}" alt="url image" />
+                        </a>
+                     </div>
+                     <div class="hash_main">
+                        <a href="#pro_four">
+                        <img src="{{ property.image.url }}" alt="url image" />
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="single-property-details">
+                  <h2>Property Description</h2>
+                  <div class="pro_desc">
+                     <p> {{ property.description }} </p> <a class="btn btn-primary" href=" {% url 'edit-property' property.id %} ">Edit</a>
+                     
+                  </div>
+               </div>
+               
+               
+               
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="listing-widget-box left-margin">
+               
+               {% include 'realestate/partials/user_menu_left.html' %}
+               <div class="single-listing-widget">
+                  <h3> my recent property</h3>
+                  <ul>
+                   {% if properties %}
+
+                   {% for property in properties %}
+                     <li>
+                        <div class="recent-img">
+                           <a href="#">
+                           <img src=" {{ property.image.url }} " alt="recent image"  width="82" height="79" />
+                           </a>
+                        </div>
+                        <div class="recent-text">
+                           <h4 style="font-size: 1.5rem; color:blue;">
+                              <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
+                           </h4>
+                           <p>Location: {{property.state}}, {{property.state_lga}}</p>
+                           <p style="font-size: 1.2rem; font-family:sans-serif; color:rgb(243, 73, 6);">Price: N{{property.price |intcomma}}</p> 
+                        </div>
+                     </li>
+                   {% endfor %} 
+                   {% else %}
+
+                   <h5>No Property Listing</h5>
+
+                   {% endif %}
+                     
+                     
+                     
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Property Details Area End -->
+
+   <!-- Newsletter Area Start -->
+   {% include 'realestate/partials/newsletter.html' %}
+   <!-- Newsletter Area End -->
+
+
+{% endblock %}

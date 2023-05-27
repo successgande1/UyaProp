@@ -1,1 +1,217 @@
-<h2>Landlord and Agent Listings</h2>
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+
+{% load crispy_forms_tags %}
+
+{% load humanizelib %}
+
+{% block content %}
+
+{% load static %}
+
+<script src="{% static 'path/to/jquery.min.js' %}"></script>
+
+<!-- JavaScript code -->
+<script>
+$(document).ready(function() {
+  var propertyTypeField = $('#id_property_type');
+  var bedroomsField = $('#id_bedrooms');
+
+  // Hide/show the bedrooms field based on the initial property type selection
+  toggleBedroomsField(propertyTypeField.val());
+
+  // Update the bedrooms field visibility on property type change
+  propertyTypeField.on('change', function() {
+    toggleBedroomsField($(this).val());
+  });
+
+  function toggleBedroomsField(propertyType) {
+    if (propertyType === 'Apartment') {
+      bedroomsField.hide();
+    } else {
+      bedroomsField.show();
+    }
+  }
+});
+</script>
+
+
+      <!-- Breadcromb Area Start -->
+      {% include 'realestate/partials/user_breadcromb.html' %}
+     <!-- Breadcromb Area End -->
+      
+      
+     <!-- Listing Sidebar Area Start -->
+     <section class="afloon-listing-sidebar-area section_100">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-8">
+                 <div class="listing-property-right">
+                    <div class="listing-ordering">
+                       <div class="row">
+                          <div class="col-md-6 col-sm-6">
+                           <div class="shorting-left">
+                              <p>Showing {{ properties.start_index }}–{{ properties.end_index }} of {{ total_properties }} results</p>
+                          </div>
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                             <div class="shorting-right">
+                                <select class="orderby" name="orderby">
+                                   <option value="0" selected >Default shorting</option>
+                                   <option value="1" >short by rating </option>
+                                   <option value="2" >short by popularity </option>
+                                   <option value="3" >short by popularity </option>
+                                   <option value="4" >short by price:high to low</option>
+                                   <option value="5" >short by price:low to high</option>
+                                </select>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="listin-item">
+                       <div class="row">
+                        {% if properties %}
+
+                        {% for property in properties %}
+
+                          <div class="col-md-6">
+                             <div class="single-latest-properties">
+                                <div class="property-img">
+                                   <img src=" {{ property.image.url }} " alt="property image"   />
+                                   <div class="property_overlay"></div>
+                                   <div class="pro-tag sale">
+                                      <p>for sale</p>
+                                   </div>
+                                   <div class="pro-info">
+                                      <ul>
+                                         <li>
+                                            <i class="fa fa-bed"></i>
+                                            {{ property.bedrooms }}
+                                         </li>
+                                         <li>
+                                            <i class="fa fa-bath"></i>
+                                            {{ property.bathroom_type }}
+                                         </li>
+                                         <li>
+                                            <i class="fa fa-taxi"></i>
+                                            yes
+                                         </li>
+                                      </ul>
+                                   </div>
+                                </div>
+                                <div class="property-text">
+                                   <h3><a href="#"> {{ property.property_type }} </a></h3>
+                                   <div class="pro-details-price">
+                                      <p>N{{ property.price |intcomma}}</p>
+                                      <a href=" {% url 'property_detail' property.id %} ">More Details</a>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+
+                          {% endfor %}
+                        {% else %}
+
+                        <h4 style="text-align: center; color:red;">No Property Found</h4>
+
+
+                        {% endif %}
+
+                       </div>
+                    </div>
+                    <div class="row">
+                     <div class="col-md-12">
+                         <div class="pagination-box">
+                             <ul class="pagination">
+                                 {% if properties.has_previous %}
+                                     <li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
+                                     <li><a href="?page={{ properties.previous_page_number }}">{{ properties.previous_page_number }}</a></li>
+                                 {% endif %}
+                                 
+                                 <li class="active"><a href="?page={{ properties.number }}">{{ properties.number }}</a></li>
+                                 
+                                 {% if properties.has_next %}
+                                     <li><a href="?page={{ properties.next_page_number }}">{{ properties.next_page_number }}</a></li>
+                                     <li><a href="?page={{ properties.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
+                                 {% endif %}
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+                 
+                 </div>
+              </div>
+              <!--Right Bar-->
+              <div class="col-md-4">
+                 <div class="listing-widget-box left-margin">
+                    <div class="single-listing-widget">
+                       <h3>Search Property</h3>
+                       
+                     <form action="" method="GET">
+                     
+                     {% csrf_token %}
+                     {{ form | crispy }}
+                       
+                       <div class="single-listing-search-property">
+                          <div class="row">
+                             <div class="col-md-6">
+                                <div class="listing-search">
+                                   <button type="submit" >Search</button>
+                                </div>
+                             </div>
+                             
+                          </div>
+                       </div>
+
+                     </form>
+                       
+                    </div>
+                    {% include 'realestate/partials/user_menu_left.html' %}
+                    <div class="single-listing-widget">
+                       <h3> my recent property</h3>
+                       <ul>
+                        {% if properties %}
+
+                        {% for property in properties %}
+                          <li>
+                             <div class="recent-img">
+                                <a href="#">
+                                <img src=" {{ property.image.url }} " alt="recent image"  width="82" height="79" />
+                                </a>
+                             </div>
+                             <div class="recent-text">
+                                <h4 style="font-size: 1.5rem; color:blue;">
+                                   <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
+                                </h4>
+                                <p>Location: {{property.state}}, {{property.state_lga}}</p>
+                                <p style="font-size: 1.2rem; font-family:sans-serif; color:rgb(243, 73, 6);">Price: N{{property.price |intcomma}}</p> 
+                             </div>
+                          </li>
+                        {% endfor %} 
+                        {% else %}
+
+                        <h5>No Property Listing</h5>
+
+                        {% endif %}
+                          
+                          
+                          
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Listing Sidebar Area End -->
+      
+      
+     <!-- Newsletter Area Start -->
+     {% include 'realestate/partials/newsletter.html' %}
+     <!-- Newsletter Area End -->
+
+
+
+{% endblock %}

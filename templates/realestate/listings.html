@@ -7,192 +7,233 @@
 
 {% load static %}
 
+{% load humanizelib %}
+
 {% block content %}
 
 
       <!-- Breadcromb Area Start -->
-      <section class="afloon-breadcromb-area section_50">
-        <div class="breadcromb_overlay"></div>
-        <div class="container">
-           <div class="row">
-              <div class="col-sm-6">
-                 <div class="breadcromb-left">
-                    <h3> {{ user.username }} account</h3>
-                 </div>
-              </div>
-              <div class="col-sm-6">
-                 <div class="breadcromb-right">
-                    <ul>
-                       <li><a href="#"><i class="fa fa-home"></i>home</a></li>
-                       <li>/</li>
-                       <li>pages</li>
-                       <li>/</li>
-                       <li>my account</li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
+      {% include 'realestate/partials/user_breadcromb.html' %}
      <!-- Breadcromb Area End -->
       
       
-     <!-- Account Area Start -->
-     <section class="afloon-account-area section_100">
+     <!-- Google Map Start -->
+     <div class="map_area" id="googleMap"></div>
+     <!-- Google Map Start -->
+      
+      
+     <!-- Listing Sidebar Area Start -->
+     <section class="afloon-listing-sidebar-area section_100">
         <div class="container">
            <div class="row">
-              <div class="col-md-12">
-                 <div class="account-left">
-                    <div class="single-account-left">
-                       <div class="row">
-                          <div class="col-md-4">
-                             <div class="account-author-left">
-                                {% if user.profile.image %}
-                                <img src="{{ user.profile.image.url }}" alt="image">
-                                {% else %}
-                                No image available
-                                {% endif %}
-                                
+              <div class="col-md-4">
+               <!-- Recent Listings Area Start -->
+               <div class="single-listing-widget">
+                  <h3>recent property</h3>
+                  <ul>
+                     {% for property in properties %}
+                     <li>
+                        <div class="recent-img">
+                           <a href="#">
+                           <img src=" {{ property.image.url }} " alt="recent image" width="82" height="79" />
+                           </a>
+                        </div>
+                        <div class="recent-text">
+                           <h4>
+                              <a href="#"> {{property.property_type}} </a>
+                           </h4>
+                           <p>{{property.address}}</p>
+                           <p>N{{property.price |intcomma}}</p>
+                        </div>
+                     </li>
+                    {% endfor %}
+                     
+                  </ul>
+               </div>
+
+                  <!-- Search Listing Area Start -->
+                 <div class="listing-widget-box">
+                    <div class="single-listing-widget">
+                       <h3>Find New Home</h3>
+                       <div class="single-search-property">
+                          <input type="text" name="location" placeholder="Keyword (e.g. 'office')">
+                       </div>
+                       <div class="single-search-property">
+                          <div class="intro">
+                             <select>
+                                <option class="active">Location</option>
+                                <option>Australia</option>
+                                <option>Japan</option>
+                                <option>Italy</option>
+                                <option>Bangladesh</option>
+                                <option>China</option>
+                                <option>India</option>
+                             </select>
+                          </div>
+                       </div>
+                       <div class="single-search-property">
+                          <input type="text" name="minarea" placeholder="Min area (sqft)">
+                       </div>
+                       <div class="single-search-property">
+                          <input type="text" name="maxarea" placeholder="Max area (sqft)">
+                       </div>
+                       <div class="single-search-property">
+                          <input type="text" name="minbeds" placeholder="Min Beds">
+                       </div>
+                       <div class="single-search-property">
+                          <input type="text" name="minbath" placeholder="Min Baths">
+                       </div>
+                       <div class="single-search-property range">
+                          <label class="pull-left">Price:</label>
+                          <div class="price">
+                             <span>$</span>
+                             <div class="leftLabel"></div>
+                             <span>- $</span>
+                             <div class="rightLabel"></div>
+                          </div>
+                       </div>
+                       <div data-range_min="0" data-range_max="15000" data-cur_min="0" data-cur_max="15000" class="nstSlider">
+                          <div class="bar"></div>
+                          <div class="leftGrip"></div>
+                          <div class="rightGrip"></div>
+                       </div>
+                       <div class="single-listing-search-property">
+                          <div class="row">
+                             <div class="col-md-6">
+                                <div class="listing-search">
+                                   <button type="submit" >Search</button>
+                                </div>
                              </div>
-                             <div class="account-author-left">
-                                <div class="account-menu">
-                                   <h3>Manage Account</h3>
-                                   <ul>
-                                      <li>
-                                         <a href="account.html">
-                                         <i class="fa fa-user"></i>
-                                         my account
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="favourite.html">
-                                         <i class="fa fa-heart-o"></i>
-                                         favourite properties
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="add-property.html">
-                                         <i class="fa fa-file-archive-o"></i>
-                                         add new property
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="change-password.html">
-                                         <i class="fa fa-lock"></i>
-                                         change password
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="#">
-                                         <i class="fa fa-power-off"></i>
-                                         log out
-                                         </a>
-                                      </li>
-                                   </ul>
+                             <div class="col-md-6">
+                                <div class="listing-option">
+                                   <a data-toggle="collapse" href=".listing-propertie-filters" class="more-filter">
+                                      <i class="fa fa-plus text-1 bg-color-yello" aria-hidden="true"></i>
+                                      <i class="fa fa-minus text-2 hide bg-color-yello" aria-hidden="true"></i>
+                                      <div class="text-1"> options</div>
+                                      <div class="text-2 hide"> options</div>
+                                   </a>
                                 </div>
                              </div>
                           </div>
-                          <div class="col-md-8">
-                             <div class="single-add-property left-margin">
-                                <h3>personal information</h3>
-                               
-                                <div class="property-form-group">
-                                   <div class="row">
-                                    <form method="post" enctype="multipart/form-data">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="name" >Your Name</label>
-                                            <input type="email" value="Jennie Wilson" id="name" name="name" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="title" >Your title</label>
-                                            <input type="text" value="Agent In New York" id="title" name="title" >
-                                         </p>
-                                      </div>
-                                   </div>
-                                   <div class="row">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="phn" >Your Phone</label>
-                                            <input type="text" value="(123) 123-456" id="phn" name="phone" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="email" >Your email</label>
-                                            <input type="text" value="Jennie@mail.com" id="email" name="email" >
-                                         </p>
-                                      </div>
-                                      
-                                   </div>
-                                   <div class="row">
-                                      <div class="col-md-12">
-                                         <p>
-                                            <label for="me" >About Me</label>
-                                            <textarea id="me" name="me">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper
-                                            </textarea>
-                                         </p>
-                                      </div>
-                                   </div>
-                                </div>
-                             
-                             </div>
-                             <div class="single-add-property">
-                                <h3>social link</h3>
-                                <div class="property-form-group">
-                                   <div class="row">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="twitter" >
-                                            <i class="fa fa-twitter twitter"></i>
-                                            twitter
-                                            </label>
-                                            <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="facebook" >
-                                            <i class="fa fa-facebook-square facebook"></i>
-                                            facebook
-                                            </label>
-                                            <input type="text" value="https://www.facebook.com/k" id="facebook" name="facebook" >
-                                         </p>
-                                      </div>
-                                   </div>
-                                   <div class="row">
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="google" >
-                                            <i class="fa fa-google-plus google"></i>
-                                            Google
-                                            </label>
-                                            <input type="text" value="https://www.google.com/" id="google" name="google" >
-                                         </p>
-                                      </div>
-                                      <div class="col-md-6">
-                                         <p>
-                                            <label for="linkedin" >
-                                            <i class="fa fa-linkedin linkedin"></i>
-                                            linkedin
-                                            </label>
-                                            <input type="text" value="https://www.linkedin.com/" id="linkedin" name="linkedin" >
-                                         </p>
-                                      </div>
+                       </div>
+                       <div class="listing-propertie-filters collapse">
+                          <div class="row">
+                             <div class="col-md-12">
+                                <div class="check-box none-check">
+                                   <div class="afloon-checkbox">
+                                      <input type="checkbox" value="None" id="Washer" name="check" />
+                                      <label for="Washer"><span>Washer and Dryer</span></label>
                                    </div>
                                 </div>
                              </div>
-                             <div class="add-property-button">
-                                <div class="row">
-                                   <div class="col-md-12">
-                                      <div class="prperty-submit-button">
-                                         <button type="submit" >save changes</button>
-                                      </div>
+                             <div class="col-md-12">
+                                <div class="check-box none-check">
+                                   <div class="afloon-checkbox">
+                                      <input type="checkbox" value="None" id="Balcony" name="check" />
+                                      <label for="Balcony"><span>Balcony</span></label>
                                    </div>
                                 </div>
                              </div>
+                             <div class="col-md-12">
+                                <div class="check-box none-check">
+                                   <div class="afloon-checkbox">
+                                      <input type="checkbox" value="None" id="storage" name="check" />
+                                      <label for="storage"><span> Storage</span></label>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    
+                 </div>
+              </div>
+              <div class="col-md-8">
+                 <div class="listing-property-right left-margin">
+                    <div class="listing-ordering">
+                       <div class="row">
+                          <div class="col-md-6 col-sm-6">
+                             <div class="shorting-left">
+                                <p>Showing 1–6 of 7 results</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                             <div class="shorting-right">
+                                <select class="orderby" name="orderby">
+                                   <option value="0" selected >Default shorting</option>
+                                   <option value="1" >short by rating </option>
+                                   <option value="2" >short by popularity </option>
+                                   <option value="3" >short by popularity </option>
+                                   <option value="4" >short by price:high to low</option>
+                                   <option value="5" >short by price:low to high</option>
+                                </select>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="listin-item">
+                       <div class="row">
+                        {% if properties %}
+
+                        {% for property in properties %}
+
+                          <div class="col-md-6">
+                             <div class="single-latest-properties">
+                                <div class="property-img">
+                                   <img src=" {{ property.image.url }} " alt="property image" width="364" height="254" />
+                                   <div class="property_overlay"></div>
+                                   <div class="pro-tag sale">
+                                      <p>for sale</p>
+                                   </div>
+                                   <div class="pro-info">
+                                      <ul>
+                                         <li>
+                                            <i class="fa fa-bed"></i>
+                                            {{ property.bedrooms }}
+                                         </li>
+                                         <li>
+                                            <i class="fa fa-bath"></i>
+                                            {{ property.bathroom_type }}
+                                         </li>
+                                         <li>
+                                            <i class="fa fa-taxi"></i>
+                                            None
+                                         </li>
+                                      </ul>
+                                   </div>
+                                </div>
+                                <div class="property-text">
+                                   <h3><a href="#"> {{ property.property_type }} </a></h3>
+                                   <div class="pro-details-price">
+                                      <p> N{{ property.price|intcomma }} </p>
+                                      <a href="#">More Details</a>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+
+                        {% endfor %}
+
+                        {% else %}
+
+                        <h3>No Listing</h3>
+
+                        {% endif %}
+                         
+                       </div>
+                    </div>
+                    <div class="row">
+                       <div class="col-md-12">
+                          <div class="pagination-box">
+                             <ul class="pagination">
+                                <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                <li><a href="#">1</a></li>
+                                <li class="active"><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                             </ul>
                           </div>
                        </div>
                     </div>
@@ -201,38 +242,11 @@
            </div>
         </div>
      </section>
-     <!-- Account Area End -->
+     <!-- Listing Sidebar Area End -->
       
       
      <!-- Newsletter Area Start -->
-     <section class="afloon-newsletter-area section_15">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-7 col-sm-7">
-                 <div class="afloon-newsletter-left">
-                    <h4>Newsletter</h4>
-                    <form>
-                       <p>
-                          <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
-                          <button type="submit" ><i class="fa fa-send"></i></button>
-                       </p>
-                    </form>
-                 </div>
-              </div>
-              <div class="col-md-5 col-sm-5">
-                 <div class="afloon-newsletter-right">
-                    <h4>follow us on</h4>
-                    <ul>
-                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                       <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                       <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
+     {% include 'realestate/partials/newsletter.html' %}
      <!-- Newsletter Area End -->
 
 

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'realestate.apps.RealestateConfig',
     'account.apps.AccountConfig',
     'crispy_forms',
+    'django_humanize',
     # 'compressor',
 ]
 

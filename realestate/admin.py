@@ -8,4 +8,6 @@ admin.site.register(Agent)
 
 admin.site.register(Prospect)
 
-admin.site.register(Tenancy)
+admin.site.register(Tenancy) 
+
+admin.site.register(Property) 
