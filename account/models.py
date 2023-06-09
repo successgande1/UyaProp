@@ -5,12 +5,20 @@ from geopy.geocoders import Nominatim
 
 geolocator = Nominatim(user_agent='Successgande-uyaprop')
 
+
+
 class Profile(models.Model):
+    COUNTRY_CHOICES = [
+        ('Nigeria', 'Nigeria'),
+        
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=30, blank=True, null=True)
-    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    phone_number = models.CharField(max_length=11, blank=True, null=True)
     email = models.EmailField()
-    address = models.TextField(null=True, blank=True)
+    country = models.CharField(max_length=20, choices=COUNTRY_CHOICES)
+    state = models.CharField(max_length=10, blank=True, null=True)
+    address = models.CharField(max_length=60, null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     image = models.ImageField(default='avatar.jpg', blank=False, null=False, upload_to ='profile_images', 

@@ -11,3 +11,5 @@ admin.site.register(Prospect)
 admin.site.register(Tenancy) 
 
 admin.site.register(Property) 
+
+admin.site.register(Notification)

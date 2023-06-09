@@ -40,12 +40,12 @@
                         </div>
                         <div class="recent-text">
                            <h4>
-                              <a href="#"> {{property.property_type}} </a>
+                              <a style="font-size:1.4rem;" href="{% url 'property_detail' property.id % }"> {{property.property_type}} </a>
                            </h4>
-                           <p>{{property.address}}</p>
-                           <p>N{{property.price |intcomma}}</p>
+                           <p>{{property.state}}, {{property.state_lga}}</p>
+                           <p style="color:red; font-family:sans-serif; font-size:1.2rem;">N{{property.price |intcomma}} <a class="btn btn-primary small-button" style="display: inline-block; margin: 0.3rem; padding: 0.2rem 0.6rem; font-size: 0.9rem; font-family:sans-serif;" href="{% url 'property_detail' property.id %}">Contact</a></p> 
                         </div>
-                     </li>
+                     </li> 
                     {% endfor %}
                      
                   </ul>
@@ -53,100 +53,31 @@
 
                   <!-- Search Listing Area Start -->
                  <div class="listing-widget-box">
-                    <div class="single-listing-widget">
-                       <h3>Find New Home</h3>
-                       <div class="single-search-property">
-                          <input type="text" name="location" placeholder="Keyword (e.g. 'office')">
-                       </div>
-                       <div class="single-search-property">
-                          <div class="intro">
-                             <select>
-                                <option class="active">Location</option>
-                                <option>Australia</option>
-                                <option>Japan</option>
-                                <option>Italy</option>
-                                <option>Bangladesh</option>
-                                <option>China</option>
-                                <option>India</option>
-                             </select>
-                          </div>
-                       </div>
-                       <div class="single-search-property">
-                          <input type="text" name="minarea" placeholder="Min area (sqft)">
-                       </div>
-                       <div class="single-search-property">
-                          <input type="text" name="maxarea" placeholder="Max area (sqft)">
-                       </div>
-                       <div class="single-search-property">
-                          <input type="text" name="minbeds" placeholder="Min Beds">
-                       </div>
-                       <div class="single-search-property">
-                          <input type="text" name="minbath" placeholder="Min Baths">
-                       </div>
-                       <div class="single-search-property range">
-                          <label class="pull-left">Price:</label>
-                          <div class="price">
-                             <span>$</span>
-                             <div class="leftLabel"></div>
-                             <span>- $</span>
-                             <div class="rightLabel"></div>
-                          </div>
-                       </div>
-                       <div data-range_min="0" data-range_max="15000" data-cur_min="0" data-cur_max="15000" class="nstSlider">
-                          <div class="bar"></div>
-                          <div class="leftGrip"></div>
-                          <div class="rightGrip"></div>
-                       </div>
-                       <div class="single-listing-search-property">
-                          <div class="row">
-                             <div class="col-md-6">
-                                <div class="listing-search">
-                                   <button type="submit" >Search</button>
-                                </div>
-                             </div>
-                             <div class="col-md-6">
-                                <div class="listing-option">
-                                   <a data-toggle="collapse" href=".listing-propertie-filters" class="more-filter">
-                                      <i class="fa fa-plus text-1 bg-color-yello" aria-hidden="true"></i>
-                                      <i class="fa fa-minus text-2 hide bg-color-yello" aria-hidden="true"></i>
-                                      <div class="text-1"> options</div>
-                                      <div class="text-2 hide"> options</div>
-                                   </a>
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                       <div class="listing-propertie-filters collapse">
-                          <div class="row">
-                             <div class="col-md-12">
-                                <div class="check-box none-check">
-                                   <div class="afloon-checkbox">
-                                      <input type="checkbox" value="None" id="Washer" name="check" />
-                                      <label for="Washer"><span>Washer and Dryer</span></label>
-                                   </div>
-                                </div>
-                             </div>
-                             <div class="col-md-12">
-                                <div class="check-box none-check">
-                                   <div class="afloon-checkbox">
-                                      <input type="checkbox" value="None" id="Balcony" name="check" />
-                                      <label for="Balcony"><span>Balcony</span></label>
-                                   </div>
-                                </div>
-                             </div>
-                             <div class="col-md-12">
-                                <div class="check-box none-check">
-                                   <div class="afloon-checkbox">
-                                      <input type="checkbox" value="None" id="storage" name="check" />
-                                      <label for="storage"><span> Storage</span></label>
-                                   </div>
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
+                  <div class="single-listing-widget">
+                     <h3>Search Property</h3>
+                     
+                   <form action="" method="GET">
+                   
+                   {% csrf_token %}
+                   {{ form | crispy }}
+                     
+                     <div class="single-listing-search-property">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="listing-search">
+                                 <button type="submit" >Search</button>
+                              </div>
+                           </div>
+                           
+                        </div>
+                     </div>
+
+                   </form>
+                     
+                  </div>
                     
                  </div>
+                 {% include 'realestate/partials/user_menu_left.html' %}
               </div>
               <div class="col-md-8">
                  <div class="listing-property-right left-margin">
@@ -154,7 +85,7 @@
                        <div class="row">
                           <div class="col-md-6 col-sm-6">
                              <div class="shorting-left">
-                                <p>Showing 1–6 of 7 results</p>
+                              <p>Showing {{ properties.start_index }}–{{ properties.end_index }} of {{ total_properties }} results</p>
                              </div>
                           </div>
                           <div class="col-md-6 col-sm-6">
@@ -203,10 +134,10 @@
                                    </div>
                                 </div>
                                 <div class="property-text">
-                                   <h3><a href="#"> {{ property.property_type }} </a></h3>
+                                   <h3><a href="{% url 'property_detail' property.id %}"> {{ property.property_type }} </a></h3>
                                    <div class="pro-details-price">
                                       <p> N{{ property.price|intcomma }} </p>
-                                      <a href="#">More Details</a>
+                                      <a href="{% url 'property_detail' property.id %}">More Details</a>
                                    </div>
                                 </div>
                              </div>
@@ -223,19 +154,23 @@
                        </div>
                     </div>
                     <div class="row">
-                       <div class="col-md-12">
-                          <div class="pagination-box">
-                             <ul class="pagination">
-                                <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                             </ul>
-                          </div>
-                       </div>
+                     <div class="col-md-12">
+                        <div class="pagination-box">
+                            <ul class="pagination">
+                                {% if properties.has_previous %}
+                                    <li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <li><a href="?page={{ properties.previous_page_number }}">{{ properties.previous_page_number }}</a></li>
+                                {% endif %}
+                                
+                                <li class="active"><a href="?page={{ properties.number }}">{{ properties.number }}</a></li>
+                                
+                                {% if properties.has_next %}
+                                    <li><a href="?page={{ properties.next_page_number }}">{{ properties.next_page_number }}</a></li>
+                                    <li><a href="?page={{ properties.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
                     </div>
                  </div>
               </div>

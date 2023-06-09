@@ -49,6 +49,7 @@ class Property(models.Model):
     BATHROOM_CHOICES = [
         ('Self-contained', 'Self-contained'),
         ('General', 'General'),
+        ('Private Detached', 'Private Detached'),
     ]
 
     COUNTRY_CHOICES = [
@@ -56,16 +57,44 @@ class Property(models.Model):
         
     ]
 
+    STATE_CHOICES = [
+        ('Abia', 'Abia'),
+        ('Adamawa', 'Adamawa'),
+        ('Akwa Ibom', 'Akwa Ibom'),
+        ('Anambra ', 'Anambra '),
+        ('Bauchi', 'Bauchi'),
+        ('Bayelsa', 'Bayelsa'),
+        ('Benue ', 'Benue '),
+        ('Borno', 'Borno'),
+        ('Cross River', 'Cross River'),
+        ('Delta', 'Delta'),
+        ('Ebonyi', 'Ebonyi'),
+        ('Edo', 'Edo'),
+        ('Ekiti', 'Ekiti'),
+        ('Enugu', 'Enugu'),
+        ('Gombe', 'Gombe'),
+        ('Imo', 'Imo'),
+        ('Jigawa', 'Jigawa'),
+        ('Kaduna', 'Kaduna'),
+         ('Kano', 'Kano'),
+        ('Katsina', 'Katsina'),
+        ('Kebbi', 'Kebbi'),
+        ('Kogi', 'Kogi'),
+        ('Kwara', 'Kwara'),
+        ('Lagos', 'Lagos'),
+        
+    ]
+
     agent = models.ForeignKey(Agent, on_delete=models.SET_NULL, blank=True, null=True)
     landlord = models.ForeignKey(Landlord, on_delete=models.SET_NULL, blank=True, null=True)
-    description = models.TextField()
+    description = models.CharField(max_length=60, blank=True, null=True)
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES)
     bedrooms = models.CharField(max_length=2, blank=True, null=True, choices=BEDROOM_CHOICES)
     bathroom_type = models.CharField(max_length=20, choices=BATHROOM_CHOICES)
     country = models.CharField(max_length=20, choices=COUNTRY_CHOICES)
-    state = models.CharField(max_length=10, blank=True, null=True)
+    state = models.CharField(max_length=20, choices=STATE_CHOICES)
     state_lga = models.CharField(max_length=12, blank=True, null=True)
-    address = models.TextField(null=True, blank=True)
+    address = models.CharField(max_length=60, null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -76,7 +105,7 @@ class Property(models.Model):
     last_updated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return self.description
 
     
 
@@ -85,6 +114,7 @@ class Prospect(models.Model):
     payment_ref = models.CharField(max_length=100, blank=True, null=True)
     payment_status = models.BooleanField(default=False)
     properties = models.ManyToManyField('Property', through='Tenancy')
+
 
     def __str__(self):
         return self.user.username
@@ -115,5 +145,14 @@ class Payment(models.Model):
     prospect = models.ForeignKey(Prospect, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     transaction_reference = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.prospect} - {self.property}'
+    
+class Notification(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    prospect = models.ForeignKey(Prospect, on_delete=models.CASCADE)
+    message = models.CharField(max_length=220, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f'{self.prospect} - {self.property}'

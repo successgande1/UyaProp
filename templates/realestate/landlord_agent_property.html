@@ -15,8 +15,10 @@
  {% include 'realestate/partials/user_breadcromb.html' %}
  <!-- Breadcromb Area End -->
 
+
   <!-- Property Details Area Start -->
   <section class="afloon-property-details-area section_100">
+   {% include 'realestate/partials/_alerts.html' %}
    <div class="container">
       <div class="row">
          <div class="col-md-8">
@@ -81,10 +83,17 @@
                   </div>
                </div>
                <div class="single-property-details">
-                  <h2>Property Description</h2>
+                  <h2>Property Details</h2>
                   <div class="pro_desc">
-                     <p> {{ property.description }} </p> <a class="btn btn-primary" href=" {% url 'edit-property' property.id %} ">Edit</a>
+                     <p> {{ property.description }} </p> 
+                     <p>Address: {{ property.address }}, <p>State: {{ property.state }}, <p> Local Govt. Area: {{ property.state_lga }} </p>  </p>  </p> 
+
+                     {% if user_type != 'prospect' %}
                      
+                     <a class="btn btn-primary" href=" {% url 'edit-property' property.id %} ">Edit</a>
+                     {% else %}
+                     <a class="btn btn-primary" href="{% url 'property_detail' property.id %} ">   Contact Landlord/Agent   </a>
+                     {% endif %}
                   </div>
                </div>
                
@@ -92,12 +101,75 @@
                
             </div>
          </div>
+         
+         
+
+         <div class="col-md-4">
+            <div class="listing-widget-box  left-margin">
+               {% include 'realestate/partials/user_menu_left.html' %}
+                <!--Contact Landlord/Agent Sidebar-->
+               {% if user_type == 'prospect' %}
+               <div class="single-listing-widget">
+                  <h3>contact 
+                     {% if property.agent %}
+                     agent
+                     {% else %}
+                     landlord 
+                     {% endif %}
+                  
+                  </h3>
+                  <div class="contact-agent-box">
+                     <div class="single-agent big-margin">
+                        <div class="agent-details">
+                           <h3>{{property_owner.user.profile.full_name  }}</h3>
+                           <div class="agent-contact">
+                              <p>
+                                 <i class="fa fa-phone"></i>
+                                 {{property_owner.user.profile.phone_number }}
+                              </p>
+                              <p style="font-size: 1.2rem; color:rgb(0, 145, 255); font-family:sans-serif;">
+                                 <i class="fa fa-envelope-o"></i>
+                                 {{property_owner.user.profile.email }}
+                              </p>
+                              
+                              <p>
+                                 <i class="fa fa-skype"></i>
+                                 bohdan.kononets
+                              </p>
+                           </div>
+                           <div class="agent-image">
+                              <img src=" {{ property_owner.user.profile.image.url }} " alt="agent image" />
+                              <div class="agent_img_overlay_1"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <form action=" {% url 'property_detail' property.id %} ">
+                        
+                        <p>
+                           <button type="submit" >Send Message</button>
+                        </p>
+                     </form>
+                  </div>
+               </div>
+               {% endif %}
+                <!--End of Contact Landlord/Agent Sidebar-->
+            </div>
+         </div>
+
+         
+
+         <!--Landlord and Agent Recent Listing Sidebar-->
+         {% if user_type != 'prospect' %}
          <div class="col-md-4">
             <div class="listing-widget-box left-margin">
                
-               {% include 'realestate/partials/user_menu_left.html' %}
+               
                <div class="single-listing-widget">
-                  <h3> my recent property</h3>
+                  <h3> 
+                    
+                     my recent property
+                     
+                  </h3>
                   <ul>
                    {% if properties %}
 
@@ -110,7 +182,10 @@
                         </div>
                         <div class="recent-text">
                            <h4 style="font-size: 1.5rem; color:blue;">
-                              <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
+                              <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a>
+                              {% if user_type != 'prospect' %}
+                              <a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
+                              {% endif %}
                            </h4>
                            <p>Location: {{property.state}}, {{property.state_lga}}</p>
                            <p style="font-size: 1.2rem; font-family:sans-serif; color:rgb(243, 73, 6);">Price: N{{property.price |intcomma}}</p> 
@@ -129,6 +204,8 @@
                </div>
             </div>
          </div>
+         {% endif %}
+          <!-- End of Landlord and Agent Recent Listing Sidebar-->
       </div>
    </div>
 </section>

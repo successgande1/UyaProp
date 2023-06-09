@@ -23,13 +23,14 @@
        
          <div class="search-property">
             <form method="GET" action="{% url 'pages-index' %}">
-                {% csrf_token %}
+               {% csrf_token %}
                 <div class="row">
                     <div class="col-md-3">
                         <div class="single-search-property">
-                            <div class="intro">
-                                {{ form.property_type }}
-                            </div>
+                           <div class="intro">
+                              {{ form.property_type }}
+                          </div>
+                            
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -41,16 +42,14 @@
                     </div>
                     <div class="col-md-3">
                         <div class="single-search-property">
-                            <div class="intro">
-                              {{ form.min_beds }}
-                          </div>
+                            {{ form.min_beds }}
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="single-search-property">
-                            <div class="intro">
-                                {{ form.bathroom_type }}
-                            </div>
+                           <div class="intro">
+                              {{ form.bathroom_type }}
+                          </div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -71,7 +70,6 @@
                 </div>
             </form>
         </div>
-        
         
         
         </div>
@@ -219,17 +217,16 @@
      <div class="row">
         <div class="col-md-12">
            <div class="deal-property-slide">
-            {% for listing in listings %}
               <div class="single-deal-property">
                  <div class="deal-pro-slide-img">
                     <a href="#">
-                    <img src="{{ listing.image.url }}" alt="Deal Image" />
+                    <img src="{% static 'assets/img/listing1.jpg' %}" alt="Deal Image" />
                     </a>
                     <div class="deal-price">
                        <div class="row">
                           <div class="col-md-6">
                              <div class="deal-price-left">
-                                <p>N {{listing.price |intcomma}} </p>
+                                <p>$78,000</p>
                              </div>
                           </div>
                           <div class="col-md-6">
@@ -249,22 +246,212 @@
                     </div>
                  </div>
                  <div class="deal-pro-info">
-                    <h3><a href="#">{{listing.property_type}}</a></h3>
-                    <p><i class="fa fa-map-marker"></i> {{listing.state}}, {{listing.state_lga}} </p>
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
                     <ul>
                        <li>
                           <i class="fa fa-bed"></i>
-                          {{listing.bedrooms}}
+                          03
                        </li>
                        <li>
                           <i class="fa fa-bath"></i>
-                          {{listing.bathroom_type}}
+                          02
                        </li>
-                      
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
                     </ul>
                  </div>
               </div>
-           {% endfor %}
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing2.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing3.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing4.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="single-deal-property">
+                 <div class="deal-pro-slide-img">
+                    <a href="#">
+                    <img src="{% static 'assets/img/listing6.jpg' %}" alt="Deal Image" />
+                    </a>
+                    <div class="deal-price">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="deal-price-left">
+                                <p>$78,000</p>
+                             </div>
+                          </div>
+                          <div class="col-md-6">
+                             <div class="deal-price-right">
+                                <p>
+                                   <a href="#"><i class="fa fa-share-alt"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </p>
+                                <p>
+                                   <a href="#"><i class="fa fa-camera"></i></a>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="deal-pro-info">
+                    <h3><a href="#">Residential Project</a></h3>
+                    <p><i class="fa fa-map-marker"></i> Mountain Line CA 62548</p>
+                    <ul>
+                       <li>
+                          <i class="fa fa-bed"></i>
+                          03
+                       </li>
+                       <li>
+                          <i class="fa fa-bath"></i>
+                          02
+                       </li>
+                       <li>
+                          <i class="fa fa-taxi"></i>
+                          yes
+                       </li>
+                    </ul>
+                 </div>
+              </div>
            </div>
         </div>
      </div>
@@ -351,32 +538,126 @@
      <div class="row">
         <div class="col-md-12">
            <div class="afloon-agent-slide">
-            {% for propertyuser in combined_list %}
               <div class="single-agent">
                  <div class="agent-details">
-                    <h3>{{propertyuser.user.profile.full_name}}</h3>
+                    <h3>jhon smith</h3>
                     <div class="agent-contact">
                        <p>
                           <i class="fa fa-phone"></i>
-                          {{propertyuser.user.profile.phone_number}}
-                       </p>
-                       <p style="font-size: 1.3rem; color:rgb(0, 145, 255); font-family:sans-serif;">
-                          <i class="fa fa-envelope-o"></i>
-                          {{propertyuser.user.profile.email}}
+                          0041-456-3692
                        </p>
                        <p>
-                          <i class="fa fa-home"></i>
-                          {{propertyuser.user.profile.state}}
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
                        </p>
                        <a href="#">view profile</a>
                     </div>
                     <div class="agent-image">
-                       <img src="{{propertyuser.user.profile.image.url}}" alt="agent image" />
+                       <img src="{% static 'assets/img/agnt1.jpg' %}" alt="agent image" />
                        <div class="agent_img_overlay_1"></div>
                     </div>
                  </div>
               </div>
-            {% endfor %}
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt2.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt3.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt4.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
+              <div class="single-agent">
+                 <div class="agent-details">
+                    <h3>jhon smith</h3>
+                    <div class="agent-contact">
+                       <p>
+                          <i class="fa fa-phone"></i>
+                          0041-456-3692
+                       </p>
+                       <p>
+                          <i class="fa fa-envelope-o"></i>
+                          hello@afloon.com
+                       </p>
+                       <p>
+                          <i class="fa fa-fax"></i>
+                          091-789-4100
+                       </p>
+                       <a href="#">view profile</a>
+                    </div>
+                    <div class="agent-image">
+                       <img src="{% static 'assets/img/agnt2.jpg' %}" alt="agent image" />
+                       <div class="agent_img_overlay_1"></div>
+                    </div>
+                 </div>
+              </div>
            </div>
         </div>
      </div>

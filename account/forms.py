@@ -45,11 +45,16 @@ class UserLoginForm(AuthenticationForm):
 
     
 
-#Profile Update Form
+#Profile Update Form 
 class ProfileForm(forms.ModelForm):
+    full_name = forms.CharField(label = 'Full Name:', max_length=36, widget=forms.TextInput(attrs={'placeholder': 'Enter Your Full Name'}))
+    email = forms.CharField(label = 'Email Address:', max_length=36, widget=forms.TextInput(attrs={'placeholder': 'Enter a Valid Email Address'}))
+    phone_number = forms.CharField(label = 'Phone Number:', max_length=11, widget=forms.TextInput(attrs={'placeholder': 'Enter Your 11 Digits Phone Number.'}))
+    state = forms.CharField(label = 'State:', max_length=12, widget=forms.TextInput(attrs={'placeholder': 'Enter State  of Residence Name Only.'}))
+    address = forms.CharField(label = 'Residential Address:', max_length=60, widget=forms.TextInput(attrs={'placeholder': 'Enter Street Name with Number (where applicable) and Town Name only.'}))
     class Meta:
         model = Profile
-        fields = ['full_name', 'phone_number', 'email', 'address', 'image']
+        fields = ['full_name', 'phone_number', 'email', 'country', 'state', 'address', 'image']
     
     def clean_image(self):
         image = self.cleaned_data.get('image') 

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'crispy_forms',
     'django_humanize',
-    # 'compressor',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
