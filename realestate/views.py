@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from . models import *
 from . forms import *
+from account.models import *
 from django.contrib.auth import logout
 from django.utils.crypto import constant_time_compare
 from django.contrib.auth.decorators import login_required
@@ -8,11 +9,14 @@ from django.contrib import messages
 from django.contrib.auth import get_user
 from django.db.models import Q
 from django.core.paginator import Paginator
+from geopy.distance import *
+
 # Create your views here.
 #Add Property View
 
 @login_required(login_url='account-login')
 def add_property(request):
+    properties = {}
     # Get user session type
     user_type = request.session.get('user_type')
     if user_type is None:
@@ -82,17 +86,22 @@ def property_detail(request, property_id):
             property_owner = property_instance.agent
         #Get the Property instances using product key
         property_instance = get_object_or_404(Property, pk=property_id)
-        #Get the Prospect details
-        prospect = request.user.prospect_profile
-        #Construct message for sending for Contacting Landlord or Agent
-        message = f"Prospect Full Name: {prospect.user.profile.full_name}\nEmail: {prospect.user.profile.email}\nPhone Number: {prospect.user.profile.phone_number}\nProperty Interested In: {property_instance}"
-        #Send Message Notification
-        Notification.objects.create(property=property_instance, prospect=prospect, message=message)
-
-        messages.success(request, 'Notification sent successfully with your Contact Details.')
-        redirect('listings')
-    
+      
+    #Send Notification to property owner
+    if request.method == 'POST':
+        form = PropertyInquiryForm(request.POST)
+        if form.is_valid():
+                prospect = request.user.prospect_profile
+                message = form.cleaned_data['message']
+                subject = form.cleaned_data['subject']
+                Notification.objects.create(property=property_instance, prospect=prospect, subject=subject, message=message)
+                messages.success(request, 'Notification sent successfully with your Contact Details.')
+ 
+    else:
+        form = PropertyInquiryForm()
+        
     context = {
+        'form':form,
         'user_type':user_type,
         'properties':properties,
         'property_owner': property_owner,
@@ -102,12 +111,126 @@ def property_detail(request, property_id):
     return render(request, 'realestate/landlord_agent_property.html', context)
 
 #Landlord and agents prospects
-@login_required
+@login_required(login_url='account-login')
 def landlord_agents_prospects(request):
+    user_type = request.session.get('user_type')
+    if user_type is None:
+        logout(request)
+        messages.warning(request, 'Session expired. Please log in again.')
+        return redirect('account-login')  # Replace 'login' with your actual login URL
+    #Set logged in user variable
+    user = request.user
+    if user_type == 'landlord':
+        # Get all the landlord notifications 
+        notifications = Notification.objects.filter(property__landlord=user.landlord).order_by('-date')
+    elif user_type == 'agent':
+        # Get all the Agent notifications
+        notifications = Notification.objects.filter(property__agent=user.agent).order_by('-date')
+   
+    else:
+        # Handle the case when the user type is not recognized
+        return redirect('account-login')
+    
+    # Paginate the notifications
+    paginator = Paginator(notifications, 6)  # Show 6 Messages per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     context = {
         'page_title': 'Prospects',
+        'notifications':page_obj,
     }
     return render(request, 'realestate/landlord_agent_prospect.html', context)
+
+#Landlord and Agent Read Notification and send message
+@login_required(login_url='account-login')
+def notification_message(request, notification_id):
+    user_type = request.session.get('user_type')
+    if user_type is None:
+        logout(request)
+        messages.warning(request, 'Session expired. Please log in again.')
+        return redirect('account-login')  # Replace 'login' with your actual login URL
+    #Get the Notification by its product key
+    notification_instance = get_object_or_404(Notification, pk=notification_id)
+    notification_instance.status = True  # Update the status field to True
+    notification_instance.save() #Save the update
+
+    if request.method == 'POST':
+        form = PropertyInquiryForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            subject = form.cleaned_data['subject']
+            prospect = notification_instance.prospect  # Get the associated prospect
+            Message.objects.create(property=notification_instance.property, prospect=prospect, subject=subject, message=message)
+            messages.success(request, f'Notification sent to {prospect} successfully.')
+    else:
+        form = PropertyInquiryForm()
+    context = {
+        'notification': notification_instance,
+        'page_titile':'Prospect Message',
+        'form':form,
+    }
+    
+    return render(request, 'realestate/notification.html', context)
+
+#Prospect Notifications
+@login_required(login_url='account-login')
+def prospect_notification(request):
+    user_type = request.session.get('user_type')
+    if user_type is None:
+        logout(request)
+        messages.warning(request, 'Session expired. Please log in again.')
+        return redirect('account-login')  # Replace 'login' with your actual login URL
+    #Set logged in user variable
+    user = request.user
+    if user_type == 'prospect':
+        # Get all the prospect notification  
+        notifications = Message.objects.filter(prospect__user=user).order_by('-date')
+    else:
+        # Handle the case when the user type is not recognized
+        return redirect('account-login')
+    
+    # Paginate the notifications
+    paginator = Paginator(notifications, 6)  # Show 6 Messages per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'page_title': 'Prospect Messages',
+        'notifications':page_obj,
+    }
+    return render(request, 'realestate/prospect_notification.html', context)
+
+#Prospect Read Message
+@login_required(login_url='account-login')
+def prospect_read_message(request, message_id):
+    user_type = request.session.get('user_type')
+    if user_type is None:
+        logout(request)
+        messages.warning(request, 'Session expired. Please log in again.')
+        return redirect('account-login')  # Replace 'login' with your actual login URL
+    #Get the Notification by its product key
+    notification_instance = get_object_or_404(Message, pk=message_id)
+    notification_instance.status = True  # Update the status field to True
+    notification_instance.save() #Save the update
+
+    if request.method == 'POST':
+        form = PropertyInquiryForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            subject = form.cleaned_data['subject']
+            prospect = notification_instance.prospect  # Get the associated prospect
+            Notification.objects.create(property=notification_instance.property, prospect=prospect, subject=subject, message=message)
+            messages.success(request, f'Notification sent successfully.')
+    else:
+        form = PropertyInquiryForm()
+    context = {
+        'notification': notification_instance,
+        'page_titile':'Prospect Message',
+        'form':form,
+    }
+    
+    return render(request, 'realestate/prospect_message.html', context)
 
 #Landlord and agents Listing
 @login_required(login_url='account-login')
@@ -198,11 +321,30 @@ def listings(request):
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  
+    
+    # Get user's current latitude and longitude from the request object
+    user_latitude = request.GET.get('latitude')
+    user_longitude = request.GET.get('longitude')
+
     #Get all listed properties
     properties = Property.objects.order_by('-last_updated')
 
+    # Calculate distances and filter nearby properties
+    nearby_properties = []
+    
+    if user_latitude and user_longitude:
+        user_location = (user_latitude, user_longitude)
+        
+        for property in properties:
+            property_location = (property.latitude, property.longitude)
+            distance = geodesic(user_location, property_location).miles
+            
+            # Adjust the distance threshold as needed
+            if distance <= 10:  # Filter properties within 10 miles
+                nearby_properties.append(property)
+
     # Paginate the properties
-    paginator = Paginator(properties, 6)  # Show 6 properties per page
+    paginator = Paginator(nearby_properties, 6)  # Show 6 properties per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
@@ -214,7 +356,7 @@ def listings(request):
         if not properties:
             messages.info(request, 'No properties match your search query.')
 
-     # Paginate the properties
+    # Paginate the properties
     paginator = Paginator(properties, 6)  # Show 6 properties per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

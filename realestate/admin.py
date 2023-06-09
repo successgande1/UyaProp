@@ -13,3 +13,5 @@ admin.site.register(Tenancy)
 admin.site.register(Property) 
 
 admin.site.register(Notification)
+
+admin.site.register(Message)

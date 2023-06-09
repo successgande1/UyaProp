@@ -102,40 +102,51 @@ def index(request):
                 profile.address is not None and profile.address != '' and
                 profile.image is not None and profile.image != 'avatar.jpg'
             )
-        #Check if user is Landlord and Profile is completed
+        #Check if user is Landlord/Agent and Profile is completed and they have unread messages
         if user_type == 'landlord' or user_type == 'agent':
             try:
                 profile = Profile.objects.select_related('user').get(user=user)
                 if not profile_complete(profile):
                     return redirect('account-profile-update')
                 elif user_type == 'landlord':
+                    # Get all logged in landlord Properties
                     landlord_properties = Property.objects.filter(landlord__user=user)
                     if not landlord_properties.exists():
                         return redirect('add-property')
-                    elif Prospect.objects.filter(properties__in=landlord_properties).exists():
+                    # Check if landlord has any notifications with status False
+                    elif Notification.objects.filter(property__landlord=user.landlord, status=False).exists():
                         return redirect('landlord-agent-prospects')
                     else:
                         return redirect('property-listing')
                 elif user_type == 'agent':
+                    # Get all the logged in Agent Properties
                     agent_properties = Property.objects.filter(agent__user=user)
                     if not agent_properties.exists():
                         return redirect('add-property')
-                    elif Prospect.objects.filter(properties__in=agent_properties).exists():
+                    # Check ifagent has any notifications with status False
+                    elif Notification.objects.filter(property__agent=user.agent, status=False).exists():
                         return redirect('landlord-agent-prospects')
                     else:
                         return redirect('property-listing')
-            except (Landlord.DoesNotExist, Agent.DoesNotExist):
+            except (Landlord.DoesNotExist, Agent.DoesNotExist): 
                 pass
         #Check if user is Prospect and Profile is completed
         elif user_type == 'prospect':
             try:
+                #Match the logged in user with users in the Profile DB
                 prospect_profile = Profile.objects.get(user=user)
+                #Check if Prospect Profile is completed and redirect
                 if not profile_complete(prospect_profile):
                     return redirect('account-profile-update')
+                elif Notification.objects.filter(prospect__user=user, status=False).exists():
+                    return redirect('prospect-notification')
                 else:
                     return redirect('listings')
             except Prospect.DoesNotExist:
                 pass
+
+     
+  
 
     request.session['user_type'] = 'default'
     return redirect('account-login')

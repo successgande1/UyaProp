@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+
+      <!-- Breadcromb Area Start -->
+      <section class="afloon-breadcromb-area section_50">
+        <div class="breadcromb_overlay"></div>
+        <div class="container">
+           <div class="row">
+              <div class="col-sm-6">
+                 <div class="breadcromb-left">
+                    <h3> {{ user.username }} account</h3>
+                 </div>
+              </div>
+              <div class="col-sm-6">
+                 <div class="breadcromb-right">
+                    <ul>
+                       <li><a href="#"><i class="fa fa-home"></i>home</a></li>
+                       <li>/</li>
+                       <li>pages</li>
+                       <li>/</li>
+                       <li>my account</li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Breadcromb Area End -->
+      
+      
+     <!-- Account Area Start -->
+     <section class="afloon-account-area section_100">
+        <!-- Alert Template -->
+        {% include 'realestate/partials/_alerts.html' %}
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="account-left">
+                    <div class="single-account-left">
+                       <div class="row">
+                        <div class="col-md-4">
+                            <div class="listing-widget-box  left-margin">
+                               {% include 'realestate/partials/user_menu_left.html' %}
+                                <!--Contact Landlord/Agent Sidebar-->
+                               
+                               <div class="single-listing-widget">
+                                  <h3>
+                                    
+                                    contact Prospect
+                                  
+                                  </h3>
+                                  <div class="contact-agent-box">
+                                     <div class="single-agent big-margin">
+                                        <div class="agent-details">
+                                           <h3>
+                                           
+                                             {{notification.prospect.user.profile.full_name  }}
+                                             
+                                          </h3>
+                                           <div class="agent-contact">
+                                              <p>
+                                                 <i class="fa fa-phone"></i>
+                                                 {{notification.prospect.user.profile.phone_number }}
+                                              </p>
+                                              <p style="font-size: 1.2rem; color:rgb(0, 145, 255); font-family:sans-serif;">
+                                                 <i class="fa fa-envelope-o"></i>
+                                                 {{notification.prospect.user.profile.email }}
+                                              </p>
+                                              
+                                              <p>
+                                                 <i class="fa fa-home"></i>
+                                                 {{notification.prospect.user.profile.state }}
+                                              </p>
+                                           </div>
+                                           <div class="agent-image">
+                                              <img src=" {{ notification.prospect.user.profile.image.url }} " alt="agent image" />
+                                              <div class="agent_img_overlay_1"></div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                     <form method="POST">
+                
+                                        {% csrf_token %}
+                                        {{ form | crispy }}
+                                        
+                                        <p>
+                                           <button type="submit" >Send Message</button>
+                                        </p>
+                                     </form>
+                                  </div>
+                               </div>
+                              
+                                <!--End of Contact Landlord/Agent Sidebar-->
+                            </div>
+                         </div>
+                          
+                          
+                          <div class="col-md-8">
+                             <div class="single-add-property left-margin">
+                                <h3>Notification Detail</h3>
+                               
+                                <div class="property-form-group">
+                                   <div class="row">
+                                    <div class="col-md-6">
+                                        <p>
+                                           <label for="name" >Subject</label>
+                                           <input type="text" disabled value="{{ notification.subject }}"  name="name" >
+                                        </p>
+                                     </div>
+                                     <div class="col-md-6">
+                                        <p>
+                                           <label for="name" >Prospect</label>
+                                           <input type="text" disabled value="{{ notification.prospect }}"  name="name" >
+                                        </p>
+                                     </div>
+                                     <div class="col-md-6">
+                                        <p>
+                                           <label for="name" >Property Type</label>
+                                           <input type="text" disabled value="{{ notification.property.property_type }}"  name="name" >
+                                        </p>
+                                     </div>
+                                    
+                                     <div class="col-md-6">
+                                        <p>
+                                           <label for="name" >State/LGA</label>
+                                           <input type="text" disabled  value="{{ notification.property.state }}, {{ notification.property.state_lga }}"  name="name" >
+                                        </p>
+                                     </div>
+                                     <div class="col-md-12">
+                                        <p>
+                                           <label for="name" >Description</label>
+                                           <input type="text" disabled value="{{ notification.property.description }}"  name="name" >
+                                        </p>
+                                     </div>
+                                     <div class="col-md-12">
+                                        <p>
+                                           <label for="name" >Address:</label>
+                                           <input type="text" disabled value="{{ notification.property.address }}"  name="name" >
+                                        </p>
+                                     </div>
+                                     <div class="col-md-12">
+                                        <p>
+                                           <label for="me" >Message</label>
+                                           <textarea id="me" name="me" disabled>
+                                            {{ notification.message }}
+                                           </textarea>
+                                        </p>
+                                     </div>
+                                       
+                                    
+                                    
+                                      
+                                   </div>
+                                   
+                                </div>
+                             
+                             </div>
+                            
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Account Area End -->
+      
+      
+     <!-- Newsletter Area Start -->
+     <section class="afloon-newsletter-area section_15">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-7 col-sm-7">
+                 <div class="afloon-newsletter-left">
+                    <h4>Newsletter</h4>
+                    <form>
+                       <p>
+                          <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
+                          <button type="submit" ><i class="fa fa-send"></i></button>
+                       </p>
+                    </form>
+                 </div>
+              </div>
+              <div class="col-md-5 col-sm-5">
+                 <div class="afloon-newsletter-right">
+                    <h4>follow us on</h4>
+                    <ul>
+                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                       <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                       <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Newsletter Area End -->
+
+
+
+{% endblock %}

@@ -2,13 +2,13 @@
 
 {% block title %} {{ page_title }} {% endblock%}
 
-{% load humanizelib %}
+
 
 {% load crispy_forms_tags %}
 
 {% load static %}
 
-
+{% load humanizelib %}
 
 {% block content %}
 
@@ -100,7 +100,7 @@
                                          <thead>
                                            <tr>
                                              <th>S/No.</th>
-                                             <th>Prospect</th>
+                                             <th>Property</th>
                                              <th>Property Type</th>
                                              <th>Subject</th>
                                              <th>Date</th>
@@ -112,14 +112,14 @@
                                           {% for notification in notifications %}
                                            <tr>
                                              <td>{{ forloop.counter }}</td>
-                                             <td>{{notification.prospect}}</td>
+                                             <td>{{notification.property}}</td>
                                              <td>{{notification.property.property_type}}</td>
                                              <td>{{notification.subject}}</td>
-                                             <td>{{notification.date }}</td>
+                                             <td>{{notification.date |naturaltime  }}</td>
                                              <td>  {% if notification.status == False %} 
                                                 
                                                 
-                                                <a class="btn btn-danger" href=" {% url 'message-detail' notification.id %} ">Unread</a>
+                                                <a class="btn btn-danger" href=" {% url 'read-message' notification.id %} ">Unread</a>
                                                 
                                                 {% else %}
                                                 Read

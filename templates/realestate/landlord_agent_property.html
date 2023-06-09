@@ -91,8 +91,7 @@
                      {% if user_type != 'prospect' %}
                      
                      <a class="btn btn-primary" href=" {% url 'edit-property' property.id %} ">Edit</a>
-                     {% else %}
-                     <a class="btn btn-primary" href="{% url 'property_detail' property.id %} ">   Contact Landlord/Agent   </a>
+                     
                      {% endif %}
                   </div>
                </div>
@@ -143,7 +142,10 @@
                            </div>
                         </div>
                      </div>
-                     <form action=" {% url 'property_detail' property.id %} ">
+                     <form method="POST">
+
+                        {% csrf_token %}
+                        {{ form | crispy }}
                         
                         <p>
                            <button type="submit" >Send Message</button>
