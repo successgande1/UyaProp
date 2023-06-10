@@ -149,22 +149,6 @@ class Payment(models.Model):
     def __str__(self):
         return f'{self.prospect} - {self.property}'
     
-class Notification(models.Model):
-    SUBJECT_CHOICES = [
-        ('Inquiry', 'Inquiry'),
-        ('Reinquiry', 'Reinquiry'),
-        ('Payment', 'Payment'),
-    ]
-
-    property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    prospect = models.ForeignKey(Prospect, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=20, choices=SUBJECT_CHOICES)
-    message = models.TextField(max_length=220, blank=True, null=True)
-    status = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
-    def __str__(self):
-        return f'{self.prospect} - {self.property}' 
-    
 class Message(models.Model):
     SUBJECT_CHOICES = [
         ('Inquiry', 'Inquiry'),
@@ -173,10 +157,12 @@ class Message(models.Model):
     ]
 
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    prospect = models.ForeignKey(Prospect, on_delete=models.CASCADE)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
     subject = models.CharField(max_length=20, choices=SUBJECT_CHOICES)
-    message = models.TextField(max_length=220, blank=True, null=True)
+    content = models.TextField(max_length=220, blank=True, null=True)
     status = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return f'{self.prospect} - {self.property}' 
+        return f'{self.sender.username} - {self.recipient.username}'

@@ -114,7 +114,7 @@ def index(request):
                     if not landlord_properties.exists():
                         return redirect('add-property')
                     # Check if landlord has any notifications with status False
-                    elif Notification.objects.filter(property__landlord=user.landlord, status=False).exists():
+                    elif Message.objects.filter(property__landlord=user.landlord, status=False).exists():
                         return redirect('landlord-agent-prospects')
                     else:
                         return redirect('property-listing')
@@ -124,7 +124,7 @@ def index(request):
                     if not agent_properties.exists():
                         return redirect('add-property')
                     # Check ifagent has any notifications with status False
-                    elif Notification.objects.filter(property__agent=user.agent, status=False).exists():
+                    elif Message.objects.filter(property__agent=user.agent, status=False).exists():
                         return redirect('landlord-agent-prospects')
                     else:
                         return redirect('property-listing')
@@ -138,7 +138,7 @@ def index(request):
                 #Check if Prospect Profile is completed and redirect
                 if not profile_complete(prospect_profile):
                     return redirect('account-profile-update')
-                elif Notification.objects.filter(prospect__user=user, status=False).exists():
+                elif Message.objects.filter(recipient=user, status=False).exists():
                     return redirect('prospect-notification')
                 else:
                     return redirect('listings')

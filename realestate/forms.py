@@ -69,7 +69,7 @@ def clean_image(self):
 class SearchPropertyForm(forms.Form):
     value = forms.CharField(label = 'Search by Address or Property Type', max_length=30)
 
-class PropertyInquiryForm(forms.ModelForm):
+class MessageForm(forms.ModelForm):
     class Meta:
-        model = Notification
-        fields = ('subject', 'message')
+        model = Message
+        fields = ['subject', 'content']
