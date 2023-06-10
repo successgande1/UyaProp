@@ -106,34 +106,32 @@ def property_detail(request, property_id):
 #Landlord and agents prospects
 @login_required(login_url='account-login')
 def landlord_agents_prospects(request):
-    user_type = request.session.get('user_type')
-    if user_type is None:
-        logout(request)
-        messages.warning(request, 'Session expired. Please log in again.')
-        return redirect('account-login')  # Replace 'login' with your actual login URL
-    #Set logged in user variable
+    #Get the logged in user
     user = request.user
-    if user_type == 'landlord':
-        # Get all the landlord notifications 
-        notifications = Notification.objects.filter(property__landlord=user.landlord).order_by('-date')
-    elif user_type == 'agent':
-        # Get all the Agent notifications
-        notifications = Notification.objects.filter(property__agent=user.agent).order_by('-date')
-   
-    else:
-        # Handle the case when the user type is not recognized
-        return redirect('account-login')
-    
+    if user.is_authenticated:
+        #Check if user is Landlord
+        if user.landlord:
+            notifications = Message.objects.filter(property__landlord=user.landlord).select_related('property', 'prospect').order_by('-date')
+        #Check if user is Agent
+        elif user.agent:
+            notifications = Message.objects.filter(property__agent=user.agent).select_related('property', 'prospect').order_by('-date')
+        else:
+            return redirect(reverse('account-login'))
+       
     # Paginate the notifications
-    paginator = Paginator(notifications, 6)  # Show 6 Messages per page
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    context = {
-        'page_title': 'Prospects',
-        'notifications':page_obj,
-    }
-    return render(request, 'realestate/landlord_agent_prospect.html', context)
+        paginator = Paginator(notifications, 6)  # Show 6 Messages per page
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        
+        context = {
+            'page_title': 'Prospects',
+            'notifications':page_obj,
+        }
+        return render(request, 'realestate/landlord_agent_prospect.html', context)
+    # Handle the case when the user is not authenticated
+    logout(request)
+    messages.warning(request, 'Session expired. Please log in again.')
+    return redirect(reverse('account-login'))
 
 #Landlord and Agent Read Notification and send message
 @login_required(login_url='account-login')
