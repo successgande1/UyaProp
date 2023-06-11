@@ -232,6 +232,63 @@ def prospect_read_message(request, message_id):
     
     return render(request, 'realestate/prospect_message.html', context)
 
+#Delete Message View
+@login_required(login_url='account-login')
+def delete_message(request,pk):
+    #Get the session user type
+    user_type = request.session.get('user_type')
+    #Check if user type is NOT in the session and logout the user
+    if user_type is None:
+        logout(request)
+        messages.warning(request, 'Session expired. Please log in again.')
+        return redirect('account-login')  
+    
+    message_item = Message.objects.get(id=pk)
+    if request.method == "POST":
+        message_item.delete()
+        message_descrip = message_item.subject
+        
+        messages.error(request, f'{message_descrip} Message Item on {message_item.property} Deleted successfully')
+        
+        if user_type == 'landlord' or user_type == 'agent':
+            return redirect('landlord-agent-prospects')
+        else:
+            return redirect('prospect-notification')
+    context = {
+        'message_item':message_item,
+        'page_title':'Delete Message',
+    }
+    return render(request, 'realestate/delete_message.html', context)
+
+#Delete Multiple Messages View
+@login_required(login_url='account-login')
+def delete_multiple_messages(request):
+    user_type = request.session.get('user_type')
+    if user_type is None:
+        logout(request)
+        messages.warning(request, 'Session expired. Please log in again.')
+        return redirect('account-login')
+    
+    if request.method == "POST":
+        message_ids = request.POST.getlist('message_ids')
+        messages_deleted = []
+        
+        for message_id in message_ids:
+            message_item = Message.objects.get(id=message_id)
+            message_item.delete()
+            messages_deleted.append(message_item.subject)
+        
+        if len(messages_deleted) > 0:
+            messages.success(request, f'{len(messages_deleted)} messages deleted successfully')
+        
+        if user_type == 'landlord' or user_type == 'agent':
+            return redirect('landlord-agent-prospects')
+        else:
+            return redirect('prospect-notification')
+    
+    return redirect('delete-message')
+
+
 #Landlord and agents Listing
 @login_required(login_url='account-login')
 def landlord_agent_property_listing(request):

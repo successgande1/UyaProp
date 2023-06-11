@@ -10,31 +10,9 @@
 {% block content %}
 
 
-      <!-- Breadcromb Area Start -->
-      <section class="afloon-breadcromb-area section_50">
-        <div class="breadcromb_overlay"></div>
-        <div class="container">
-           <div class="row">
-              <div class="col-sm-6">
-                 <div class="breadcromb-left">
-                    <h3> {{ user.username }} account</h3>
-                 </div>
-              </div>
-              <div class="col-sm-6">
-                 <div class="breadcromb-right">
-                    <ul>
-                       <li><a href="#"><i class="fa fa-home"></i>home</a></li>
-                       <li>/</li>
-                       <li>pages</li>
-                       <li>/</li>
-                       <li>my account</li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
-     <!-- Breadcromb Area End -->
+    <!-- Breadcromb Area Start -->
+    {% include 'realestate/partials/user_breadcromb.html' %}
+    <!-- Breadcromb Area End -->
       
       
      <!-- Account Area Start -->
@@ -176,36 +154,9 @@
      <!-- Account Area End -->
       
       
-     <!-- Newsletter Area Start -->
-     <section class="afloon-newsletter-area section_15">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-7 col-sm-7">
-                 <div class="afloon-newsletter-left">
-                    <h4>Newsletter</h4>
-                    <form>
-                       <p>
-                          <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
-                          <button type="submit" ><i class="fa fa-send"></i></button>
-                       </p>
-                    </form>
-                 </div>
-              </div>
-              <div class="col-md-5 col-sm-5">
-                 <div class="afloon-newsletter-right">
-                    <h4>follow us on</h4>
-                    <ul>
-                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                       <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                       <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
-     <!-- Newsletter Area End -->
+       <!-- Newsletter Area Start -->
+       {% include 'realestate/partials/newsletter.html' %}
+       <!-- Newsletter Area End -->
 
 
 

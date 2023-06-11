@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+ <!-- Breadcromb Area Start -->
+ {% include 'realestate/partials/user_breadcromb.html' %}
+ <!-- Breadcromb Area End -->
+
+ <!-- Account Area Start -->
+ <section class="afloon-account-area section_100">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="account-left">
+                <div class="single-account-left">
+                   <div class="row">
+                      <div class="col-md-4">
+                         
+                         <div class="account-author-left">
+                            <div class="account-menu">
+                               <h3>Manage Account</h3>
+                               <ul>
+                                  <li>
+                                     <a href="">
+                                     <i class="fa fa-user"></i>
+                                     my account
+                                     </a>
+                                  </li>
+                                  <li>
+                                     <a href="favourite.html">
+                                     <i class="fa fa-heart-o"></i>
+                                     favourite properties
+                                     </a>
+                                  </li>
+                                  <li>
+                                     <a href="add-property.html">
+                                     <i class="fa fa-file-archive-o"></i>
+                                     add new property
+                                     </a>
+                                  </li>
+                                  <li>
+                                     <a href="change-password.html">
+                                     <i class="fa fa-lock"></i>
+                                     change password
+                                     </a>
+                                  </li>
+                                  <li>
+                                     <a href="#">
+                                     <i class="fa fa-power-off"></i>
+                                     log out
+                                     </a>
+                                  </li>
+                               </ul>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="col-md-8">
+                         <div class="single-add-property left-margin">
+                            
+                           
+                            <div class="property-form-group">
+                               <div class="row">
+
+                                <div class="container p-5">
+                                    <div class="row mt-5">
+                                        <div class="col-md-6 offset-md-3">
+                                            <div class="border bg-white p-3">
+                                                <h3>Delete Message</h3>
+                                                <hr>
+                                               
+                                               <div class="alert alert-danger">
+                                                   
+                                                   <h5 style="text-align: center;">Sure to Delete '{{ message_item.subject }}' on  '{{message_item.property}} ' Message Item?</h5>
+                                                  
+                                               </div>
+                                               
+                                               <form method="POST">
+                                                   {% csrf_token %}
+                                
+                                                   {{ form }}
+                                
+                                                <a class="btn btn-secondary" href="{% url 'listings' %}">Cancel</a>
+                                
+                                                   <input class="btn btn-danger" type="submit" value="Confirm">
+                                               </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                   
+                                
+                                
+                                  
+                               </div>
+                               
+                            </div>
+                            
+                         
+                         </div>
+                          
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Account Area End -->
+
+   
+
+
+
+<!-- Newsletter Area Start -->
+{% include 'realestate/partials/newsletter.html' %}
+<!-- Newsletter Area End -->
+
+
+{% endblock %}

@@ -42,6 +42,8 @@
       
      <!-- Account Area Start -->
      <section class="afloon-account-area section_100">
+      <!-- Alert Message Template -->
+      {% include 'realestate/partials/_alerts.html' %}
         <div class="container">
            <div class="row">
               <div class="col-md-12">
@@ -95,22 +97,27 @@
                                 <div class="property-form-group">
                                    <div class="row">
 
-                                    
+          
+                                    <form method="POST" action="{% url 'delete-multiple-messages' %}">
+                                       {% csrf_token %}
                                        <table class="table table-bordered">
                                          <thead>
                                            <tr>
+                                             <th><input type="checkbox" id="select-all-checkbox"></th>
                                              <th>S/No.</th>
                                              <th>Prospect</th>
                                              <th>Property Type</th>
                                              <th>Subject</th>
                                              <th>Date</th>
                                              <th>Status</th>
+                                             <th>Action</th>
                                            </tr>
                                          </thead>
                                          
                                          <tbody>
                                           {% for notification in notifications %}
                                            <tr>
+                                             <td><input type="checkbox" name="message_ids" value="{{ notification.id }}"></td>
                                              <td>{{ forloop.counter }}</td>
                                              <td>{{notification.sender}}</td>
                                              <td>{{notification.property.property_type}}</td>
@@ -119,19 +126,38 @@
                                              <td>  {% if notification.status == False %} 
                                                 
                                                 
-                                                <a class="btn btn-danger" href=" {% url 'message-detail' notification.id %} ">Unread</a>
+                                                <a class="btn btn-success" href=" {% url 'message-detail' notification.id %} ">Unread</a>
                                                 
                                                 {% else %}
                                                 Read
                                                 {% endif %}
 
                                              </td>
-                                             
+                                             <td><a class="btn btn-danger" href=" {% url 'delete-message' notification.id %} ">Delete</a></td>
                                            </tr>
                                            {% endfor %}
                                          </tbody>
                                        </table>
-                                    
+                                       {% if notifications %}
+                                       <button class="btn btn-danger" type="submit">Delete Selected Messages</button>
+                                       {% else %}
+                                       <h5 style="text-align: center; color:red;">You have no messages.</h5>
+                                       {% endif %}
+                                       </form>
+
+                                       <script>
+                                       document.addEventListener("DOMContentLoaded", function() {
+                                       const selectAllCheckbox = document.querySelector("#select-all-checkbox");
+                                       const checkboxes = document.querySelectorAll("input[name='message_ids']");
+                                       
+                                       selectAllCheckbox.addEventListener("change", function() {
+                                          checkboxes.forEach(function(checkbox) {
+                                             checkbox.checked = selectAllCheckbox.checked;
+                                          });
+                                       });
+                                       });
+                                       </script>
+                                       
                                     
                                       
                                    </div>
