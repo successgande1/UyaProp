@@ -90,7 +90,7 @@
                           </div>
                           <div class="col-md-8">
                              <div class="single-add-property left-margin">
-                                <h3>Notifications</h3>
+                                <h3>Messages</h3>
                                
                                 <div class="property-form-group">
                                    <div class="row">
@@ -100,7 +100,7 @@
                                          <thead>
                                            <tr>
                                              <th>S/No.</th>
-                                             <th>Property</th>
+                                             <th>Property Description</th>
                                              <th>Property Type</th>
                                              <th>Subject</th>
                                              <th>Date</th>
@@ -115,7 +115,7 @@
                                              <td>{{notification.property}}</td>
                                              <td>{{notification.property.property_type}}</td>
                                              <td>{{notification.subject}}</td>
-                                             <td>{{notification.date |naturaltime  }}</td>
+                                             <td>{{notification.date   }}</td>
                                              <td>  {% if notification.status == False %} 
                                                 
                                                 

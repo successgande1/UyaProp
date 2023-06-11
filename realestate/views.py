@@ -91,11 +91,11 @@ def property_detail(request, property_id):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-                prospect = request.user.prospect_profile
-                message = form.cleaned_data['message']
+                prospect = request.user
+                message = form.cleaned_data['content']
                 subject = form.cleaned_data['subject']
-                Message.objects.create(property=property_instance, prospect=prospect, subject=subject, message=message)
-                messages.success(request, 'Notification sent successfully with your Contact Details.')
+                Message.objects.create(property=property_instance, sender=prospect, recipient=property_owner.user, subject=subject, content=message)
+                messages.success(request, f'Message sent successfully to {property_owner} .')
  
     else:
         form = MessageForm()
@@ -142,7 +142,7 @@ def landlord_agents_prospects(request):
     }
     return render(request, 'realestate/landlord_agent_prospect.html', context)
 
-#Landlord and Agent Read Notification and send message
+#Landlord and Agent Read and send message
 @login_required(login_url='account-login')
 def notification_message(request, notification_id):
     user_type = request.session.get('user_type')
@@ -151,20 +151,20 @@ def notification_message(request, notification_id):
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  # Replace 'login' with your actual login URL
     #Get the Notification by its product key
-    notification_instance = get_object_or_404(Notification, pk=notification_id)
+    notification_instance = get_object_or_404(Message, pk=notification_id)
     notification_instance.status = True  # Update the status field to True
     notification_instance.save() #Save the update
 
     if request.method == 'POST':
-        form = PropertyInquiryForm(request.POST)
+        form = MessageForm(request.POST)
         if form.is_valid():
-            message = form.cleaned_data['message']
+            message = form.cleaned_data['content']
             subject = form.cleaned_data['subject']
-            prospect = notification_instance.prospect  # Get the associated prospect
-            Message.objects.create(property=notification_instance.property, prospect=prospect, subject=subject, message=message)
+            prospect = notification_instance.sender  # Get the associated prospect
+            Message.objects.create(property=notification_instance.property, sender=notification_instance.recipient, recipient=prospect, subject=subject, content=message)
             messages.success(request, f'Notification sent to {prospect} successfully.')
     else:
-        form = PropertyInquiryForm()
+        form = MessageForm()
     context = {
         'notification': notification_instance,
         'page_titile':'Prospect Message',
@@ -173,7 +173,7 @@ def notification_message(request, notification_id):
     
     return render(request, 'realestate/notification.html', context)
 
-#Prospect Notifications
+#Prospect List Messages View
 @login_required(login_url='account-login')
 def prospect_notification(request):
     user_type = request.session.get('user_type')
@@ -184,8 +184,8 @@ def prospect_notification(request):
     #Set logged in user variable
     user = request.user
     if user_type == 'prospect':
-        # Get all the prospect notification  
-        notifications = Message.objects.filter(prospect__user=user).order_by('-date')
+        # Get all the prospect Messages  
+        notifications = Message.objects.filter(recipient=user).order_by('-date')
     else:
         # Handle the case when the user type is not recognized
         return redirect('account-login')
@@ -201,7 +201,7 @@ def prospect_notification(request):
     }
     return render(request, 'realestate/prospect_notification.html', context)
 
-#Prospect Read Message
+#Prospect Read and Reply Message View
 @login_required(login_url='account-login')
 def prospect_read_message(request, message_id):
     user_type = request.session.get('user_type')
@@ -215,18 +215,18 @@ def prospect_read_message(request, message_id):
     notification_instance.save() #Save the update
 
     if request.method == 'POST':
-        form = PropertyInquiryForm(request.POST)
+        form = MessageForm(request.POST)
         if form.is_valid():
-            message = form.cleaned_data['message']
+            message = form.cleaned_data['content']
             subject = form.cleaned_data['subject']
-            prospect = notification_instance.prospect  # Get the associated prospect
-            Notification.objects.create(property=notification_instance.property, prospect=prospect, subject=subject, message=message)
-            messages.success(request, f'Notification sent successfully.')
+            prospect = notification_instance.recipient  # Get the associated prospect
+            Message.objects.create(property=notification_instance.property, sender=prospect, recipient=notification_instance.sender, subject=subject, content=message)
+            messages.success(request, f'Notification sent successfully to {notification_instance.sender}.')
     else:
-        form = PropertyInquiryForm()
+        form = MessageForm()
     context = {
         'notification': notification_instance,
-        'page_titile':'Prospect Message',
+        'page_title':'Prospect Message',
         'form':form,
     }
     

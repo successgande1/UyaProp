@@ -55,7 +55,7 @@
                                <div class="single-listing-widget">
                                   <h3>
                                     
-                                    contact Prospect
+                                    Reply Prospect
                                   
                                   </h3>
                                   <div class="contact-agent-box">
@@ -63,26 +63,26 @@
                                         <div class="agent-details">
                                            <h3>
                                            
-                                             {{notification.prospect.user.profile.full_name  }}
+                                             {{notification.sender.profile.full_name  }}
                                              
                                           </h3>
                                            <div class="agent-contact">
                                               <p>
                                                  <i class="fa fa-phone"></i>
-                                                 {{notification.prospect.user.profile.phone_number }}
+                                                 {{notification.sender.profile.phone_number }}
                                               </p>
                                               <p style="font-size: 1.2rem; color:rgb(0, 145, 255); font-family:sans-serif;">
                                                  <i class="fa fa-envelope-o"></i>
-                                                 {{notification.prospect.user.profile.email }}
+                                                 {{notification.sender.profile.email }}
                                               </p>
                                               
                                               <p>
                                                  <i class="fa fa-home"></i>
-                                                 {{notification.prospect.user.profile.state }}
+                                                 {{notification.sender.profile.state }}
                                               </p>
                                            </div>
                                            <div class="agent-image">
-                                              <img src=" {{ notification.prospect.user.profile.image.url }} " alt="agent image" />
+                                              <img src=" {{ notification.sender.profile.image.url }} " alt="agent image" />
                                               <div class="agent_img_overlay_1"></div>
                                            </div>
                                         </div>
@@ -106,7 +106,7 @@
                           
                           <div class="col-md-8">
                              <div class="single-add-property left-margin">
-                                <h3>Notification Detail</h3>
+                                <h3>Message Detail</h3>
                                
                                 <div class="property-form-group">
                                    <div class="row">
@@ -119,7 +119,7 @@
                                      <div class="col-md-6">
                                         <p>
                                            <label for="name" >Prospect</label>
-                                           <input type="text" disabled value="{{ notification.prospect }}"  name="name" >
+                                           <input type="text" disabled value="{{ notification.sender }}"  name="name" >
                                         </p>
                                      </div>
                                      <div class="col-md-6">
@@ -151,7 +151,7 @@
                                         <p>
                                            <label for="me" >Message</label>
                                            <textarea id="me" name="me" disabled>
-                                            {{ notification.message }}
+                                            {{ notification.content }}
                                            </textarea>
                                         </p>
                                      </div>
