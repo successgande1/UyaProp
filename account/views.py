@@ -89,9 +89,8 @@ class MyLoginView(LoginView):
 @login_required(login_url='account-login')
 def index(request):
     user = request.user
-    user_type = request.session.get('user_type')
-
-    if user_type:
+   
+    if user:
         # Check if User Profile is completed with new image uploaded 
         def profile_complete(profile):
             return (
@@ -101,13 +100,13 @@ def index(request):
                 profile.address is not None and profile.address != '' and
                 profile.image is not None and profile.image != 'avatar.jpg'
             )
-        #Check if user is Landlord/Agent and Profile is completed and they have unread messages
-        if user_type == 'landlord' or user_type == 'agent':
+        #Check if user is either a Landlord, Agent, or Prospect and Profile is completed and they have unread messages
+        if hasattr(user, 'landlord') or hasattr(user, 'agent'):
             try:
                 profile = Profile.objects.select_related('user').get(user=user)
                 if not profile_complete(profile):
                     return redirect('account-profile-update')
-                elif user_type == 'landlord':
+                elif hasattr(user, 'landlord'):
                     # Get all logged in landlord Properties
                     landlord_properties = Property.objects.filter(landlord__user=user)
                     if not landlord_properties.exists():
@@ -117,7 +116,7 @@ def index(request):
                         return redirect('inbox')
                     else:
                         return redirect('property-listing')
-                elif user_type == 'agent':
+                elif Agent.user == user:
                     # Get all the logged in Agent Properties
                     agent_properties = Property.objects.filter(agent__user=user)
                     if not agent_properties.exists():
@@ -130,7 +129,7 @@ def index(request):
             except (Landlord.DoesNotExist, Agent.DoesNotExist): 
                 pass
         #Check if user is Prospect and Profile is completed
-        elif user_type == 'prospect':
+        elif hasattr(user, 'prospect_profile'):
             try:
                 #Match the logged in user with users in the Profile DB
                 prospect_profile = Profile.objects.get(user=user)
