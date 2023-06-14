@@ -24,11 +24,9 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            # Create a new user object
             user = form.save()
-            # Get the user_type value from the form
             user_type = form.cleaned_data['user_type']
-            # Create a new object based on the user_type
+            
             if user_type == 'landlord':
                 Landlord.objects.create(user=user)
             elif user_type == 'agent':
@@ -36,18 +34,16 @@ def register(request):
             elif user_type == 'prospect':
                 Prospect.objects.create(user=user)
 
-            # Set user_type as a session variable
-            request.session['user_type'] = user_type
-
-            # Log the user in and redirect to the homepage
             login(request, user)
-            return redirect('account-dashboard')
+            messages.success(request, 'Registered successfully.')
+            return redirect('account-login')
     else:
         form = RegistrationForm()
-    context =  {
+    
+    context = {
         'form': form,
         'page_title': 'Register',
-        }
+    }
     return render(request, 'account/register.html', context)
 
 #User Login View
@@ -64,14 +60,18 @@ class MyLoginView(LoginView):
         user = form.get_user()
         user_type = form.cleaned_data['user_type']
 
-        # Check if the selected user type matches the user's actual user type
-        if user_type == 'landlord' and not hasattr(user, 'landlord'):
-            form.add_error('user_type', 'Invalid user type for this user.')
-            return self.form_invalid(form)
-        elif user_type == 'agent' and not hasattr(user, 'agent'):
-            form.add_error('user_type', 'Invalid user type for this user.')
-            return self.form_invalid(form)
-        elif user_type == 'prospect' and not hasattr(user, 'prospect_profile'):
+        # Get the user's associated profile based on the selected user type
+        if user_type == 'landlord':
+            profile = getattr(user, 'landlord', None)
+        elif user_type == 'agent':
+            profile = getattr(user, 'agent', None)
+        elif user_type == 'prospect':
+            profile = getattr(user, 'prospect_profile', None)
+        else:
+            profile = None
+
+        # Check if the user's profile matches the selected user type
+        if profile is None:
             form.add_error('user_type', 'Invalid user type for this user.')
             return self.form_invalid(form)
 
@@ -82,12 +82,11 @@ class MyLoginView(LoginView):
         self.request.session['user_type'] = user_type
 
         return super().form_valid(form)
-
     
 
 
 #User Dashboard Index
-@login_required
+@login_required(login_url='account-login')
 def index(request):
     user = request.user
     user_type = request.session.get('user_type')
@@ -115,7 +114,7 @@ def index(request):
                         return redirect('add-property')
                     # Check if landlord has any notifications with status False
                     elif Message.objects.filter(property__landlord=user.landlord, status=False).exists():
-                        return redirect('landlord-agent-prospects')
+                        return redirect('inbox')
                     else:
                         return redirect('property-listing')
                 elif user_type == 'agent':
@@ -125,7 +124,7 @@ def index(request):
                         return redirect('add-property')
                     # Check ifagent has any notifications with status False
                     elif Message.objects.filter(property__agent=user.agent, status=False).exists():
-                        return redirect('landlord-agent-prospects')
+                        return redirect('inbox') 
                     else:
                         return redirect('property-listing')
             except (Landlord.DoesNotExist, Agent.DoesNotExist): 
@@ -139,7 +138,7 @@ def index(request):
                 if not profile_complete(prospect_profile):
                     return redirect('account-profile-update')
                 elif Message.objects.filter(recipient=user, status=False).exists():
-                    return redirect('prospect-notification')
+                    return redirect('inbox')
                 else:
                     return redirect('listings')
             except Prospect.DoesNotExist:

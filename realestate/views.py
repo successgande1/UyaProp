@@ -56,7 +56,7 @@ def add_property(request):
     return render(request, 'realestate/add_property.html', context)
 
 
-#Landlord/Agent Property Detail view
+#Landlord, Agent and Prospect Property Detail and Send Message to Property Owner by Prospct
 @login_required(login_url='account-login')
 def property_detail(request, property_id):
     user_type = request.session.get('user_type')
@@ -88,59 +88,124 @@ def property_detail(request, property_id):
         property_instance = get_object_or_404(Property, pk=property_id)
       
     #Send Notification to property owner
-    if request.method == 'POST':
-        form = MessageForm(request.POST)
-        if form.is_valid():
-                prospect = request.user
-                message = form.cleaned_data['content']
-                subject = form.cleaned_data['subject']
-                Message.objects.create(property=property_instance, sender=prospect, recipient=property_owner.user, subject=subject, content=message)
-                messages.success(request, f'Message sent successfully to {property_owner} .')
- 
-    else:
-        form = MessageForm()
+    # if request.method == 'POST':
+    #     form = MessageForm(request.POST)
+    #     if form.is_valid():
+    #             prospect = request.user
+    #             message = form.cleaned_data['content']
+    #             subject = form.cleaned_data['subject']
+    #             Message.objects.create(property=property_instance, sender=prospect, recipient=property_owner.user, subject=subject, content=message)
+    #             messages.success(request, f'Message sent successfully to {property_owner.user.profile.full_name} .')
+    #             return redirect('property_detail', property_id=property_id)
+    # else:
+    #     form = MessageForm()
         
     context = {
-        'form':form,
+        # 'form':form,
         'user_type':user_type,
         'properties':properties,
         'property_owner': property_owner,
         'page_title': 'Property Detail',
         'property': property_instance,
     }
-    return render(request, 'realestate/landlord_agent_property.html', context)
+    return render(request, 'realestate/property_detail.html', context)
+
+def send_message(request, property_id, recipient_id):
+    property = get_object_or_404(Property, id=property_id)
+    recipient = get_object_or_404(User, id=recipient_id)
+    
+    
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['content']
+            subject = form.cleaned_data['subject']
+            
+            message = Message(sender=request.user, recipient=recipient, subject=subject, content=message, property=property)
+            message.save()
+            messages.success(request, f'Message sent successfully.')
+            return redirect('inbox')
+        
+    else:
+        form = MessageForm()
+       
+    context = {
+        'form':form,
+        'page_title':'Send Message',
+        'recipient': recipient,
+        }
+    
+    return render(request, 'realestate/send_message.html', context)
+
+#All users Inbox messages
+def inbox(request):
+    received_messages = Message.objects.filter(recipient=request.user)
+
+    #Paginate inbox messages
+    paginator = Paginator(received_messages, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'messages': page_obj,
+        'page_title':'Inbox',
+        }
+    return render(request, 'realestate/inbox.html', context)
+
 
 #Landlord and agents prospects
 @login_required(login_url='account-login')
+# def landlord_agents_prospects(request):
+#     user_type = request.session.get('user_type')
+#     if user_type is None:
+#         logout(request)
+#         messages.warning(request, 'Session expired. Please log in again.')
+#         return redirect('account-login')  # Replace 'login' with your actual login URL
+#     #Set logged in user variable
+#     user = request.user
+#     if user_type == 'landlord':
+#         # Get all the landlord notifications 
+#         notifications = Message.objects.filter(property__landlord=user.landlord).order_by('-date')
+#     elif user_type == 'agent':
+#         # Get all the Agent notifications
+#         notifications = Message.objects.filter(property__agent=user.agent).order_by('-date')
+   
+#     else:
+#         # Handle the case when the user type is not recognized
+#         return redirect('account-login')
+    
+#     # Paginate the notifications
+#     paginator = Paginator(notifications, 6)  # Show 6 Messages per page
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+    
+#     context = {
+#         'page_title': 'Prospects',
+#         'notifications':page_obj,
+#     }
+#     return render(request, 'realestate/landlord_agent_prospect.html', context)
+@login_required(login_url='account-login')
 def landlord_agents_prospects(request):
     user_type = request.session.get('user_type')
-    if user_type is None:
-        logout(request)
-        messages.warning(request, 'Session expired. Please log in again.')
-        return redirect('account-login')  # Replace 'login' with your actual login URL
-    #Set logged in user variable
-    user = request.user
-    if user_type == 'landlord':
-        # Get all the landlord notifications 
-        notifications = Message.objects.filter(property__landlord=user.landlord).order_by('-date')
+    if user_type == 'prospect':
+        messages = Message.objects.filter(recipient=request.user).order_by('-date')
+    elif user_type == 'landlord':
+        messages = Message.objects.filter(property__landlord=request.user.landlord).order_by('-date')
     elif user_type == 'agent':
-        # Get all the Agent notifications
-        notifications = Message.objects.filter(property__agent=user.agent).order_by('-date')
-   
+        messages = Message.objects.filter(property__agent=request.user.agent).order_by('-date')
     else:
-        # Handle the case when the user type is not recognized
         return redirect('account-login')
-    
-    # Paginate the notifications
-    paginator = Paginator(notifications, 6)  # Show 6 Messages per page
+
+    paginator = Paginator(messages, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     context = {
-        'page_title': 'Prospects',
-        'notifications':page_obj,
+        'page_title': 'Inbox',
+        'notifications': page_obj,
     }
     return render(request, 'realestate/landlord_agent_prospect.html', context)
+
 
 #Landlord and Agent Read and send message
 @login_required(login_url='account-login')
@@ -150,10 +215,10 @@ def notification_message(request, notification_id):
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  # Replace 'login' with your actual login URL
-    #Get the Notification by its product key
+    #Get the Message by its product key
     notification_instance = get_object_or_404(Message, pk=notification_id)
-    notification_instance.status = True  # Update the status field to True
-    notification_instance.save() #Save the update
+    notification_instance.mark_as_read()  # Update the status of the Message as Read
+    
 
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -199,7 +264,7 @@ def prospect_notification(request):
         'page_title': 'Prospect Messages',
         'notifications':page_obj,
     }
-    return render(request, 'realestate/prospect_notification.html', context)
+    return render(request, 'realestate/inbox.html', context)
 
 #Prospect Read and Reply Message View
 @login_required(login_url='account-login')
@@ -211,8 +276,8 @@ def prospect_read_message(request, message_id):
         return redirect('account-login')  # Replace 'login' with your actual login URL
     #Get the Notification by its product key
     notification_instance = get_object_or_404(Message, pk=message_id)
-    notification_instance.status = True  # Update the status field to True
-    notification_instance.save() #Save the update
+    notification_instance.mark_as_read()  # Update the status field to True
+   
 
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -221,7 +286,7 @@ def prospect_read_message(request, message_id):
             subject = form.cleaned_data['subject']
             prospect = notification_instance.recipient  # Get the associated prospect
             Message.objects.create(property=notification_instance.property, sender=prospect, recipient=notification_instance.sender, subject=subject, content=message)
-            messages.success(request, f'Notification sent successfully to {notification_instance.sender}.')
+            messages.success(request, f'Message sent successfully to {notification_instance.sender}.')
     else:
         form = MessageForm()
     context = {

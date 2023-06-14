@@ -166,3 +166,7 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.sender.username} - {self.recipient.username}'
+    
+    def mark_as_read(self):
+        self.status = True
+        self.save()

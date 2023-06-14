@@ -142,15 +142,12 @@
                            </div>
                         </div>
                      </div>
-                     <form method="POST">
-
-                        {% csrf_token %}
-                        {{ form | crispy }}
+                     
                         
                         <p>
-                           <button type="submit" >Send Message</button>
+                          <a class="btn btn-primary" href=" {% url 'send_message' property_id=property.id recipient_id=property_owner.id %} ">Send Message</a>
                         </p>
-                     </form>
+                     
                   </div>
                </div>
                {% endif %}
