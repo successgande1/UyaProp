@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_humanize',
     'django_filters',
+    'imagekit',
 ]
 
 MIDDLEWARE = [

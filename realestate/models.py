@@ -3,9 +3,13 @@ from django.contrib.auth.models import User
 #from django.contrib.gis.db import models
 # from django.contrib.gis.geos import Point
 import requests
-
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+from django.core.exceptions import ValidationError
+from django.utils.deconstruct import deconstructible
+from PIL import Image
 from geopy.geocoders import Nominatim
-
+from imagekit.models import ProcessedImageField
 geolocator = Nominatim(user_agent='Successgande-uyaprop')
 
 
@@ -27,7 +31,14 @@ class Agent(models.Model):
     def __str__(self):
         return self.user.username
 
-    
+@deconstructible
+class AllowedFormatsValidator:
+    def __call__(self, value):
+        image = Image.open(value)
+        if image.format not in ['JPEG', 'JPG', 'PNG']:
+            raise ValidationError("Only JPEG, JPG, and PNG formats are allowed.")
+        
+
 
 class Property(models.Model):
     PROPERTY_TYPE_CHOICES = [
@@ -99,13 +110,27 @@ class Property(models.Model):
     longitude = models.FloatField(null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     is_available = models.BooleanField(default=True)
-    image = models.ImageField(default='avatar.jpg', blank=False, null=False, upload_to ='profile_images', 
-   
-    )
+    #image = models.ImageField(upload_to ='profile_images', blank=False, null=False, validators=[AllowedFormatsValidator()])
+    image = ProcessedImageField(upload_to='profile_images',
+                                           processors=[ResizeToFill(1920, 820)],
+                                           format='JPEG',
+                                           options={'quality': 60})
+    
     last_updated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.description
+    
+    # def save(self, *args, **kwargs):
+    #     if not self.pk:
+    #         self.generate_thumbnail()
+    #     super().save(*args, **kwargs)
+
+    # def generate_thumbnail(self):
+    #     image = Image.open(self.image)
+    #     image.thumbnail((1920, 820))
+    #     thumbnail_path = self.thumbnail.storage.path(self.thumbnail.name)
+    #     image.save(thumbnail_path, 'JPEG', quality=60)
 
     
 

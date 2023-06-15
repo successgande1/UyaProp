@@ -13,7 +13,7 @@ from geopy.geocoders import Nominatim
 from realestate.models import *
 from django.contrib.sessions.models import Session
 from django.contrib import messages
-
+from django.contrib.auth import logout
 
 
 #Register New User Method
@@ -90,7 +90,7 @@ class MyLoginView(LoginView):
 def index(request):
     user = request.user
    
-    if user:
+    if user.is_authenticated:
         # Check if User Profile is completed with new image uploaded 
         def profile_complete(profile):
             return (
@@ -143,9 +143,6 @@ def index(request):
             except Prospect.DoesNotExist:
                 pass
 
-     
-  
-
     request.session['user_type'] = 'default'
     return redirect('account-login')
 
@@ -161,10 +158,10 @@ def index(request):
 def update_profile(request):
     user = request.user
     profile = user.profile
-    #Check for user existance
-    if not hasattr(user, 'landlord') or hasattr(user, 'agent') or hasattr(user, 'prospect') or hasattr(user, 'tenancy'):
-        # If user type is not set, redirect to the index view to set the session
-        return redirect('account-login')
+    #Check whether user is logged in
+    if not user.is_authenticated:
+        logout(request)
+        messages.warning(request, 'Session expired. Please log in again.')
     #Check and submit form
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -172,9 +169,13 @@ def update_profile(request):
             form.save()
             #Check user roles and redirect accordingly
             if hasattr(user, 'landlord') or hasattr(user, 'agent'):
+                messages.success(request, 'Profile updated Successfully')
                 return redirect('add-property')
-            elif hasattr(user, 'prospect') or hasattr(user, 'tenancy'):
+            elif hasattr(user, 'prospect_profile'):
+                messages.success(request, 'Profile updated Successfully')
                 return redirect('listings')
+            else:
+                return redirect('account-dashboard')
     else:
         form = ProfileForm(instance=profile)
 

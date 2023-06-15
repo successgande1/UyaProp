@@ -24,46 +24,44 @@ class PropertyForm(forms.ModelForm):
         self.fields['bedrooms'].required = False
 
 
-def clean_image(self):
-    image = self.cleaned_data.get('image')
+# def clean_image(self):
+#     image = self.cleaned_data.get('image')
 
-    if image:
-        # Check if the image size exceeds 1MB
-        if image.size > 1024 * 1024:  # 1MB in bytes
-            # Open the image using Pillow
-            with Image.open(image) as img:
-                # Reduce the image size while preserving the aspect ratio
-                max_width = 1920
-                max_height = 820
-                img.thumbnail((max_width, max_height), Image.ANTIALIAS)
+#     if image:
+#         # Check if the image size exceeds 1MB
+#         if image.size > 1024 * 1024:  # 1MB in bytes
+#             # Open the image using Pillow
+#             with Image.open(image) as img:
+#                 # Reduce the image size while preserving the aspect ratio
+#                 max_width = 1920
+#                 max_height = 820
+#                 img.thumbnail((max_width, max_height), Image.ANTIALIAS)
 
-                # Save the modified image with reduced quality to achieve a smaller file size
-                buffer = BytesIO()
-                img.save(buffer, format='JPEG', optimize=True, quality=85)
-                while buffer.tell() > 1024 * 1024:  # Check if file size exceeds 1MB
-                    quality -= 5
-                    if quality < 5:
-                        break
-                    buffer.seek(0)
-                    buffer.truncate(0)
-                    img.save(buffer, format='JPEG', optimize=True, quality=quality)
+#                 # Save the modified image with reduced quality to achieve a smaller file size
+#                 buffer = BytesIO()
+#                 img.save(buffer, format='JPEG', optimize=True, quality=85)
+#                 while buffer.tell() > 1024 * 1024:  # Check if file size exceeds 1MB
+#                     quality -= 5
+#                     if quality < 5:
+#                         break
+#                     buffer.seek(0)
+#                     buffer.truncate(0)
+#                     img.save(buffer, format='JPEG', optimize=True, quality=quality)
 
-                buffer.seek(0)
-                image.file = buffer
+#                 buffer.seek(0)
+#                 image.file = buffer
 
-        # Check file extension for allowed formats
-        allowed_formats = ['gif', 'jpeg', 'jpg']
-        ext = image.name.split('.')[-1].lower()
-        if ext not in allowed_formats:
-            raise forms.ValidationError("Only GIF, JPEG, and JPG images are allowed.")
+#         # Check file extension for allowed formats
+#         allowed_formats = ['gif', 'jpeg', 'jpg']
+#         ext = image.name.split('.')[-1].lower()
+#         if ext not in allowed_formats:
+#             raise forms.ValidationError("Only GIF, JPEG, and JPG images are allowed.")
         
-        # Check if the image is still set to the default 'avatar.jpg'
-        # if image.name == 'avatar.jpg':
-        #     raise forms.ValidationError("Please upload a different image before submitting the form.")
-    else:
-        raise forms.ValidationError("Please upload an image before submitting the form.")
+        
+#     else:
+#         raise forms.ValidationError("Please upload an image before submitting the form.")
 
-    return image
+#     return image
     
 #Search Landlord and Agent Property form
 class SearchPropertyForm(forms.Form):

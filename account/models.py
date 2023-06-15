@@ -18,7 +18,7 @@ class Profile(models.Model):
     email = models.EmailField()
     country = models.CharField(max_length=20, choices=COUNTRY_CHOICES)
     state = models.CharField(max_length=10, blank=True, null=True)
-    address = models.CharField(max_length=60, null=True, blank=True)
+    address = models.CharField(max_length=100, null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     image = models.ImageField(default='avatar.jpg', blank=False, null=False, upload_to ='profile_images', 
