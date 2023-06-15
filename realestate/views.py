@@ -18,8 +18,8 @@ from geopy.distance import *
 def add_property(request):
     properties = {}
     # Get user session type
-    user_type = request.session.get('user_type')
-    if user_type is None:
+    user = request.user
+    if not hasattr(user, 'landlord') or hasattr(user, 'agent'):
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')
@@ -30,18 +30,18 @@ def add_property(request):
             property_instance = form.save(commit=False)
 
             # Set the appropriate Landlord or Agent based on user login type
-            if user_type == 'landlord':
+            if hasattr(user, 'landlord'):
                 property_instance.landlord = request.user.landlord
-            elif user_type == 'agent':
+            elif hasattr(user, 'agent'):
                 property_instance.agent = request.user.agent
 
             property_instance.save()
             return redirect('property_detail', property_id=property_instance.pk)
     else:  # Move the else statement here
         # Get the properties for the current user
-        if user_type == 'landlord':
+        if hasattr(user, 'landlord'):
             properties = Property.objects.filter(landlord__user=request.user).prefetch_related('agent').order_by('-last_updated')[:6]
-        elif user_type == 'agent':
+        elif hasattr(user, 'agent'):
             properties = Property.objects.filter(agent__user=request.user).prefetch_related('landlord').order_by('-last_updated')[:6]
         else:
             properties = None

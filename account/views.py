@@ -161,22 +161,19 @@ def index(request):
 def update_profile(request):
     user = request.user
     profile = user.profile
-
-    # Check the user type stored in the session
-    user_type = request.session.get('user_type')
-
-    if not user_type:
+    #Check for user existance
+    if not hasattr(user, 'landlord') or hasattr(user, 'agent') or hasattr(user, 'prospect') or hasattr(user, 'tenancy'):
         # If user type is not set, redirect to the index view to set the session
-        return redirect('account-dashboard')
-    
+        return redirect('account-login')
+    #Check and submit form
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            
-            if user_type in ['landlord', 'agent']:
+            #Check user roles and redirect accordingly
+            if hasattr(user, 'landlord') or hasattr(user, 'agent'):
                 return redirect('add-property')
-            elif user_type == 'prospect':
+            elif hasattr(user, 'prospect') or hasattr(user, 'tenancy'):
                 return redirect('listings')
     else:
         form = ProfileForm(instance=profile)
