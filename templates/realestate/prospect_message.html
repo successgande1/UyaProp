@@ -56,7 +56,7 @@
                                   <h3>
                                     
                                     Reply 
-                                    {% if user_type == 'landlord' or user_type == 'agent' %}
+                                    {% if user.is_authenticated and user.prospect_profile %}
                                     Prospect
                                     {% else %}
                                     Propert Owner

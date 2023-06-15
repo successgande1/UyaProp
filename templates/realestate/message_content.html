@@ -32,8 +32,16 @@
                                
                                <div class="single-listing-widget">
                                   <h3>
-                                    
-                                    Reply Prospect
+                                    {% if user.is_authenticated %}
+                                    {% if user.prospect %}
+                                    Reply Property Owner
+                                    {% elif  user.agent %}
+                                    Reply Agent
+
+                                    {% else %}
+                                    Reply Landlord
+                                    {% endif %}
+                                    {% endif %}
                                   
                                   </h3>
                                   <div class="contact-agent-box">
@@ -65,13 +73,11 @@
                                            </div>
                                         </div>
                                      </div>
-                                     <form method="POST">
+                                     
                 
-                                        {% csrf_token %}
-                                        {{ form | crispy }}
-                                        
+                                       
                                         <p>
-                                           <button type="submit" >Send Message</button>
+                                           <a class="btn btn-success" href=" {% url 'send_message' property_id=property_id recipient_id=sender_details.id  %}  ">Reply Message</a>
                                         </p>
                                      </form>
                                   </div>
