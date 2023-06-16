@@ -34,7 +34,7 @@ def register(request):
             elif user_type == 'prospect':
                 Prospect.objects.create(user=user)
 
-            login(request, user)
+            #login(request, user)
             messages.success(request, 'Registered successfully.')
             return redirect('account-login')
     else:

@@ -178,6 +178,7 @@ class Message(models.Model):
     SUBJECT_CHOICES = [
         ('Inquiry', 'Inquiry'),
         ('Reinquiry', 'Reinquiry'),
+        ('Negotiation', 'Negotiation'),
         ('Payment', 'Payment'),
     ]
 

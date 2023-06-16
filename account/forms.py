@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 from . models import *
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 # Define the user_type choices
 USER_TYPE_CHOICES = (
@@ -63,7 +63,7 @@ class ProfileForm(forms.ModelForm):
         fields = ['full_name', 'phone_number', 'email', 'country', 'state', 'address', 'image']
     
     def clean_image(self):
-        image = self.cleaned_data.get('image') 
+        image = self.cleaned_data.get('image')
 
         if image:
             # Check if the image size exceeds 14kb
@@ -78,17 +78,32 @@ class ProfileForm(forms.ModelForm):
                     if img.width > img.height:
                         img = img.transpose(Image.ROTATE_90)
 
-                    # Save the modified image back to the InMemoryUploadedFile object
+                    # Convert the image to RGB mode
+                    img = img.convert('RGB')
+
+                        # Save the modified image to a BytesIO object
                     buffer = BytesIO()
                     img.save(buffer, format='JPEG')
-                    image.file = buffer
+
+                     # Create a new InMemoryUploadedFile object with the modified image data
+                    modified_image = InMemoryUploadedFile(
+                        buffer,
+                        None,
+                        'modified.jpg',  # Specify the desired filename
+                        'image/jpeg',  # Specify the content type
+                        buffer.tell,
+                        None
+                    )
+
+                # Replace the original image object with the modified image
+                self.cleaned_data['image'] = modified_image
 
             # Check file extension for allowed formats
-            allowed_formats = ['gif', 'jpeg', 'jpg']
+            allowed_formats = ['gif', 'jpeg', 'jpg', 'png']
             ext = image.name.split('.')[-1].lower()
             if ext not in allowed_formats:
-                raise forms.ValidationError("Only GIF, JPEG, and JPG images are allowed.")
-            
+                raise forms.ValidationError("Only GIF, JPEG, PNG and JPG images are allowed.")
+
             # Check if the image is still set to the default 'avatar.jpg'
             if image.name == 'avatar.jpg':
                 raise forms.ValidationError("Please upload a different image before submitting the form.")

@@ -139,7 +139,7 @@
                               </p>
                            </div>
                            <div class="agent-image">
-                              <img src=" {{ property_owner.user.profile.image.url }} " alt="agent image" />
+                              <img src=" {{ property_owner.user.profile.image.url }} " alt="agent image" /> 
                               <div class="agent_img_overlay_1"></div>
                            </div>
                         </div>
@@ -147,7 +147,7 @@
                      
                         
                         <p>
-                          <a class="btn btn-primary" href=" {% url 'send_message' property_id=property.id recipient_id=property_owner.id  %} ">Send Message</a>
+                          <a class="btn btn-primary" href=" {% url 'send_message' property_id=property.id recipient_id=property_owner.user.id  %} ">Send Message</a>
                         </p>
                      
                   </div>

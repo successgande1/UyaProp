@@ -10,7 +10,7 @@ from django.contrib.auth import get_user
 from django.db.models import Q
 from django.core.paginator import Paginator
 from geopy.distance import *
-
+from django.contrib.auth import get_user_model
 # Create your views here.
 #Add Property View
 
@@ -20,7 +20,7 @@ def add_property(request):
     # Get logged in user
     user = request.user
     #Check if user is landlord or agent
-    if not hasattr(user, 'landlord') or hasattr(user, 'agent'):
+    if not user.is_authenticated:
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')
@@ -61,7 +61,7 @@ def add_property(request):
 @login_required(login_url='account-login')
 def property_detail(request, property_id):
     user = request.user
-    
+    #Check if user is authenticated 
     if not user.is_authenticated:
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
@@ -98,10 +98,28 @@ def property_detail(request, property_id):
     }
     return render(request, 'realestate/property_detail.html', context)
 
+#User Send Message
 def send_message(request, property_id, recipient_id):
     property = get_object_or_404(Property, id=property_id)
     recipient = get_object_or_404(User, id=recipient_id)
+
+    try:
+        recipient = User.objects.get(id=recipient_id)
+    except User.DoesNotExist:
+        # Handle the case when the recipient doesn't exist
+        message.warning(request, 'Recipient Does Not Exist.')
+        return redirect('account-login')  # Or re
     
+    # if property.landlord_id == recipient_id:
+    #     recipient = property.landlord.user
+    # elif property.agent_id == recipient_id:
+    #     recipient = property.agent.user
+   
+    
+    # if recipient is None:
+    #     # Handle the case where the recipient is not found
+    #     # Redirect or show an error message
+    #     return redirect('home')  # Or return an error response
     
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -111,17 +129,17 @@ def send_message(request, property_id, recipient_id):
             
             message = Message(sender=request.user, recipient=recipient, subject=subject, content=message, property=property)
             message.save()
-            messages.success(request, f'Message sent successfully.')
+            messages.success(request, 'Message sent successfully.')
             return redirect('inbox')
         
     else:
         form = MessageForm()
        
     context = {
-        'form':form,
-        'page_title':'Send Message',
+        'form': form,
+        'page_title': 'Send Message',
         'recipient': recipient,
-        }
+    }
     
     return render(request, 'realestate/send_message.html', context)
 

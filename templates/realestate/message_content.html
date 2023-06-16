@@ -32,15 +32,17 @@
                                
                                <div class="single-listing-widget">
                                   <h3>
-                                    {% if user.is_authenticated %}
-                                    {% if user.prospect %}
-                                    Reply Property Owner
-                                    {% elif  user.agent %}
-                                    Reply Agent
+                                    {% if user.is_authenticated and user.landlord or user.agent %}
+                                    
+                                    
+                                    Reply Prospect
+
 
                                     {% else %}
-                                    Reply Landlord
-                                    {% endif %}
+
+                                    Reply Property Owner
+
+
                                     {% endif %}
                                   
                                   </h3>
@@ -77,7 +79,7 @@
                 
                                        
                                         <p>
-                                           <a class="btn btn-success" href=" {% url 'send_message' property_id=property_id recipient_id=sender_details.id  %}  ">Reply Message</a>
+                                           <a class="btn btn-success" href=" {% url 'send_message' property_id=property_id recipient_id=sender_details.user.id  %}  ">Reply Message</a>
                                         </p>
                                      </form>
                                   </div>
