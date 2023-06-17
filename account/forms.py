@@ -62,6 +62,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['full_name', 'phone_number', 'email', 'country', 'state', 'address', 'image']
     
+    
     def clean_image(self):
         image = self.cleaned_data.get('image')
 
@@ -109,3 +110,9 @@ class ProfileForm(forms.ModelForm):
                 raise forms.ValidationError("Please upload a different image before submitting the form.")
 
         return image
+    
+
+class PasswordChangeForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput)
+    new_password = forms.CharField(widget=forms.PasswordInput)
+    confirm_password = forms.CharField(widget=forms.PasswordInput)

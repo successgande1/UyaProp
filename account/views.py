@@ -14,6 +14,9 @@ from realestate.models import *
 from django.contrib.sessions.models import Session
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.contrib.auth import authenticate, update_session_auth_hash
+
+
 
 
 #Register New User Method
@@ -116,7 +119,7 @@ def index(request):
                         return redirect('inbox')
                     else:
                         return redirect('property-listing')
-                elif Agent.user == user:
+                elif hasattr(user, 'agent'):
                     # Get all the logged in Agent Properties
                     agent_properties = Property.objects.filter(agent__user=user)
                     if not agent_properties.exists():
@@ -142,19 +145,13 @@ def index(request):
                     return redirect('listings')
             except Prospect.DoesNotExist:
                 pass
-
+    
     request.session['user_type'] = 'default'
     return redirect('account-login')
 
-
-        
-
-
-
-
     
 #View User Profile Method
-@login_required
+@login_required(login_url='account-login')
 def update_profile(request):
     user = request.user
     profile = user.profile
@@ -187,7 +184,7 @@ def update_profile(request):
     return render(request, 'account/update_profile.html', context)
     
 #User Profile Method
-@login_required
+@login_required(login_url='account-login')
 def user_profile(request):
     context = {
         'page_titel': 'Profile',
@@ -195,7 +192,7 @@ def user_profile(request):
     return render(request, 'account/profile_detail.html', context)
 
 #Landlord Landing Page
-@login_required
+@login_required(login_url='account-login')
 def landlord_dashboard(request):
     context = {
         'page_title':'Landlord Dashboard',
@@ -225,3 +222,37 @@ def default_dashboard(request):
         'page_title':'Default Dashboard',
     }
     return render(request, 'account/default_dashboard.html', context)
+
+#Change user password view
+@login_required(login_url='account-login')
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=request.user.username, password=form.cleaned_data['old_password'])
+            if user is not None:
+                user.set_password(form.cleaned_data['new_password'])
+                user.save()
+                update_session_auth_hash(request, user)  # Update session to prevent logout
+                messages.success(request, 'Your Password Changed Successfully.')
+                return redirect('password_change_done')  # Redirect to password change success page
+            else:
+                form.add_error('old_password', 'Incorrect old password')
+                messages.warning(request, 'Incorrect old Password.')
+    else:
+        form = PasswordChangeForm()
+
+    context = {
+        'form': form,
+        'page_title': 'Change Password',
+        }
+    return render(request, 'account/password_change.html', context)
+
+#Change user password successfully view
+@login_required(login_url='account-login')
+def password_change_done(request):
+
+    context = {
+        'page_title':'Password Changed',
+    }
+    return render(request, 'account/password_change_done.html', context)

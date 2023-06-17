@@ -14,6 +14,9 @@ from django.contrib.auth import get_user_model
 # Create your views here.
 #Add Property View
 
+def custom_page_not_found(request, exception=None):
+    return render(request, 'realestate/404.html', status=404)
+
 @login_required(login_url='account-login')
 def add_property(request):
     properties = {}

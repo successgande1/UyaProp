@@ -112,7 +112,7 @@ class Property(models.Model):
     is_available = models.BooleanField(default=True)
     #image = models.ImageField(upload_to ='profile_images', blank=False, null=False, validators=[AllowedFormatsValidator()])
     image = ProcessedImageField(upload_to='profile_images',
-                                           processors=[ResizeToFill(1920, 820)],
+                                           processors=[ResizeToFill(1920, 850)],
                                            format='JPEG',
                                            options={'quality': 60})
     

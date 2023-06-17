@@ -11,30 +11,8 @@
 
 
       <!-- Breadcromb Area Start -->
-      <section class="afloon-breadcromb-area section_50">
-        <div class="breadcromb_overlay"></div>
-        <div class="container">
-           <div class="row">
-              <div class="col-sm-6">
-                 <div class="breadcromb-left">
-                    <h3> {{ user.username }} account</h3>
-                 </div>
-              </div>
-              <div class="col-sm-6">
-                 <div class="breadcromb-right">
-                    <ul>
-                       <li><a href="#"><i class="fa fa-home"></i>home</a></li>
-                       <li>/</li>
-                       <li>pages</li>
-                       <li>/</li>
-                       <li>my account</li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </section>
-     <!-- Breadcromb Area End -->
+      {% include 'realestate/partials/user_breadcromb.html' %}
+      <!-- Breadcromb Area End -->
       
       
      <!-- Account Area Start -->

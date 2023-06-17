@@ -108,14 +108,10 @@
 
                            {% if user.landlord or user.agent %}
                            <ul id="afloon_navigation">
-                              <li class="current-page-item">
-                                 <a href="">
-                                       My Prospects
-                                 </a>
-                              </li>
+                              
                               <li>
                                  <a href=" {% url 'inbox' %} ">
-                                       Notifications
+                                       Inbox
                                  </a>
                               </li>
                               <li>
@@ -134,7 +130,7 @@
                                  </a>
                               </li>
                               <li>
-                                 <a href="">
+                                 <a href=" {% url 'change_password' %} ">
                                        Change Password
                                  </a>
                               </li>
@@ -152,14 +148,10 @@
                                        Inbox
                                  </a>
                               </li>
+                              
                               <li>
-                                 <a href=" {% url 'inbox' %} ">
-                                       Sent Items
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="">
-                                       Profile
+                                 <a href=" {% url 'account-profile' %} ">
+                                       My Profile
                                  </a>
                               </li>
                               <li>

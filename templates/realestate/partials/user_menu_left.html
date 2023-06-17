@@ -4,29 +4,26 @@
        <h3>Manage Account</h3>
        <ul>
           <li>
-             <a href=" {% url 'account-profile-update' %} ">
+             <a href=" {% url 'account-profile' %} ">
              <i class="fa fa-user"></i>
              My Profile
              </a>
           </li>
+          {% if user.is_authenticated and user.landlord or user.agent %}
           <li>
              <a href=" {% url 'property-listing' %} ">
              <i class="fa fa-heart-o"></i>
-             My properties
+             My Listing
              </a>
           </li>
+          {% endif %}
           <li>
-             <a href="">
+             <a href=" {% url 'inbox' %} ">
              <i class="fa fa-file-archive-o"></i>
-             Notifications
+             Inbox
              </a>
           </li>
-          <li>
-            <a href="">
-            <i class="fa fa-file-archive-o"></i>
-            My Prospects
-            </a>
-         </li>
+          
           <li>
              <a href="">
              <i class="fa fa-lock"></i>
