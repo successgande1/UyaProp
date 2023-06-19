@@ -54,7 +54,7 @@
               <div class="col-md-6">
                  <div class="about-right">
                     <a href="#">
-                       <img src="{% static 'assets/img/abt.jpg' %}" alt="about image">
+                       <img src="{% static 'assets/img/about-uyaprop.jpg' %}" alt="about image">
                        <div class="about-right-overlay"></div>
                     </a>
                  </div>
@@ -72,8 +72,8 @@
            <div class="row">
               <div class="col-md-12">
                  <div class="quotes-box">
-                    <h2>book your appartment or house today!</h2>
-                    <h3>call us on : +(67)123-8760-127</h3>
+                    <h2>register to search for appartment or house today!</h2>
+                    <h3><a class="btn btn-success" href=" {% url 'register-account' %} ">Register</a></h3>
                  </div>
               </div>
            </div>
@@ -153,133 +153,45 @@
                  <div class="afloon-section-title">
                     <h2>Our <span>agents</span></h2>
                     <div class="title-line"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli Iusto.</p>
+                    <p>Meet our Property Owners.</p>
                  </div>
               </div>
            </div>
            <div class="row">
               <div class="col-md-12">
                  <div class="afloon-agent-slide">
-                    <div class="single-agent">
-                       <div class="agent-details">
-                          <h3>jhon smith</h3>
-                          <div class="agent-contact">
-                             <p>
-                                <i class="fa fa-phone"></i>
-                                0041-456-3692
-                             </p>
-                             <p>
-                                <i class="fa fa-envelope-o"></i>
-                                hello@afloon.com
-                             </p>
-                             <p>
-                                <i class="fa fa-fax"></i>
-                                091-789-4100
-                             </p>
-                             <a href="#">view profile</a>
-                          </div>
-                          <div class="agent-image">
-                             <img src="{% static 'assets/img/agnt1.jpg' %}" alt="agent image" />
-                             <div class="agent_img_overlay_1"></div>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="single-agent">
-                       <div class="agent-details">
-                          <h3>jhon smith</h3>
-                          <div class="agent-contact">
-                             <p>
-                                <i class="fa fa-phone"></i>
-                                0041-456-3692
-                             </p>
-                             <p>
-                                <i class="fa fa-envelope-o"></i>
-                                hello@afloon.com
-                             </p>
-                             <p>
-                                <i class="fa fa-fax"></i>
-                                091-789-4100
-                             </p>
-                             <a href="#">view profile</a>
-                          </div>
-                          <div class="agent-image">
-                             <img src="{% static 'assets/img/agnt2.jpg' %}" alt="agent image" />
-                             <div class="agent_img_overlay_1"></div>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="single-agent">
-                       <div class="agent-details">
-                          <h3>jhon smith</h3>
-                          <div class="agent-contact">
-                             <p>
-                                <i class="fa fa-phone"></i>
-                                0041-456-3692
-                             </p>
-                             <p>
-                                <i class="fa fa-envelope-o"></i>
-                                hello@afloon.com
-                             </p>
-                             <p>
-                                <i class="fa fa-fax"></i>
-                                091-789-4100
-                             </p>
-                             <a href="#">view profile</a>
-                          </div>
-                          <div class="agent-image">
-                             <img src="{% static 'assets/img/agnt3.jpg' %}" alt="agent image" />
-                             <div class="agent_img_overlay_1"></div>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="single-agent">
-                       <div class="agent-details">
-                          <h3>jhon smith</h3>
-                          <div class="agent-contact">
-                             <p>
-                                <i class="fa fa-phone"></i>
-                                0041-456-3692
-                             </p>
-                             <p>
-                                <i class="fa fa-envelope-o"></i>
-                                hello@afloon.com
-                             </p>
-                             <p>
-                                <i class="fa fa-fax"></i>
-                                091-789-4100
-                             </p>
-                             <a href="#">view profile</a>
-                          </div>
-                          <div class="agent-image">
-                             <img src="{% static 'assets/img/agnt4.jpg' %}" alt="agent image" />
-                             <div class="agent_img_overlay_1"></div>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="single-agent">
-                       <div class="agent-details">
-                          <h3>jhon smith</h3>
-                          <div class="agent-contact">
-                             <p>
-                                <i class="fa fa-phone"></i>
-                                0041-456-3692
-                             </p>
-                             <p>
-                                <i class="fa fa-envelope-o"></i>
-                                hello@afloon.com
-                             </p>
-                             <p>
-                                <i class="fa fa-fax"></i>
-                                091-789-4100
-                             </p>
-                             <a href="#">view profile</a>
-                          </div>
-                          <div class="agent-image">
-                             <img src="{% static 'assets/img/agnt2.jpg' %}" alt="agent image" />
-                             <div class="agent_img_overlay_1"></div>
-                          </div>
-                       </div>
-                    </div>
+                  {% if combined_list %}
+                  {% for propertyuser in combined_list %}
+                  <div class="single-agent">
+                     <div class="agent-details">
+                        <h3>{{propertyuser.user.profile.full_name}}</h3>
+                        <div class="agent-contact">
+                           <p>
+                              <i class="fa fa-phone"></i>
+                              {{propertyuser.user.profile.phone_number}}
+                           </p>
+                           <p style="font-size: 1.3rem; color:rgb(0, 145, 255); font-family:sans-serif;">
+                              <i class="fa fa-envelope-o"></i>
+                              {{propertyuser.user.profile.email}}
+                           </p>
+                           <p>
+                              <i class="fa fa-home"></i>
+                              {{propertyuser.user.profile.state}}
+                           </p>
+                           <a href="#">view profile</a>
+                        </div>
+                        <div class="agent-image">
+                           <img src="{{propertyuser.user.profile.image.url}}" alt="agent image" />
+                           <div class="agent_img_overlay_1"></div>
+                        </div>
+                     </div>
+                  </div>
+                  {% endfor %}
+                  {% else %}
+
+                <h3 style="text-align: center; color:red;">No Property Owner</h3>
+
+                {% endif %}
                  </div>
               </div>
            </div>

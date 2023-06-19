@@ -19,7 +19,7 @@
       
       
      <!-- Account Area Start -->
-     <section class="afloon-account-area section_100">
+     <section class="afloon-account-area section_100"> 
       <!-- Alert Message Template -->
       {% include 'realestate/partials/_alerts.html' %}
         <div class="container">
@@ -30,46 +30,11 @@
                        <div class="row">
                           <div class="col-md-4">
                              
-                             <div class="account-author-left">
-                                <div class="account-menu">
-                                   <h3>Manage Account</h3>
-                                   <ul>
-                                      <li>
-                                         <a href="">
-                                         <i class="fa fa-user"></i>
-                                         my account
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="favourite.html">
-                                         <i class="fa fa-heart-o"></i>
-                                         favourite properties
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="add-property.html">
-                                         <i class="fa fa-file-archive-o"></i>
-                                         add new property
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="change-password.html">
-                                         <i class="fa fa-lock"></i>
-                                         change password
-                                         </a>
-                                      </li>
-                                      <li>
-                                         <a href="#">
-                                         <i class="fa fa-power-off"></i>
-                                         log out
-                                         </a>
-                                      </li>
-                                   </ul>
-                                </div>
-                             </div>
+                           {% include 'realestate/partials/user_menu_left.html' %}
                           </div>
                           <div class="col-md-8">
                              <div class="single-add-property left-margin">
+                             
                                 <h3>Messages</h3>
                                
                                 <div class="property-form-group">
@@ -101,7 +66,7 @@
                                              <td>{{ message.sender.username }}</td>
                                              
                                              <td>{{message.date }}</td>
-                                             <td>  {% if message.status == True %} 
+                                             <td>  {% if message.status == False %} 
                                                 
                                                 
                                                 <a class="btn btn-success" href=" {% url 'message-detail' message.id %} ">Unread</a>

@@ -60,7 +60,7 @@ class ProfileForm(forms.ModelForm):
     address = forms.CharField(label = 'Residential Address:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Enter Street Name with Number (where applicable) and Town Name only.'}))
     class Meta:
         model = Profile
-        fields = ['full_name', 'phone_number', 'email', 'country', 'state', 'address', 'image']
+        fields = ['full_name', 'phone_number', 'email', 'country', 'state', 'town', 'address', 'image']
     
     
     def clean_image(self):
@@ -111,7 +111,7 @@ class ProfileForm(forms.ModelForm):
 
         return image
     
-
+#User change password
 class PasswordChangeForm(forms.Form):
     old_password = forms.CharField(widget=forms.PasswordInput)
     new_password = forms.CharField(widget=forms.PasswordInput)

@@ -69,7 +69,7 @@ def property_detail(request, property_id):
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  # Replace 'login' with your actual login URL
-    
+    #Get the property by it product key
     property_instance = get_object_or_404(Property, pk=property_id)
 
     properties = []  # Initialize 'properties' as an empty list
@@ -218,7 +218,7 @@ def prospect_notification(request):
     # Paginate the notifications
     paginator = Paginator(notifications, 6)  # Show 6 Messages per page
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    page_obj = paginator.get_page(page_number) 
     
     context = {
         'page_title': 'Prospect Messages',

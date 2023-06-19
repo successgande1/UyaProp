@@ -1,6 +1,7 @@
 from django import forms
 from realestate.filters import PropertyFilter
 from realestate.models import Property
+from .models import *
 
 class SearchForm(forms.Form):
     property_type = forms.ChoiceField(choices=Property.PROPERTY_TYPE_CHOICES, required=False)
@@ -39,3 +40,15 @@ class SearchForm(forms.Form):
             filter_params['price__lte'] = max_price
 
         return queryset.filter(**filter_params)
+    
+
+#Profile Update Form 
+class ContactForm(forms.ModelForm): 
+    name = forms.CharField(label = 'Full Name:', max_length=36, widget=forms.TextInput(attrs={'placeholder': 'Enter Your Full Name'}))
+    email = forms.CharField(label = 'Email Address:', max_length=36, widget=forms.TextInput(attrs={'placeholder': 'Enter a Valid Email Address'}))
+    
+    phone = forms.CharField(label = 'Phone Number:', max_length=11, widget=forms.TextInput(attrs={'placeholder': 'Enter Valid Phone Number.'}))
+    
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'subject', 'phone', 'content']

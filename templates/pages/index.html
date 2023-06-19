@@ -104,7 +104,7 @@
         <div class="col-md-6">
            <div class="about-right">
               <a href="#">
-                 <img src="{% static 'assets/img/abt.jpg' %}" alt="about image">
+                 <img src="{% static 'assets/img/about-uyaprop.jpg' %}" alt="about image">
                  <div class="about-right-overlay"></div>
               </a>
            </div>
@@ -194,8 +194,8 @@
      <div class="row">
         <div class="col-md-12">
            <div class="quotes-box">
-              <h2>book your appartment or house today!</h2>
-              <h3>call us on : +(67)123-8760-127</h3>
+              <h2>register to search or upload your appartment or house today!</h2>
+              <h3><a class="btn btn-success" href="{% url 'register-account' %} ">Register</a></h3>
            </div>
         </div>
      </div>
@@ -344,7 +344,7 @@
            <div class="afloon-section-title">
               <h2>Our <span>agents</span></h2>
               <div class="title-line"></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli Iusto.</p>
+              <p>Meet Our Property Owners.</p>
            </div>
         </div>
      </div>
@@ -395,9 +395,9 @@
               <div class="title-line"></div>
            </div>
            <div class="best-property">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ex illum corporis quibusdam numquam quisquam optio explicabo. Officiis odit quia odio dignissimos eius repellat id!</p>
+              <p>Ease to Locate, Ease to Rent, Ease to Buy!</p>
               <div class="best-property-link">
-                 <a href="#">view listing</a>
+                 <a href=" {% url 'pages-property' %} ">view listing</a>
               </div>
            </div>
         </div>

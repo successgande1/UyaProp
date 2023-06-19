@@ -4,6 +4,8 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <!-- Breadcromb Area Start -->
@@ -12,6 +14,7 @@
 
    <!-- Contact Page Area Start -->
    <section class="afloon-contact-page-area section_100">
+      {% include 'realestate/partials/_alerts.html' %}
     <div class="container">
        <div class="row">
           <div class="col-md-10">
@@ -35,8 +38,8 @@
                       </div>
                       <div class="contact-text">
                          <h4>phone</h4>
-                         <p>(+88) 123 455 564 0</p>
-                         <p>(+88) 123 750 317 0</p>
+                         <p>(+44) 7436279052</p>
+                         <p>(+234) 916 466 0944</p>
                       </div>
                    </div>
                    <div class="single-contact-left">
@@ -45,8 +48,8 @@
                       </div>
                       <div class="contact-text">
                          <h4>Email</h4>
-                         <p>yorsite@example.com</p>
-                         <p>info@example.net</p>
+                         <p>help@uyaprop.com</p>
+                         <p>info@uyaprop.com</p>
                       </div>
                    </div>
                    <div class="single-contact-left">
@@ -62,41 +65,13 @@
              </div>
              <div class="col-md-8 col-sm-12">
                 <div class="afloon-contact-form-right left-margin">
-                   <form>
-                      <div class="row">
-                         <div class="col-md-6">
-                            <p>
-                               <input type="text" name="name" placeholder="Enter Your Name" >
-                            </p>
-                         </div>
-                         <div class="col-md-6">
-                            <p>
-                               <input type="email" name="Email" placeholder="Enter Your Email" >
-                            </p>
-                         </div>
-                      </div>
-                      <div class="row">
-                         <div class="col-md-6">
-                            <p>
-                               <input type="text" name="subject" placeholder="Your Subject"  >
-                            </p>
-                         </div>
-                         <div class="col-md-6">
-                            <p>
-                               <input type="tel" name="phone" placeholder="Your Phone" >
-                            </p>
-                         </div>
-                      </div>
-                      <div class="row">
-                         <div class="col-md-12">
-                            <p>
-                               <textarea placeholder="Message..." name="Message" ></textarea>
-                            </p>
-                            <p>
-                               <button type="submit" >send message</button>
-                            </p>
-                         </div>
-                      </div>
+                   <form method="POST" action=" {% url 'pages-contact' %} ">
+                     {% csrf_token %}
+                     {{ form | crispy }}
+                    
+                     <p>
+                        <button type="submit">Submit</button>
+                      </p>
                    </form>
                 </div>
              </div>

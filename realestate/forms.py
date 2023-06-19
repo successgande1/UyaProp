@@ -11,13 +11,13 @@ from django.core.exceptions import ValidationError
 ALLOWED_EXTENSIONS = ('.gif', '.jpg', '.jpeg')
 
 class PropertyForm(forms.ModelForm): 
-    description = forms.CharField(label='Property Description:', max_length=60, widget=forms.TextInput(attrs={'placeholder': 'Briefly Describe your Property. E.g. Bedroom & Palour with Private Detached Bathroom'}))
+    description = forms.CharField(label='Property Description:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Briefly Describe your Property. E.g. Bedroom & Palour with Private Detached Bathroom'}))
     state = forms.ChoiceField(choices=Property.STATE_CHOICES, required=False)
-    state_lga = forms.CharField(label = 'Local Govt. Area:', max_length=12, widget=forms.TextInput(attrs={'placeholder': 'Enter Local Govt. of Property.'}))
+    town = forms.CharField(label = 'Town/City:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Enter Local Govt. of Property.'}))
     address = forms.CharField(label = 'Property Address:', max_length=60, widget=forms.TextInput(attrs={'placeholder': 'Enter Street Name with Number and Town Name only.'}))
     class Meta:
         model = Property
-        fields = ('description', 'address', 'country', 'state', 'state_lga', 'property_type', 'bedrooms', 'bathroom_type', 'price', 'is_available', 'image')
+        fields = ('description', 'address', 'country', 'state', 'town', 'property_type', 'bedrooms', 'bathroom_type', 'price', 'is_available', 'image')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

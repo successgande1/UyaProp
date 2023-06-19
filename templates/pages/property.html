@@ -21,7 +21,7 @@
        <div class="row">
           <div class="col-md-4">
              <div class="listing-widget-box">
-                <div class="single-listing-widget">
+                <!-- <div class="single-listing-widget">
                    <h3>Find New Home</h3>
                    <div class="single-search-property">
                       <input type="text" name="location" placeholder="Keyword (e.g. 'office')">
@@ -112,66 +112,33 @@
                          </div>
                       </div>
                    </div>
-                </div>
+                </div> -->
                 <div class="single-listing-widget">
                    <h3>recent property</h3>
                    <ul>
+                     <!--Check if there are properties-->
+                     {% if properties %}
+                     {% for property in properties %}
                       <li>
                          <div class="recent-img">
-                            <a href="#">
-                            <img src=" {% static 'assets/img/recent-1.png' %} " alt="recent image" />
+                            <a href="{% url 'property_detail' property.id %}">
+                            <img src=" {{ property.image.url }} " alt="recent image" />
                             </a>
                          </div>
-                         <div class="recent-text">
-                            <h4>
-                               <a href="#">historic Town House</a>
+                         <div>
+                            <h4 style="text-align: center; margin-top:5%; color:green; font-family:sans-serif; font-size:1.6rem; font-weight:bold;">
+                               <a href="{% url 'property_detail' property.id %}"> {{ property.property_type }} </a>
                             </h4>
-                            <p>45 Regent Street, London, UK</p>
-                            <p>$78,600</p>
-                         </div>
+                            <p style="text-align: center; color:blue; ">{{property.state}}, {{property.town}}, {{property.country}}</p>
+                            <p style="text-align: center; color:rgb(202, 96, 10); font-weight:bold;">N{{property.price}}</p>
+                         </div> 
                       </li>
-                      <li>
-                         <div class="recent-img">
-                            <a href="#">
-                            <img src=" {% static 'assets/img/recent-3.png' %} " alt="recent image" />
-                            </a>
-                         </div>
-                         <div class="recent-text">
-                            <h4>
-                               <a href="#">historic Town House</a>
-                            </h4>
-                            <p>45 Regent Street, London, UK</p>
-                            <p>$78,600</p>
-                         </div>
-                      </li>
-                      <li>
-                         <div class="recent-img">
-                            <a href="#">
-                            <img src=" {% static 'assets/img/recent-2.png' %} " alt="recent image" />
-                            </a>
-                         </div>
-                         <div class="recent-text">
-                            <h4>
-                               <a href="#">historic Town House</a>
-                            </h4>
-                            <p>45 Regent Street, London, UK</p>
-                            <p>$78,600</p>
-                         </div>
-                      </li>
-                      <li>
-                         <div class="recent-img">
-                            <a href="#">
-                            <img src=" {% static 'assets/img/recent-1.png' %} " alt="recent image" />
-                            </a>
-                         </div>
-                         <div class="recent-text">
-                            <h4>
-                               <a href="#">historic Town House</a>
-                            </h4>
-                            <p>45 Regent Street, London, UK</p>
-                            <p>$78,600</p>
-                         </div>
-                      </li>
+                      {% endfor %}
+                      {% else %}
+
+                      <h4 style="text-align: center; color:red;">No Property Available</h4>
+
+                      {% endif %}
                    </ul>
                 </div>
              </div>
@@ -182,7 +149,7 @@
                    <div class="row">
                       <div class="col-md-6 col-sm-6">
                          <div class="shorting-left">
-                            <p>Showing 1–6 of 7 results</p>
+                           <p>Showing {{ properties.start_index }}–{{ properties.end_index }} of {{ total_properties }} results</p>
                          </div>
                       </div>
                       <div class="col-md-6 col-sm-6">
@@ -201,226 +168,67 @@
                 </div>
                 <div class="listin-item">
                    <div class="row">
+                     {% if properties %}
+                     {% for property in properties %}
                       <div class="col-md-6">
                          <div class="single-latest-properties">
                             <div class="property-img">
-                               <img src=" {% static 'assets/img/listing1.jpg' %} " alt="property image" />
+                               <img src=" {{property.image.url}} " alt="property image" />
                                <div class="property_overlay"></div>
                                <div class="pro-tag sale">
-                                  <p>for sale</p>
+                                  <p>for Rent</p>
                                </div>
                                <div class="pro-info">
                                   <ul>
                                      <li>
                                         <i class="fa fa-bed"></i>
-                                        02
+                                        {{property.bedrooms}} 
                                      </li>
                                      <li>
                                         <i class="fa fa-bath"></i>
-                                        04
+                                        {{property.bathroom_type}} 
                                      </li>
                                      <li>
-                                        <i class="fa fa-taxi"></i>
-                                        yes
+                                        <i class="fa fa-home"></i>
+                                        {{property.state}} 
                                      </li>
                                   </ul>
                                </div>
                             </div>
                             <div class="property-text">
-                               <h3><a href="#">Morden Apartment</a></h3>
+                               <h3><a href=" {% url 'property_detail' property.id %} "> {{property.property_type}}</a></h3>
                                <div class="pro-details-price">
-                                  <p>1,80,000 (USD)</p>
-                                  <a href="#">More Details</a>
+                                  <p>N{{property.price}}</p>
+                                  <a href=" {% url 'listings' %} ">More Details</a>
                                </div>
                             </div>
                          </div>
                       </div>
-                      <div class="col-md-6">
-                         <div class="single-latest-properties">
-                            <div class="property-img">
-                               <img src=" {% static 'assets/img/listing2.jpg' %} " alt="property image" />
-                               <div class="property_overlay"></div>
-                               <div class="pro-tag sold">
-                                  <p>for sale</p>
-                               </div>
-                               <div class="pro-info">
-                                  <ul>
-                                     <li>
-                                        <i class="fa fa-bed"></i>
-                                        02
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-bath"></i>
-                                        04
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-taxi"></i>
-                                        yes
-                                     </li>
-                                  </ul>
-                               </div>
-                            </div>
-                            <div class="property-text">
-                               <h3><a href="#">Morden Apartment</a></h3>
-                               <div class="pro-details-price">
-                                  <p>1,80,000 (USD)</p>
-                                  <a href="#">More Details</a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="col-md-6">
-                         <div class="single-latest-properties">
-                            <div class="property-img">
-                               <img src=" {% static 'assets/img/listing3.jpg' %} " alt="property image" />
-                               <div class="property_overlay"></div>
-                               <div class="pro-tag sale">
-                                  <p>for sale</p>
-                               </div>
-                               <div class="pro-info">
-                                  <ul>
-                                     <li>
-                                        <i class="fa fa-bed"></i>
-                                        02
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-bath"></i>
-                                        04
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-taxi"></i>
-                                        yes
-                                     </li>
-                                  </ul>
-                               </div>
-                            </div>
-                            <div class="property-text">
-                               <h3><a href="#">Morden Apartment</a></h3>
-                               <div class="pro-details-price">
-                                  <p>1,80,000 (USD)</p>
-                                  <a href="#">More Details</a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="col-md-6">
-                         <div class="single-latest-properties">
-                            <div class="property-img">
-                               <img src=" {% static 'assets/img/listing4.jpg' %} " alt="property image" />
-                               <div class="property_overlay"></div>
-                               <div class="pro-tag rent">
-                                  <p>for rent</p>
-                               </div>
-                               <div class="pro-info">
-                                  <ul>
-                                     <li>
-                                        <i class="fa fa-bed"></i>
-                                        02
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-bath"></i>
-                                        04
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-taxi"></i>
-                                        yes
-                                     </li>
-                                  </ul>
-                               </div>
-                            </div>
-                            <div class="property-text">
-                               <h3><a href="#">Morden Apartment</a></h3>
-                               <div class="pro-details-price">
-                                  <p>1,80,000 (USD)</p>
-                                  <a href="#">More Details</a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="col-md-6">
-                         <div class="single-latest-properties">
-                            <div class="property-img">
-                               <img src=" {% static 'assets/img/listing2.jpg' %} " alt="property image" />
-                               <div class="property_overlay"></div>
-                               <div class="pro-tag sold">
-                                  <p>for sale</p>
-                               </div>
-                               <div class="pro-info">
-                                  <ul>
-                                     <li>
-                                        <i class="fa fa-bed"></i>
-                                        02
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-bath"></i>
-                                        04
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-taxi"></i>
-                                        yes
-                                     </li>
-                                  </ul>
-                               </div>
-                            </div>
-                            <div class="property-text">
-                               <h3><a href="#">Morden Apartment</a></h3>
-                               <div class="pro-details-price">
-                                  <p>1,80,000 (USD)</p>
-                                  <a href="#">More Details</a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="col-md-6">
-                         <div class="single-latest-properties">
-                            <div class="property-img">
-                               <img src=" {% static 'assets/img/listing3.jpg' %} " alt="property image" />
-                               <div class="property_overlay"></div>
-                               <div class="pro-tag sale">
-                                  <p>for sale</p>
-                               </div>
-                               <div class="pro-info">
-                                  <ul>
-                                     <li>
-                                        <i class="fa fa-bed"></i>
-                                        02
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-bath"></i>
-                                        04
-                                     </li>
-                                     <li>
-                                        <i class="fa fa-taxi"></i>
-                                        yes
-                                     </li>
-                                  </ul>
-                               </div>
-                            </div>
-                            <div class="property-text">
-                               <h3><a href="#">Morden Apartment</a></h3>
-                               <div class="pro-details-price">
-                                  <p>1,80,000 (USD)</p>
-                                  <a href="#">More Details</a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
+                      {% endfor %}
+                      {%  else %}
+                      <h4 style="text-align: center; color: red;">No Property Listings</h4>
+                      {% endif %}
                    </div>
                 </div>
                 <div class="row">
+                   <!--Property Pagination-->
                    <div class="col-md-12">
-                      <div class="pagination-box">
+                     <div class="pagination-box">
                          <ul class="pagination">
-                            <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                             {% if properties.has_previous %}
+                                 <li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
+                                 <li><a href="?page={{ properties.previous_page_number }}">{{ properties.previous_page_number }}</a></li>
+                             {% endif %}
+                             
+                             <li class="active"><a href="?page={{ properties.number }}">{{ properties.number }}</a></li>
+                             
+                             {% if properties.has_next %}
+                                 <li><a href="?page={{ properties.next_page_number }}">{{ properties.next_page_number }}</a></li>
+                                 <li><a href="?page={{ properties.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
+                             {% endif %}
                          </ul>
-                      </div>
-                   </div>
+                     </div>
+                 </div>
                 </div>
              </div>
           </div>

@@ -32,7 +32,12 @@
 
                         <li>
                            <i class="fa fa-bed"></i>
-                           <span>{{ property.bedrooms }}</span>
+                           <span>{% if property.bedrooms is None %}
+                              Single Room
+                              {% else %}
+                              {{ property.bedrooms }} Room
+                              {% endif %}
+                           </span>
                         </li>
                         <li>
                            <i class="fa fa-bath"></i>
@@ -86,7 +91,7 @@
                   <h2>Property Details</h2>
                   <div class="pro_desc">
                      <p> {{ property.description }} </p> 
-                     <p>Address: {{ property.address }}, <p>State: {{ property.state }}, <p> Local Govt. Area: {{ property.state_lga }} </p>  </p>  </p> 
+                     <p>Address: {{ property.address }}, <p>State: {{ property.state }}, <p> Town/City: {{ property.town }} </p>  </p>  </p> 
 
                      {% if user.is_authenticated and user.landlord or user.agent %}
 
@@ -178,7 +183,7 @@
                      <li>
                         <div class="recent-img">
                            <a href="#">
-                           <img src=" {{ property.image.url }} " alt="recent image"  width="82" height="100" />
+                           <img src=" {{ property.image.url }} " alt="recent image"  width="82" height="200" />
                            </a>
                         </div>
                         <div class="recent-text">
@@ -188,7 +193,7 @@
                               <a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
                               {% endif %}
                            </h4>
-                           <p>Location: {{property.state}}, {{property.state_lga}}</p>
+                           <p>Location: {{property.state}}, {{property.town}}</p>
                            <p style="font-size: 1.2rem; font-family:sans-serif; color:rgb(243, 73, 6);">Price: N{{property.price |intcomma}}</p> 
                         </div>
                      </li>

@@ -711,7 +711,7 @@ header .afloon-logo {
 }
 
 header .afloon-logo:before {
-	background: #3F85CE none repeat scroll 0 0;
+	background: #1b09a6 none repeat scroll 0 0;
 	content: " ";
 	height: 100%;
 	position: absolute;
@@ -807,11 +807,11 @@ header .afloon-logo:before {
 ==================================================*/
 
 .slide-item-1 {
-	background: rgba(0, 0, 0, 0.3) url("../img/slider-1.jpeg") repeat scroll 0 0;
+	background: rgba(0, 0, 0, 0.3) url("../img/banner1.jpg") repeat scroll 0 0;
 }
 
 .slide-item-2 {
-	background: rgba(0, 0, 0, 0.3) url("../img/slider-2.jpg") repeat scroll 0 0;
+	background: rgba(0, 0, 0, 0.3) url("../img/banner2.jpg") repeat scroll 0 0;
 }
 
 .afloon-main-caption {
@@ -1133,7 +1133,7 @@ input.zearch {
 }
 
 .afloon-section-title span {
-	color: #3F85CE;
+	color: #2e7903;
 	font-weight: 600;
 }
 
@@ -1185,7 +1185,7 @@ input.zearch {
 
 .afloon-quotes-area {
 	background-attachment: fixed;
-	background-image: url("../img/quotes_bg.jpg");
+	background-image: url("../img/uyaprop-home-bg.jpg");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -1503,7 +1503,7 @@ input.zearch {
 ==================================================*/
 
 .afloon-best-property-area {
-	background: url(../img/looking_bg.png) no-repeat fixed 0 0/cover;
+	background: url(../img/uyaprop-home-bg.jpg) no-repeat fixed 0 0/cover;
 	position: relative;
 	z-index: 1;
 }

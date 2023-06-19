@@ -4,7 +4,7 @@
        <h3>Manage Account</h3>
        <ul>
           <li>
-             <a href=" {% url 'account-profile' %} ">
+             <a href=" {% url 'account-profile' %} "> 
              <i class="fa fa-user"></i>
              My Profile
              </a>
@@ -12,20 +12,26 @@
           {% if user.is_authenticated and user.landlord or user.agent %}
           <li>
              <a href=" {% url 'property-listing' %} ">
-             <i class="fa fa-heart-o"></i>
+             <i class="fa fa-home"></i>
              My Listing
              </a>
           </li>
+          <li>
+            <a href=" {% url 'add-property' %} ">
+            <i class="fa fa-home"></i>
+            Add Property
+            </a>
+         </li>
           {% endif %}
           <li>
              <a href=" {% url 'inbox' %} ">
-             <i class="fa fa-file-archive-o"></i>
+             <i class="fa fa-envelope-o"></i>
              Inbox
              </a>
           </li>
           
           <li>
-             <a href="">
+             <a href=" {% url 'change_password' %} ">
              <i class="fa fa-lock"></i>
              change password
              </a>

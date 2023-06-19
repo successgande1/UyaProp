@@ -43,8 +43,10 @@ class AllowedFormatsValidator:
 class Property(models.Model):
     PROPERTY_TYPE_CHOICES = [
         ('Complete House', 'Complete House'),
-        ('Apartment', 'Apartment'),
-        ('Self-Contained', 'Self-Contained'),
+        ('One Room Apartment', 'One Room Apartment'),
+        ('Bedroom & Palour', 'Bedroom & Palour'),
+        ('Bedroom & Palour Self-Contained', 'Bedroom & Palour Self-Contained'),
+        ('One Room Self-Contained', 'One Room Self-Contained'),
        
         
     ]
@@ -98,13 +100,13 @@ class Property(models.Model):
 
     agent = models.ForeignKey(Agent, on_delete=models.SET_NULL, blank=True, null=True)
     landlord = models.ForeignKey(Landlord, on_delete=models.SET_NULL, blank=True, null=True)
-    description = models.CharField(max_length=60, blank=True, null=True)
-    property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES)
+    description = models.CharField(max_length=100, blank=True, null=True)
+    property_type = models.CharField(max_length=100, choices=PROPERTY_TYPE_CHOICES)
     bedrooms = models.CharField(max_length=2, blank=True, null=True, choices=BEDROOM_CHOICES)
-    bathroom_type = models.CharField(max_length=20, choices=BATHROOM_CHOICES)
+    bathroom_type = models.CharField(max_length=60, choices=BATHROOM_CHOICES)
     country = models.CharField(max_length=20, choices=COUNTRY_CHOICES)
     state = models.CharField(max_length=20, choices=STATE_CHOICES)
-    state_lga = models.CharField(max_length=12, blank=True, null=True)
+    town = models.CharField(max_length=12, blank=True, null=True)
     address = models.CharField(max_length=60, null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
