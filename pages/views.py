@@ -95,6 +95,7 @@ def property(request):
         'page_title':'Free Property Management in Nigeria | UyaProp',   
         'total_properties': paginator.count,
         'property_data': property_data,
+        'gmaps':gmaps,
     }
     return render(request, 'pages/property.html', context)
 

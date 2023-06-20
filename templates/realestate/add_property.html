@@ -65,15 +65,15 @@ $(document).ready(function() {
                                  <li>
                                     <div class="recent-img">
                                        <a href="#">
-                                       <img src=" {{ property.image.url }} " alt="recent image"  width="82" height="79" />
+                                       <img src=" {{ property.image.url }} " alt="recent image"  />
                                        </a>
                                     </div>
-                                    <div class="recent-text">
-                                       <h4 style="font-size: 1.5rem;">
-                                          <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
+                                    <div >
+                                       <h4 style="text-align: center; margin-top:5%; color:green; font-family:sans-serif; font-size:1.6rem; font-weight:bold;">
+                                          <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a  href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
                                        </h4>
-                                       <p>Location: {{property.state}}, {{property.state_lga}}</p>
-                                       <p style="font-size: 1.3rem; color:rgba(235, 6, 6, 0.685); font-family:sans-serif;">Price: {{property.price |intcomma}}</p> 
+                                       <p style="text-align: center; color:blue;">Location: {{property.state}}, {{property.town}}</p>
+                                       <p style="text-align: center; color:rgb(202, 96, 10); font-weight:bold;">Price: {{property.price |intcomma}}</p> 
                                     </div>
                                  </li>
                                {% endfor %}

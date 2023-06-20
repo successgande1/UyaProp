@@ -25,8 +25,15 @@
           {% endif %}
           <li>
              <a href=" {% url 'inbox' %} ">
-             <i class="fa fa-envelope-o"></i>
-             Inbox
+               <div class="envelope-icon">
+                  <i class="fa fa-envelope-o"></i>
+                  Inbox
+                  <!--Count Unread Messages-->
+                  {% if unread_message_count > 0 %}
+                   <span class="unread-count" style="color:red;">{{ unread_message_count }}</span>
+                  {% endif %}
+                </div>
+             
              </a>
           </li>
           

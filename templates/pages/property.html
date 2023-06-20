@@ -2,9 +2,13 @@
 
 {% block title %} {{ page_title }} {% endblock%}
 
+{% load humanizelib %}
+
 {% load static %}
 
 {% block content %}
+
+      
 
 <!-- Breadcromb Area Start -->
 {% include 'pages/partials/_breadcromb.html' %}
@@ -130,7 +134,7 @@
                                <a href="{% url 'property_detail' property.id %}"> {{ property.property_type }} </a>
                             </h4>
                             <p style="text-align: center; color:blue; ">{{property.state}}, {{property.town}}, {{property.country}}</p>
-                            <p style="text-align: center; color:rgb(202, 96, 10); font-weight:bold;">N{{property.price}}</p>
+                            <p style="text-align: center; color:rgb(202, 96, 10); font-weight:bold;">N{{property.price |intcomma}}</p>
                          </div> 
                       </li>
                       {% endfor %}
@@ -270,7 +274,8 @@
  <!-- Newsletter Area End -->
  <script>
    initMap();
-</script> <!-- Initialize the map -->
+</script>
+ 
  
  
 

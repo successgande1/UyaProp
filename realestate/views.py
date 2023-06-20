@@ -52,7 +52,11 @@ def add_property(request):
 
         form = PropertyForm()
 
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
+
     context = {
+        'unread_message_count':unread_message_count,
         'page_title': 'Add Property',
         'form': form,
         'properties': properties,
@@ -90,10 +94,11 @@ def property_detail(request, property_id):
             property_owner = property_instance.landlord
         elif property_instance.agent:
             property_owner = property_instance.agent
-            
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()        
        
     context = {
-        
+        'unread_message_count':unread_message_count,
         'properties':properties,
         'property_owner': property_owner,
         'page_title': 'Property Detail',
@@ -137,8 +142,12 @@ def send_message(request, property_id, recipient_id):
         
     else:
         form = MessageForm()
+
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
        
     context = {
+        'unread_message_count':unread_message_count,
         'form': form,
         'page_title': 'Send Message',
         'recipient': recipient,
@@ -156,6 +165,8 @@ def inbox(request):
         return redirect('account-login') 
     
     received_messages = Message.objects.filter(recipient=request.user).order_by('-date')
+    #Count Unread Messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
 
     #Paginate inbox messages
     paginator = Paginator(received_messages, 6)
@@ -163,6 +174,7 @@ def inbox(request):
     page_obj = paginator.get_page(page_number)
 
     context = {
+        'unread_message_count': unread_message_count,
         'messages': page_obj,
         'page_title':'Inbox',
         }
@@ -185,9 +197,11 @@ def read_message(request, message_id):
     sender_details = message_instance.sender.profile
     property_id = message_instance.property_id #Get the property ID
     
-
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
     
     context = {
+        'unread_message_count':unread_message_count,
         'notification': message_instance,
         'page_titile':'Prospect Message',
         'sender_details': sender_details,
@@ -201,14 +215,15 @@ def read_message(request, message_id):
 #Prospect List Messages View
 @login_required(login_url='account-login')
 def prospect_notification(request):
-    user_type = request.session.get('user_type')
-    if user_type is None:
+    user = request.user
+    
+    if not user.is_authenticated:
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  # Replace 'login' with your actual login URL
     #Set logged in user variable
     user = request.user
-    if user_type == 'prospect':
+    if hasattr(user, 'prospect'):
         # Get all the prospect Messages  
         notifications = Message.objects.filter(recipient=user).order_by('-date')
     else:
@@ -219,8 +234,12 @@ def prospect_notification(request):
     paginator = Paginator(notifications, 6)  # Show 6 Messages per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number) 
+
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
     
     context = {
+        'unread_message_count':unread_message_count,
         'page_title': 'Prospect Messages',
         'notifications':page_obj,
     }
@@ -229,8 +248,8 @@ def prospect_notification(request):
 #Prospect Read and Reply Message View
 @login_required(login_url='account-login')
 def prospect_read_message(request, message_id):
-    user_type = request.session.get('user_type')
-    if user_type is None:
+    user = request.user
+    if user.is_authenticated:
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  # Replace 'login' with your actual login URL
@@ -249,7 +268,12 @@ def prospect_read_message(request, message_id):
             messages.success(request, f'Message sent successfully to {notification_instance.sender}.')
     else:
         form = MessageForm()
+
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
+
     context = {
+        'unread_message_count':unread_message_count,
         'notification': notification_instance,
         'page_title':'Prospect Message',
         'form':form,
@@ -261,9 +285,9 @@ def prospect_read_message(request, message_id):
 @login_required(login_url='account-login')
 def delete_message(request,pk):
     #Get the session user type
-    user_type = request.session.get('user_type')
+    user=request.user
     #Check if user type is NOT in the session and logout the user
-    if user_type is None:
+    if not user.is_authenticated:
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  
@@ -275,11 +299,17 @@ def delete_message(request,pk):
         
         messages.error(request, f'{message_descrip} Message Item on {message_item.property} Deleted successfully')
         
-        if user_type == 'landlord' or user_type == 'agent':
+        #Check user roles and redirect accordingly
+        if hasattr(user, 'landlord') or hasattr(user, 'agent'):
             return redirect('landlord-agent-prospects')
         else:
             return redirect('prospect-notification')
+        
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
+
     context = {
+        'unread_message_count':unread_message_count,
         'message_item':message_item,
         'page_title':'Delete Message',
     }
@@ -288,8 +318,8 @@ def delete_message(request,pk):
 #Delete Multiple Messages View
 @login_required(login_url='account-login')
 def delete_multiple_messages(request):
-    user_type = request.session.get('user_type')
-    if user_type is None:
+    user=request.user
+    if not user.is_authenticated: #Check and redirect if not properly logged in
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')
@@ -303,10 +333,11 @@ def delete_multiple_messages(request):
             message_item.delete()
             messages_deleted.append(message_item.subject)
         
-        if len(messages_deleted) > 0:
+        if len(messages_deleted) > 0: #Get the number of messages deleted
             messages.success(request, f'{len(messages_deleted)} messages deleted successfully')
         
-        if user_type == 'landlord' or user_type == 'agent':
+        #Check user roles and redirect accordingly
+        if hasattr(user, 'landlord') or hasattr(user, 'agent'):
             return redirect('landlord-agent-prospects')
         else:
             return redirect('prospect-notification')
@@ -318,18 +349,19 @@ def delete_multiple_messages(request):
 @login_required(login_url='account-login')
 def landlord_agent_property_listing(request):
     #Get the session user type
-    user_type = request.session.get('user_type')
+    user = request.user
     #Check if user type is NOT in the session and logout the user
-    if user_type is None:
+    if not user.is_authenticated:
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  
     
     # Get the properties for the current user
-    if user_type == 'landlord':
-        properties = Property.objects.filter(landlord__user=request.user).prefetch_related('agent')
-    elif user_type == 'agent':
-        properties = Property.objects.filter(agent__user=request.user).prefetch_related('landlord')
+    if hasattr(user, 'landlord'):
+        properties = Property.objects.filter(landlord__user=request.user).prefetch_related('agent').order_by('-last_updated')
+        
+    elif hasattr(user, 'agent'):
+        properties = Property.objects.filter(agent__user=request.user).prefetch_related('landlord').order_by('-last_updated')
 
     #Property Search Form
     form = SearchPropertyForm(request.GET)
@@ -338,9 +370,9 @@ def landlord_agent_property_listing(request):
         filter_condition = Q(property_type__icontains=value) | Q(address__icontains=value) | Q(state__icontains=value)
 
         # Apply additional filter based on user type
-        if user_type == 'landlord':
+        if hasattr(user, 'landlord'):
             filter_condition &= Q(landlord__user=request.user)
-        elif user_type == 'agent':
+        elif hasattr(user, 'agent'):
             filter_condition &= Q(agent__user=request.user)
         #Query Properties and apply filter based on the user filter above
         properties = properties.filter(filter_condition)
@@ -355,7 +387,7 @@ def landlord_agent_property_listing(request):
     context = {
         'form': form,
          'properties': page_obj,
-        'page_title': f'{user_type} Property Listing',
+        'page_title': f'{user.username} Property Listing',
         'total_properties': paginator.count,
     }
     return render(request, 'realestate/landlord_agent_listing.html', context)
@@ -363,13 +395,13 @@ def landlord_agent_property_listing(request):
 #Edit Property
 @login_required(login_url='account-login')
 def edit_property(request,property_id):
-    user_type = request.session.get('user_type')
-    if user_type is None:
+    user= request.user
+    if not user.is_authenticated: #Check and redirect if not properly logged in
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  
     
-    property_instance = get_object_or_404(Property, pk=property_id)
+    property_instance = get_object_or_404(Property, pk=property_id) #Get Prop by it it Product key
 
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES, instance=property_instance)
@@ -378,9 +410,9 @@ def edit_property(request,property_id):
             return redirect('property_detail', property_id=property_instance.pk)
     else:
         # Get the properties for the current user
-        if user_type == 'landlord':
+        if hasattr(user, 'landlord'):
             properties = Property.objects.filter(landlord__user=request.user).prefetch_related('agent').order_by('-last_updated')[:6]
-        elif user_type == 'agent':
+        elif hasattr(user, 'agent'):
             properties = Property.objects.filter(agent__user=request.user).prefetch_related('landlord').order_by('-last_updated')[:6]
         else:
             properties = None
@@ -397,9 +429,9 @@ def edit_property(request,property_id):
 @login_required(login_url='account-login')
 def listings(request):
     #Get the session user type
-    user_type = request.session.get('user_type')
+    user = request.user
     #Check if user type is NOT in the session and logout the user
-    if not constant_time_compare(user_type, 'prospect'):
+    if not user.is_authenticated:
         logout(request)
         messages.warning(request, 'Session expired. Please log in again.')
         return redirect('account-login')  
@@ -445,7 +477,7 @@ def listings(request):
     context = {
          'form': form,
          'properties': page_obj,
-        'page_title': f'{user_type} Property Listing',
+        'page_title': f'{user.username} Property Listing',
         'total_properties': paginator.count,
     }
     return render(request, 'realestate/listings.html', context)

@@ -30,33 +30,40 @@
       <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
-      <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}"></script>
-      <script>
-         function initMap() {
-             var map = new google.maps.Map(document.getElementById('map'), {
-                 center: {lat: 37.7749, lng: -122.4194}, // Adjust lat/lng for your desired center point
-                 zoom: 12 // Adjust zoom level as needed
-             });
- 
-             var propertyData = JSON.parse('{{ property_data|escapejs }}');
- 
-             propertyData.forEach(function (listing) {
-                 var marker = new google.maps.Marker({
-                     position: listing,
-                     map: map,
-                     title: listing.property_type
-                 });
- 
-                 var infoWindow = new google.maps.InfoWindow({
-                     content: '<h3>' + listing.title + '</h3><p>' + listing.description + '</p>'
-                 });
- 
-                 marker.addListener('click', function () {
-                     infoWindow.open(map, marker);
-                 });
-             });
+      <style>
+         #map {
+             height: 400px;
+             width: 100%;
          }
-     </script>
+     </style>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5n1_6SCL_A5YhzE6r3TFI4CAUOyLxIcQ"></script>
+     <script>
+      function initMap() {
+         var map = new google.maps.Map(document.getElementById('map'), {
+             center: {lat: 37.7749, lng: -122.4194}, // Adjust lat/lng for your desired center point
+             zoom: 12 // Adjust zoom level as needed
+         });
+     
+         var propertyData = JSON.parse('{{ property_data|escapejs }}');
+     
+         propertyData.forEach(function (listing) {
+             var marker = new google.maps.Marker({
+                 position: listing,
+                 map: map,
+                 title: listing.property_type
+             });
+     
+             var infoWindow = new google.maps.InfoWindow({
+                 content: '<h3>' + listing.title + '</h3><p>' + listing.description + '</p>'
+             });
+     
+             marker.addListener('click', function () {
+                 infoWindow.open(map, marker);
+             });
+         });
+     }
+     
+  </script>
 
    </head>
    <body>
@@ -139,7 +146,14 @@
                               
                               <li>
                                  <a href=" {% url 'inbox' %} ">
+                                    <div class="envelope-icon">
+                                       <i class="fa fa-envelope-o"></i>
                                        Inbox
+                                       <!--Count Unread Messages-->
+                                       {% if unread_message_count > 0 %}
+                                        <span class="unread-count" style="color:red;">{{ unread_message_count }}</span>
+                                       {% endif %}
+                                     </div>
                                  </a>
                               </li>
                               <li>
@@ -173,7 +187,14 @@
                               </li>
                               <li>
                                  <a href=" {% url 'inbox' %} ">
+                                    <div class="envelope-icon">
+                                       <i class="fa fa-envelope-o"></i>
                                        Inbox
+                                       <!--Count Unread Messages-->
+                                       {% if unread_message_count > 0 %}
+                                        <span class="unread-count" style="color:red;">{{ unread_message_count }}</span>
+                                       {% endif %}
+                                     </div>
                                  </a>
                               </li>
                               
@@ -370,6 +391,7 @@
       <!-- Custom JS -->
       <script src="{% static 'assets/js/custom.js' %}"></script>
       <script src="{% static 'assets/js/main.js' %}"></script>
+      
    </body>
 </html>
 

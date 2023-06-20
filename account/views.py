@@ -176,7 +176,11 @@ def update_profile(request):
     else:
         form = ProfileForm(instance=profile)
 
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
+
     context = {
+        'unread_message_count':unread_message_count,
         'form': form,
         'page_title':'Update Profile',
     }
@@ -186,8 +190,13 @@ def update_profile(request):
 #User Profile Method
 @login_required(login_url='account-login')
 def user_profile(request):
+    
+    #Count unread messages
+    unread_message_count = Message.objects.filter(recipient=request.user, status=False).count()
+
     context = {
-        'page_titel': 'Profile',
+        'unread_message_count':unread_message_count,
+        'page_title': f'{request.user.username} Profile',
     }
     return render(request, 'account/profile_detail.html', context)
 

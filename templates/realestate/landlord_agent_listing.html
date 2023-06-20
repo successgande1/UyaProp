@@ -58,14 +58,14 @@ $(document).ready(function() {
                           </div>
                           <div class="col-md-6 col-sm-6">
                              <div class="shorting-right">
-                                <select class="orderby" name="orderby">
+                                <!-- <select class="orderby" name="orderby">
                                    <option value="0" selected >Default shorting</option>
                                    <option value="1" >short by rating </option>
                                    <option value="2" >short by popularity </option>
                                    <option value="3" >short by popularity </option>
                                    <option value="4" >short by price:high to low</option>
                                    <option value="5" >short by price:low to high</option>
-                                </select>
+                                </select> -->
                              </div>
                           </div>
                        </div>
@@ -146,7 +146,38 @@ $(document).ready(function() {
               <!--Right Bar-->
               <div class="col-md-4">
                  <div class="listing-widget-box left-margin">
-                    <div class="single-listing-widget">
+                  <div class="single-listing-widget">
+                     <h3> my recent property</h3>
+                     <ul>
+                      {% if properties %}
+
+                      {% for property in properties %}
+                        <li>
+                           <div class="recent-img">
+                              <a href="{% url 'property_detail' property.id %}">
+                              <img src=" {{ property.image.url }} " alt="recent image"  />  
+                              </a>
+                           </div>
+                           <div>
+                              <h4 style="text-align: center; margin-top:5%; color:green; font-family:sans-serif; font-size:1.6rem; font-weight:bold;">
+                                 <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
+                              </h4>
+                              <p style="text-align: center; color:blue;">Location: {{property.state}}, {{property.town}}</p>
+                              <p style="text-align: center; color:rgb(202, 96, 10); font-weight:bold;">Price: N{{property.price |intcomma}}</p> 
+                           </div>
+                        </li>
+                      {% endfor %} 
+                      {% else %}
+
+                      <h5>No Property Listing</h5>
+
+                      {% endif %}
+                        
+                        
+                        
+                     </ul>
+                  </div>
+                    <!-- <div class="single-listing-widget">
                        <h3>Search Property</h3>
                        
                      <form action="" method="GET">
@@ -167,39 +198,9 @@ $(document).ready(function() {
 
                      </form>
                        
-                    </div>
+                    </div> -->
                     {% include 'realestate/partials/user_menu_left.html' %}
-                    <div class="single-listing-widget">
-                       <h3> my recent property</h3>
-                       <ul>
-                        {% if properties %}
-
-                        {% for property in properties %}
-                          <li>
-                             <div class="recent-img">
-                                <a href="#">
-                                <img src=" {{ property.image.url }} " alt="recent image"  width="82" height="79" />
-                                </a>
-                             </div>
-                             <div class="recent-text">
-                                <h4 style="font-size: 1.5rem; color:blue;">
-                                   <a href=" {% url 'property_detail' property.id %} ">{{property.property_type}}</a><a href=" {% url 'edit-property' property.id %} " class="btn btn-danger-sm">Edit</a>
-                                </h4>
-                                <p>Location: {{property.state}}, {{property.state_lga}}</p>
-                                <p style="font-size: 1.2rem; font-family:sans-serif; color:rgb(243, 73, 6);">Price: N{{property.price |intcomma}}</p> 
-                             </div>
-                          </li>
-                        {% endfor %} 
-                        {% else %}
-
-                        <h5>No Property Listing</h5>
-
-                        {% endif %}
-                          
-                          
-                          
-                       </ul>
-                    </div>
+                    
                  </div>
               </div>
            </div>
