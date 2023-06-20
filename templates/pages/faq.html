@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ page_title }} {% endblock%}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!-- Breadcromb Area Start -->
+{% include 'pages/partials/_breadcromb.html' %}
+<!-- Breadcromb Area End -->
+
+ 
+<!-- Faq Found Area Start -->
+<section class="afloon-faqs-area section_100">
+    {% include 'realestate/partials/_alerts.html' %}
+    <div class="container">
+       <div class="row">
+          <div class="col-md-7">
+             <div class="faq-left">
+                <h2>Frequently Asked Questions</h2>
+                <p>Select one of the frequently asked questions below to learn more UyaProp Property Management.</p>
+                <div class="afloon-faq-panel">
+                   <h3>Question about UyaProp</h3>
+                   <div class="panel-group accordion"  id="accordion">
+                      <div class="panel panel-default">
+                         <div class="panel-heading">
+                            <h4 class="panel-title afloon-panel-title">
+                               <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse03" aria-expanded="false">
+                               <i class="switch fa fa-plus"></i>
+                               What is UyaProp?
+                               </a>
+                            </h4>
+                         </div>
+                         <div class="panel-collapse collapse" id="collapse03">
+                            <div class="panel-body">
+                               <p>UyaProp Web Application is an online platform designed to connect
+                                 property owners (landlords and agents) with potential tenants or 
+                                 buyers for FREE. </p>
+                               <p> It allows property owners to list their properties for free 
+                                and provides a user-friendly interface for prospects to search 
+                                and find suitable properties.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="panel panel-default">
+                         <div class="panel-heading">
+                            <h4 class="panel-title afloon-panel-title">
+                               <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse04" aria-expanded="false">
+                               <i class="switch fa fa-plus"></i>
+                               How can I list my property on your platform?
+                               </a>
+                            </h4>
+                         </div>
+                         <div class="panel-collapse collapse" id="collapse04">
+                            <div class="panel-body">
+                               <p>To list your property, simply <a href=" {% url 'register-account' %} ">sign up</a>  as a landlord, agent or Prospect on our website.</p>
+                               <p>Once you've created an account, you can easily add property details, including descriptions, images, amenities, and contact information.</p>
+                                <p>Our platform will guide you through the process, making it quick and straightforward.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="panel panel-default">
+                         <div class="panel-heading">
+                            <h4 class="panel-title afloon-panel-title">
+                               <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse05" aria-expanded="false">
+                               <i class="switch fa fa-plus"></i>
+                               Is it really free to list my property?
+                               </a>
+                            </h4>
+                         </div>
+                         <div class="panel-collapse collapse" id="collapse05">
+                            <div class="panel-body">
+                               <p> Yes, listing your property on our platform is absolutely free. 
+                                We believe in providing a transparent and accessible platform for 
+                                property owners to showcase their properties without any upfront costs.</p>
+                               
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="afloon-faq-panel">
+                   <h3>Question about renting</h3>
+                   <div class="panel-group accordion2"  id="accordion2">
+                      <div class="panel panel-default">
+                         <div class="panel-heading">
+                            <h4 class="panel-title afloon-panel-title">
+                               <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse06" aria-expanded="false">
+                               <i class="switch fa fa-plus"></i>
+                               How do prospects search for properties?
+                               </a>
+                            </h4>
+                         </div>
+                         <div class="panel-collapse collapse" id="collapse06">
+                            <div class="panel-body">
+                               <p>Prospects can search for properties on our platform using various criteria, such as location, property type, price range, number of bedrooms, and more.</p>
+                               <p>Our advanced search filters help narrow down the options to find the most relevant listings.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="panel panel-default">
+                         <div class="panel-heading">
+                            <h4 class="panel-title afloon-panel-title">
+                               <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse044" aria-expanded="false">
+                               <i class="switch fa fa-plus"></i>
+                               Can I communicate directly with prospects who are interested in my property?
+                               </a>
+                            </h4>
+                         </div>
+                         <div class="panel-collapse collapse" id="collapse044">
+                            <div class="panel-body">
+                               <p> Yes, we facilitate direct communication between property 
+                                owners/agents and prospects. When a prospect shows interest in a property, 
+                                they can reach out to you using the message feature provided in their account. 
+                                You can then communicate directly to schedule viewings or answer any questions they may have.</p>
+                            </div>
+                         </div>
+                      </div>
+                      
+                      <div class="panel panel-default">
+                         <div class="panel-heading">
+                            <h4 class="panel-title afloon-panel-title">
+                               <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse055" aria-expanded="false">
+                               <i class="switch fa fa-plus"></i>
+                               Is my personal contact information visible to everyone?
+                               </a>
+                            </h4>
+                         </div>
+                         <div class="panel-collapse collapse" id="collapse055">
+                            <div class="panel-body">
+                                <p>Your personal contact information is not publicly displayed on the website. Instead, 
+                                    prospects can reach out to you using a messaging feature 
+                                    within our platform. This ensures your privacy while still allowing effective communication.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <h4 class="panel-title afloon-panel-title">
+                              <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse066" aria-expanded="false">
+                              <i class="switch fa fa-plus"></i>
+                              Can I upload multiple properties?
+                              </a>
+                           </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse066">
+                           <div class="panel-body">
+                              <p> Absolutely! Whether you're a landlord or an agent, 
+                                you can upload multiple properties to our platform. 
+                                Our intuitive interface allows you to manage all your 
+                                listings conveniently from a single account.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <h4 class="panel-title afloon-panel-title">
+                              <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse055" aria-expanded="false">
+                              <i class="switch fa fa-plus"></i>
+                              How long does a property listing remain active?
+                              </a>
+                           </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse055">
+                           <div class="panel-body">
+                               <p>By default, a property listing remains active on our platform for
+                                 a specified duration, usually 30 days. However, you have the option 
+                                 to extend the listing period or mark it as rented or sold once it's no
+                                  longer available.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <h4 class="panel-title afloon-panel-title">
+                              <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse077" aria-expanded="false">
+                              <i class="switch fa fa-plus"></i>
+                              Do you offer any additional services for landlords or agents?
+                              </a>
+                           </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse077">
+                           <div class="panel-body">
+                               <p>Along with free property listings, we provide additional services, 
+                                such as analytics and insights, to help landlords and agents make 
+                                informed decisions about their properties. These services may vary, 
+                                so please check our website or contact our support team for more 
+                                details.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <h4 class="panel-title afloon-panel-title">
+                              <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse088" aria-expanded="false">
+                              <i class="switch fa fa-plus"></i>
+                              How can I get support if I encounter any issues?
+                              </a>
+                           </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse088">
+                           <div class="panel-body">
+                               <p>We have a dedicated support team ready to assist 
+                                you with any questions or issues you may encounter. 
+                                You can reach out to our support team through the 
+                                contact form or information provided on our website, 
+                                and we'll be more than happy to assist you.</p>
+                           </div>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-5">
+             <div class="afloon-faqs-right left-margin">
+                <h3>How any Unaswered Question?</h3>
+                <form method="POST" action=" {% url 'pages-faq' %} ">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                   
+                    <p>
+                       <button type="submit">Submit</button>
+                     </p>
+                  </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Faq Area End -->
+  
+  
+ <!-- Newsletter Area Start -->
+ <section class="afloon-newsletter-area section_15">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-7 col-sm-7">
+             <div class="afloon-newsletter-left">
+                <h4>Newsletter</h4>
+                <form>
+                   <p>
+                      <input type="email" name="newsletter" placeholder="Enter Your Email Address" id="newsletter" >
+                      <button type="submit" ><i class="fa fa-send"></i></button>
+                   </p>
+                </form>
+             </div>
+          </div>
+          <div class="col-md-5 col-sm-5">
+             <div class="afloon-newsletter-right">
+                <h4>follow us on</h4>
+                <ul>
+                   <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                   <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                   <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                   <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Newsletter Area End -->
+
+
+{% endblock %}

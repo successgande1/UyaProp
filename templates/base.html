@@ -30,6 +30,34 @@
       <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+      <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}"></script>
+      <script>
+         function initMap() {
+             var map = new google.maps.Map(document.getElementById('map'), {
+                 center: {lat: 37.7749, lng: -122.4194}, // Adjust lat/lng for your desired center point
+                 zoom: 12 // Adjust zoom level as needed
+             });
+ 
+             var propertyData = JSON.parse('{{ property_data|escapejs }}');
+ 
+             propertyData.forEach(function (listing) {
+                 var marker = new google.maps.Marker({
+                     position: listing,
+                     map: map,
+                     title: listing.property_type
+                 });
+ 
+                 var infoWindow = new google.maps.InfoWindow({
+                     content: '<h3>' + listing.title + '</h3><p>' + listing.description + '</p>'
+                 });
+ 
+                 marker.addListener('click', function () {
+                     infoWindow.open(map, marker);
+                 });
+             });
+         }
+     </script>
+
    </head>
    <body>
     <!-- Header Top Area Start -->
@@ -201,7 +229,7 @@
                            </a>
                         </li>
                         <li>
-                           <a href="#">
+                           <a href=" {% url 'pages-faq' %} ">
                              FAQ
                            </a>
                         </li>

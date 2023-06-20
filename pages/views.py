@@ -5,6 +5,8 @@ from realestate.models import *
 from .forms import *
 from itertools import chain
 from django.core.paginator import Paginator
+from django.conf import settings
+import googlemaps
 
 # Home Page View.
 def index(request):
@@ -64,8 +66,25 @@ def services(request):
 
 #Property View
 def property(request):
+
+    
     #Get all the property listings
     properties = Property.objects.order_by('-last_updated')
+
+    # Initialize Google Maps client
+    gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+
+    # Prepare property data for map markers
+    property_data = []
+    for prop in properties:
+        property_data.append({
+            'lat': prop.latitude,
+            'lng': prop.longitude,
+            'title': prop.property_type,
+            'description': prop.description
+        })
+
+
     # Paginate Property list
     paginator = Paginator(properties, 4)  # Show 4 properties per page
     page_number = request.GET.get('page')
@@ -75,6 +94,7 @@ def property(request):
         'properties': page_obj,
         'page_title':'Free Property Management in Nigeria | UyaProp',   
         'total_properties': paginator.count,
+        'property_data': property_data,
     }
     return render(request, 'pages/property.html', context)
 
@@ -98,6 +118,29 @@ def contact(request):
         'page_title':'Contact Us | UyaProp',   
     }
     return render(request, 'pages/contact.html', context)
+
+#Blog View
+def faq(request):
+    #Contact form
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            phone = form.cleaned_data['phone']
+            content = form.cleaned_data['content']
+            Contact.objects.create(name=name, email=email, subject=subject, phone=phone, content=content)
+            messages.success(request, 'Message sent successfully.')
+            return redirect('pages-faq')
+    else:
+        form = ContactForm()
+
+    context = {
+        'page_title':'Frequently Asked Questions | UyaProp',  
+        'form':form, 
+    }
+    return render(request, 'pages/faq.html', context)
 
 #Blog View
 def blog(request):

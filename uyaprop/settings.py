@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_humanize',
     'django_filters',
     'imagekit',
+    'googlemaps',
 ]
 
 MIDDLEWARE = [
@@ -160,4 +161,5 @@ LOGIN_URL = 'user-login'
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
-#Python Static files Compressor config
+#Google Map API
+GOOGLE_MAPS_API_KEY = config('YOUR_API_KEY')

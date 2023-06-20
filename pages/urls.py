@@ -9,6 +9,7 @@ urlpatterns = [
     path('professional-property-management/', views.services, name = 'pages-services'),
     path('free-property-management/', views.property, name = 'pages-property'),
     path('contact-uyaprop/', views.contact, name = 'pages-contact'),
+    path('success/faq/', views.faq, name = 'pages-faq'),
     path('free-online-property-listing-blog/', views.blog, name = 'pages-blog'),
  
 ]
